@@ -1,0 +1,112 @@
+#summary One-sentence summary of this page.
+#labels Phase-Implementation,Phase-Design
+
+= DBus API =
+
+There are C library for IMSettings available though, you can access IMSettings through DBus directly.
+
+This section describes DBus interface and DBus services on IMSettings provides.
+
+== com.redhat.imsettings ==
+
+Core interface for IMSettings. which is to communicate `im-settings-daemon`.
+
+This interface could be supposed to be invoked from other applications. but other interface may not. 
+
+ * com.redhat.imsettings.StartIM(_in_ *STRING* `lang`, _in_ *STRING* `im_name`, _in_ *BOOLEAN* `update_xinputrc`, _out_ *BOOLEAN* `ret`)
+
+   A method to bring up the necessary processes for `im_name` Input Method with `lang` language if necessary. also send a request to change the settings to all the backends. if `update_xinputrc` is `FALSE`, $HOME/.xinputrc won't be modified after invoking this method.
+
+ * com.redhat.imsettings.StopIM(_in_ *STRING* `im_name`, _in_ *BOOLEAN* `update_xinputrc`, _in_ *BOOLEAN* `force`, _out_ *BOOLEAN* `ret`)
+
+   A method to stop the processes for `im_name` Input Method. it may be failed due to any reasons. in that case, IMSettings may not applies the changes completely. `force` flag is to do all the procedures regardless of its failure anyway. if `update_xinputrc` is `FALSE`, $HOME/.xinputrc won't be modified after invoking this method, otherwise it points to `none`.
+
+ * com.redhat.imsettings.Reload(_in_ *BOOLEAN* `force`)
+
+   A signal to reload the configuration. if `force` is `TRUE`, DBus service itself is reloaded.
+   On this interface, this signal do nothing except `force` is `TRUE`.
+
+==== com.redhat.imsettings.IMInfo ====
+
+Information provider interface. which is to communicate `im-info-daemon`.
+
+ * com.redhat.imsettings.IMInfo.!GetList(_in_ *STRING* `lang`, _out_ *ARRAYofSTRING* `ret`)
+
+   A method to get Input Methods list that currently available on the system. each items could be usually used as the key to do something through IMSettings for other methods.
+
+ * com.redhat.imsettings.IMInfo.GetCurrentUserIM(_out_ *STRING* `ret`)
+
+   A method to get current Input Method for user.
+
+ * com.redhat.imsettings.IMInfo.GetCurrentSystemIM(_out_ *STRING* `ret`)
+
+   A method to get current Input Method for system.
+
+ * com.redhat.imsettings.IMInfo.GetIMModuleName(_in_ *STRING* `im_name`, _in_ *UINT* `type`, _out_ *STRING* `ret`)
+
+   A method to get various immodule name, including XIM, which one you want could be specified by `type`. the following type is available:
+    ||*IMSETTINGS_IMM_GTK*||GTK+ immodule||
+    ||*IMSETTINGS_IMM_QT*||Qt immodule||
+    ||*IMSETTINGS_IMM_XIM*||XIM||
+
+ * com.redhat.imsettings.IMInfo.!GetXimProgram(_in_ *STRING* `im_name`, _out_ *STRING* `prog_name`, _out_ *STRING* `prog_args`)
+
+   A method to get the XIM server program and its command line options for `im_name` Input Method.
+
+ * com.redhat.imsettings.IMInfo.!GetPreferencesProgram(_in_ *STRING* `im_name`, _out_ *STRING* `prog_name`, _out_ *STRING* `prog_args`)
+
+   A method to get the preferences program and its command line options for `im_name` Input Method.
+
+ * com.redhat.imsettings.IMInfo.!GetAuxiliaryProgram(_in_ *STRING* `im_name`, _out_ *STRING* `prog_name`, _out_ *STRING* `prog_args`)
+
+   A method to get the auxiliary program and its command line options for `im_name` Input Method.
+   This may be used to bring up the kind of toolbar etc.
+
+ * com.redhat.imsettings.IMInfo.!GetShortDescription(_in_ *STRING* `im_name`, _out_ *STRING* `ret`)
+
+   A method to get a short description for `im_name` Input Method.
+
+ * com.redhat.imsettings.IMInfo.!GetLongDescription(_in_ *STRING* `im_name`, _out_ *STRING* `ret`)
+
+   A method to get a long description for `im_name` Input Method.
+
+ * com.redhat.imsettings.IMInfo.!IsSystemDefault(_in_ *STRING* `im_name`, _out_ *BOOLEAN* `ret`)
+
+   A method to see if `im_name` Input Method is recommended for your system.
+
+ * com.redhat.imsettings.IMInfo.!IsUserDefault(_in_ *STRING* `im_name`, _out_ *BOOLEAN* `ret`)
+
+   A method to see if `im_name` Input Method is brought up by default for your desktop session.
+
+ * com.redhat.imsettings.IMInfo.!IsXim(_in_ *STRING* `im_name`, _out_ *BOOLEAN* ret)
+
+   A method to see if `im_name` Input Method is XIM or not.
+
+ * com.redhat.imsettings.IMInfo.Reload(_in_ *BOOLEAN* `force`)
+
+   A signal to reload the configuration. if `force` is `TRUE`, DBus service itself is reloaded.
+
+==== com.redhat.imsettings.GConf ====
+
+XSETTINGS for GTK+ interface. which is to communicate `gconf-im-settings-daemon`.
+
+This assumes XSETTINGS manager such as gnome-settings-daemon is running and support Gtk/IMModule key.
+
+You usually don't need to invoke any methods on this interface.
+
+ * com.redhat.imsettings.GConf.!ChangeTo(_in_ *STRING* `im_name`, _out_ *BOOLEAN* `ret`)
+
+   A method to change the GTK+ immodule to `im_name` immodule.
+
+ * com.redhat.imsettings.GConf.Reload(_in_ *BOOLEAN* `force`)
+
+   A signal to reload the configuration. if `force` is `TRUE`, DBus service itself is reloaded.
+   On this interface, this signal do nothing except `force` is `TRUE`.
+
+==== com.redhat.imsettings.XIM ====
+
+XIM interface.
+
+ * com.redhat.imsettings.XIM.!ChangeTo(_in_ *STRING* `im_name`)
+
+   A signal to change the XIM server to `im_name` XIM.
