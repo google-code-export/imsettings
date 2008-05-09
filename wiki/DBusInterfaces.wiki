@@ -26,7 +26,7 @@ This interface could be supposed to be invoked from other applications. but othe
    A signal to reload the configuration. if `force` is `TRUE`, DBus service itself is reloaded.
    On this interface, this signal do nothing except `force` is `TRUE`.
 
-==== com.redhat.imsettings.IMInfo ====
+== com.redhat.imsettings.IMInfo ==
 
 Information provider interface. which is to communicate `im-info-daemon`.
 
@@ -86,7 +86,7 @@ Information provider interface. which is to communicate `im-info-daemon`.
 
    A signal to reload the configuration. if `force` is `TRUE`, DBus service itself is reloaded.
 
-==== com.redhat.imsettings.GConf ====
+== com.redhat.imsettings.GConf ==
 
 XSETTINGS for GTK+ interface. which is to communicate `gconf-im-settings-daemon`.
 
@@ -103,7 +103,7 @@ You usually don't need to invoke any methods on this interface.
    A signal to reload the configuration. if `force` is `TRUE`, DBus service itself is reloaded.
    On this interface, this signal do nothing except `force` is `TRUE`.
 
-==== com.redhat.imsettings.XIM ====
+== com.redhat.imsettings.XIM ==
 
 XIM interface.
 
