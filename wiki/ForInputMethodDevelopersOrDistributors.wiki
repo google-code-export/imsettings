@@ -1,0 +1,48 @@
+#summary One-sentence summary of this page.
+#labels Phase-Implementation,Phase-Design,Phase-Deploy
+
+= Development guide for Input Method developers/Distributors =
+
+== Information files for Input Method ==
+
+To make Input Methods available from IMSettings, every Input Methods that hopes so has to have the information file to let IMSettings know. those files is usually put under _/etc/X11/xinit/xinput.d_ in Fedora. the filename has to contain *.conf* as suffix. otherwise `im-info-daemon` will just ignores them. but Input Method doesn't support multiple language such as XIM doesn't have to have .conf suffix. *xim.conf* can deals with such configuration files properly for appropriate languages according to current locale.
+
+=== Available parameters ===
+
+The following parameters can be described as the shell environment variables like FOO=BAR.
+
+ * *AUXILIARY_PROGRAM*=_string_
+   An optional program that may want to bring up for Input Method, such as the panel and the toolbar and so on.
+
+ * *AUXILIARY_ARGS*=_string_
+   A command line options for *AUXILIARY_PROGRAM*.
+
+ * *GTK_IM_MODULE*=_string_
+   GTK+ immodule name that want to use.
+
+ * *IMSETTINGS_IGNORE_ME*=_boolean_
+   A parameter to hide Input Method from the inventory. you however can still take an action against such Input Method.
+
+ * *LONG_DESC*=_string_
+   An optional long description to explain what this Input Method is.
+
+ * *PREFERENCE_PROGRAM*=_string_
+   An optional program that set up Input Method. IMSettings itself do nothing on this parameter. but other tools, such as im-chooser will take an action for that.
+
+ * *PREFERENCE_ARGS*=_string_
+   A command line options for *PREFERENCE_PROGRAM*.
+
+ * *QT_IM_MODULE*=_string_
+   Qt immodule name that want to use.
+
+ * *SHORT_DESC*=_string_
+   An optional short description to explain what this Input Method is. this variable is also sued for the key to do something on IMSettings. e.g. to start/stop Input Method and get the information and so on.
+
+ * *XIM*=_string_
+   This variable is used for XIM. actually it looks like XMODIFIERS=@im=$XIM.
+
+ * *XIM_PROGRAM*=_string_
+   A XIM server be brought up to communicate through XIM protocol.
+
+ * *XIM_ARGS*=_string_
+   A command line options for *XIM_PROGRAM*.
