@@ -1,5 +1,5 @@
 #summary One-sentence summary of this page.
-#labels Phase-Implementation,Phase-Design,Phase-Deploy
+#labels Featured,Phase-Implementation,Phase-Design
 
 = Development guide for Input Method developers/Distributors =
 
