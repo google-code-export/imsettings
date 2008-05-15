@@ -30,13 +30,13 @@ The following parameters can be described as the shell environment variables lik
    An optional program that set up Input Method. IMSettings itself do nothing on this parameter. but other tools, such as im-chooser will take an action for that.
 
  * *PREFERENCE_ARGS*=_string_
-   A command line options for *PREFERENCE_PROGRAM*.
+   A list of command line options for *PREFERENCE_PROGRAM*.
 
  * *QT_IM_MODULE*=_string_
    Qt immodule name that want to use.
 
  * *SHORT_DESC*=_string_
-   An optional short description to explain what this Input Method is. this variable is also sued for the key to do something on IMSettings. e.g. to start/stop Input Method and get the information and so on.
+   An optional short description to explain what this Input Method is. this variable is also sued for the key to do something on IMSettings. e.g. to start/stop Input Method and get the information and so on. so this parameter has to be unique.
 
  * *XIM*=_string_
    This variable is used for XIM. actually it looks like XMODIFIERS=@im=$XIM.
