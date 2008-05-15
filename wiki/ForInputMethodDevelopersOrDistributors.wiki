@@ -45,4 +45,4 @@ The following parameters can be described as the shell environment variables lik
    A XIM server be brought up to communicate through XIM protocol.
 
  * *XIM_ARGS*=_string_
-   A command line options for *XIM_PROGRAM*.
+   A list of command line options for *XIM_PROGRAM*.
