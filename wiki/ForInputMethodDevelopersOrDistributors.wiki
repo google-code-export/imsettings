@@ -5,7 +5,7 @@
 
 == Information files for Input Method ==
 
-To make Input Methods available from IMSettings, every Input Methods that hopes so has to have the information file to let IMSettings know. those files is usually put under _/etc/X11/xinit/xinput.d_ in Fedora. the filename has to contain *.conf* as suffix. otherwise `im-info-daemon` will just ignores them. but Input Method doesn't support multiple language such as XIM doesn't have to have .conf suffix. *xim.conf* can deals with such configuration files properly for appropriate languages according to current locale.
+To make Input Methods available from IMSettings, every Input Methods that hopes so has to have the information file to let IMSettings know. those files is usually put under _/etc/X11/xinit/xinput.d_ in Fedora. the filename has to contain *.conf* as suffix. otherwise `im-info-daemon` will just ignores them. but Input Method doesn't support multiple languages such as XIM doesn't have to have .conf suffix. *xim.conf* can deals with such configuration files properly for appropriate languages according to current locale.
 
 === Available parameters ===
 
