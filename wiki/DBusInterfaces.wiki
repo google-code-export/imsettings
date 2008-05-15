@@ -1,6 +1,4 @@
-#summary One-sentence summary of this page.
 #labels Phase-Implementation,Phase-Design
-
 = DBus API =
 
 There are C library for IMSettings available though, you can access IMSettings through DBus directly.
