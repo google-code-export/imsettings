@@ -15,13 +15,13 @@ The following parameters can be described as the shell environment variables lik
    An optional program that may want to bring up for Input Method, such as the panel and the toolbar and so on.
 
  * *AUXILIARY_ARGS*=_string_
-   A command line options for *AUXILIARY_PROGRAM*.
+   A list of command line options for *AUXILIARY_PROGRAM*.
 
  * *GTK_IM_MODULE*=_string_
    GTK+ immodule name that want to use.
 
  * *IMSETTINGS_IGNORE_ME*=_boolean_
-   A parameter to hide Input Method from the inventory. you however can still take an action against such Input Method.
+   A parameter to hide Input Method from the inventory. you however can still take an action against such Input Method via IMSettings.
 
  * *LONG_DESC*=_string_
    An optional long description to explain what this Input Method is.
