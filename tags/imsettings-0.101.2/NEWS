@@ -1,0 +1,28 @@
+0.101.0 -> 0.101.1
+=====================
+* Bug Fixes
+  * Issue#9: IM goes away till im-info-daemon restarted.
+  * Issue#10: The sort order isn't correct.
+
+0.100.0 -> 0.101.0
+=====================
+* Soname is bumped again due to API clean up and new APIs.
+* Bug Fixes
+  * Issue#7: Invalid dump for short description.
+  * warning messages on monitoring files
+  * RHBZ#450574: Fix a typo in imsettings-restart.
+* Features
+  * Add a version check API
+* Improvements
+  * faster responses from imsettings services
+
+0.99.6 -> 0.100.0
+====================
+* Soname is bumped from 0 to 1 due to some APIs has been removed/changed.
+* Bug Fixes
+  * Issue#5: Segfault if .xinputrc or xinputrc points to the invalid config.
+  * RHBZ#444152: Use GFileMonitor instead of FAM API directly.
+* Features
+  * Provide an information of icon file for IM.
+* Improvements
+  * export GError to deal with more complex error handling in applications.
