@@ -1,0 +1,592 @@
+# translation of im-chooser.trunk.as.po to Assamese
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Amitakhya Phukan <aphukan@redhat.com>, 2008.
+# Amitakhya Phukan <aphukan@fedoraproject.org>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: im-chooser.trunk.as\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-07-03 09:54+0900\n"
+"PO-Revision-Date: 2008-04-04 14:28+0530\n"
+"Last-Translator: Amitakhya Phukan <aphukan@fedoraproject.org>\n"
+"Language-Team: Assamese <fedora-trans-as@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1)\n"
+
+#: ../backends/gconf/main.c:184 ../src/factory_info.c:998 ../src/factory.c:789
+#: ../imsettings/imsettings-observer.c:844
+msgid "Replace the running settings daemon with new instance."
+msgstr "প্ৰতিস্থাপন চলমান নতুন."
+
+#: ../backends/gconf/main.c:206 ../backends/xim/main.c:211
+#: ../src/factory_info.c:1023 ../src/factory.c:816
+#: ../utils/imsettings-start.c:69 ../utils/imsettings-stop.c:65
+#: ../utils/imsettings-reload.c:63 ../utils/imsettings-restart.c:66
+msgid "Unknown error in parsing the command lines."
+msgstr "আদেশ শাৰী বিশ্লেষণ কৰোঁতে অজ্ঞাত ভুল ।"
+
+#: ../backends/xfce/imsettings_plugin.c:88
+#, fuzzy
+msgid "Button Label|Input Method"
+msgstr "নিবেশ পদ্ধতি"
+
+#: ../backends/xim/protocol.c:1356 ../backends/xim/connection.c:197
+#: ../backends/xim/server.c:458
+#, fuzzy
+msgid "X display"
+msgstr "X প্ৰদৰ্শনৰ নাম"
+
+#: ../backends/xim/protocol.c:1357 ../backends/xim/connection.c:198
+#: ../backends/xim/server.c:459 ../backends/xim/main.c:177
+#: ../src/factory.c:790
+msgid "X display to use"
+msgstr "ব্যৱহাৰৰ উদ্দেশ্যে X প্ৰদৰ্শন"
+
+#: ../backends/xim/protocol.c:1361 ../backends/xim/connection.c:226
+#: ../backends/xim/server.c:469
+#, fuzzy
+msgid "Verbose flag"
+msgstr "আওকাণৰ চিহ্ন"
+
+#: ../backends/xim/protocol.c:1362 ../backends/xim/connection.c:227
+#: ../backends/xim/server.c:470
+msgid "Output a lot of helpful messages to debug"
+msgstr ""
+
+#: ../backends/xim/protocol.c:1367
+msgid "Connection object"
+msgstr ""
+
+#: ../backends/xim/protocol.c:1368
+msgid "XIMConnection Gobject"
+msgstr ""
+
+#: ../backends/xim/connection.c:202
+msgid "Window ID"
+msgstr ""
+
+#: ../backends/xim/connection.c:203
+msgid "Window ID for the client"
+msgstr ""
+
+#: ../backends/xim/connection.c:210
+msgid "Communication Window ID"
+msgstr ""
+
+#: ../backends/xim/connection.c:211 ../backends/xim/loopback.c:948
+msgid "Window ID to communicate the client"
+msgstr ""
+
+#: ../backends/xim/connection.c:218 ../backends/xim/loopback.c:955
+msgid "Selection Atom"
+msgstr ""
+
+#: ../backends/xim/connection.c:219 ../backends/xim/loopback.c:956
+msgid "Atom for selection"
+msgstr ""
+
+#: ../backends/xim/connection.c:232
+msgid "Protocol"
+msgstr ""
+
+#: ../backends/xim/connection.c:233
+msgid "GType to deal with the XIM protocol"
+msgstr ""
+
+#: ../backends/xim/connection.c:238
+msgid "XIMProtocol"
+msgstr ""
+
+#: ../backends/xim/connection.c:239
+msgid "GObject of GObject"
+msgstr ""
+
+#: ../backends/xim/server.c:463 ../imsettings/imsettings-info.c:650
+msgid "XIM server name"
+msgstr "XIM সেৱকৰ নাম"
+
+#: ../backends/xim/server.c:464
+#, fuzzy
+msgid "XIM server name to be connected"
+msgstr "চলাব লগা XIM সেৱকৰ প্ৰ'গ্ৰেম"
+
+#: ../backends/xim/main.c:177 ../src/factory.c:790
+msgid "DISPLAY"
+msgstr "DISPLAY"
+
+#: ../backends/xim/main.c:178
+#, fuzzy
+msgid "Replace the running XIM server with new instance."
+msgstr "প্ৰতিস্থাপন চলমান নতুন."
+
+#: ../backends/xim/main.c:179
+msgid "Output the debugging logs"
+msgstr ""
+
+#: ../backends/xim/loopback.c:947
+msgid "Selection Window ID"
+msgstr ""
+
+#: ../src/factory_info.c:132
+#, c-format
+msgid "Reloading...\n"
+msgstr "পুনঃ তোলা হৈছে...\n"
+
+#: ../src/factory_info.c:178
+#, c-format
+msgid "Duplicate entry `%s' from %s. SHORT_DESC has to be unique."
+msgstr "দ্বৈধ নিবেশ `%s' %s ৰ পৰা । SHORT_DESC অদ্বিতীয় হ'ব লাগে ।"
+
+#: ../src/factory_info.c:633 ../src/factory_info.c:668
+#, c-format
+msgid "No input methods available on your system."
+msgstr "আপোনাৰ ব্যৱস্থাপ্ৰণালীত কোনো নিবেশ পদ্ধতি পোৱা ন'গ'ল ।"
+
+#: ../src/factory_info.c:723
+#, c-format
+msgid "No such input method on your system: %s"
+msgstr "আপোনাৰ ব্যৱস্থাপ্ৰণালীত এনে কোনো নিবেশ পদ্ধতি নাই: %s"
+
+#: ../src/factory_info.c:919
+msgid "xinputrc directory"
+msgstr ""
+
+#: ../src/factory_info.c:920
+msgid "A directory where puts the system wide xinputrc on."
+msgstr ""
+
+#: ../src/factory_info.c:925
+msgid "xinput directory"
+msgstr ""
+
+#: ../src/factory_info.c:926
+msgid "A directory where puts the IM configurations on."
+msgstr ""
+
+#: ../src/factory_info.c:931 ../src/factory_info.c:932
+msgid "home directory"
+msgstr ""
+
+#: ../src/factory_info.c:999
+msgid ""
+"A directory where puts the system-wide xinputrc puts on (debugging only)"
+msgstr ""
+
+#: ../src/factory_info.c:999 ../src/factory_info.c:1000
+#: ../src/factory_info.c:1001
+msgid "DIR"
+msgstr ""
+
+#: ../src/factory_info.c:1000
+msgid "A directory where puts the IM configurations puts on (debugging only)"
+msgstr ""
+
+#: ../src/factory_info.c:1001
+msgid "A home directory (debugging only)"
+msgstr ""
+
+#: ../src/factory.c:138
+#, c-format
+msgid "Failed to remove a pidfile: %s"
+msgstr "এটা pidfile আঁতৰুৱাত বিফল: %s"
+
+#: ../src/factory.c:180
+#, c-format
+msgid "Failed to open a pidfile: %s"
+msgstr "এটা pidfile খোলোঁতে বিফল: %s"
+
+#: ../src/factory.c:268
+#, c-format
+msgid "%s: No such file or directory"
+msgstr ""
+
+#: ../src/factory.c:278
+#, c-format
+msgid "Couldn't determine the pid for %s process."
+msgstr "%s প্ৰক্ৰিয়াৰ বাবে pid নিৰ্ধাৰণ কৰিব নোৱাৰি ।"
+
+#: ../src/factory.c:308
+#, c-format
+msgid "Couldn't send a signal to the %s process successfully."
+msgstr "%s প্ৰক্ৰিয়ালৈ সফলভাবে চিগ্নেল পঠিয়াব নোৱাৰি ।"
+
+#: ../src/factory.c:332 ../src/factory.c:626
+#, c-format
+msgid "Failed to get a place of home directory."
+msgstr "ঘৰৰ পঞ্জিকাৰ বাবে স্থান পোৱা ন'গ'ল ।"
+
+#: ../src/factory.c:349
+#, c-format
+msgid "Failed to revert the backup file: %s"
+msgstr "নকল নথিপত্ৰ ওভতাওঁতে বিফল: %s"
+
+#: ../src/factory.c:361
+#, c-format
+msgid "Failed to create a backup file: %s"
+msgstr "নকল নথিপত্ৰ সৃষ্টি কৰোঁতে বিফল: %s"
+
+#: ../src/factory.c:370
+#, c-format
+msgid "Failed to remove a .xinputrc file: %s"
+msgstr "এটা .xinputৰc নথিপত্ৰ আঁতৰুৱাত বিফল: %s"
+
+#: ../src/factory.c:381
+#, c-format
+msgid "Failed to make a symlink: %s"
+msgstr "এটা symlink বনাবলৈ বিফল: %s"
+
+#: ../src/factory.c:501 ../src/factory.c:679
+#, fuzzy, c-format
+msgid ""
+"No such input method on your system: %s\n"
+"  Details: %s"
+msgstr "আপোনাৰ ব্যৱস্থাপ্ৰণালীত এনে কোনো নিবেশ পদ্ধতি নাই: %s"
+
+#: ../src/factory.c:524
+#, c-format
+msgid "No XIM server is available in %s"
+msgstr "%s ত কোনো XIM সেৱক নাই"
+
+#: ../src/factory.c:745
+msgid "X display name"
+msgstr "X প্ৰদৰ্শনৰ নাম"
+
+#: ../src/factory.c:746
+msgid "X display name to use"
+msgstr "ব্যৱহাৰ কৰিব লগা X প্ৰদৰ্শনৰ নাম"
+
+#. FIXME
+#: ../src/factory.c:793
+msgid "X screen to use"
+msgstr "ব্যৱহাৰৰ উদ্দেশ্যে চিহ্নিত X পৰ্দা"
+
+#: ../src/factory.c:793
+msgid "SCREEN"
+msgstr "SCREEN"
+
+#: ../src/factory.c:824
+#, c-format
+msgid "Failed to open a X display."
+msgstr "এটা X প্ৰদৰ্শন খুলিবলৈ বিফল ।"
+
+#: ../utils/imsettings-start.c:43 ../utils/imsettings-stop.c:41
+#: ../utils/imsettings-restart.c:41
+#, fuzzy
+msgid "<Input Method>"
+msgstr "নিবেশ পদ্ধতি"
+
+#: ../utils/imsettings-start.c:45 ../utils/imsettings-stop.c:44
+#: ../utils/imsettings-restart.c:44
+msgid "Do not update .xinputrc."
+msgstr ".xinputrc উন্নত নকৰিব ।"
+
+#: ../utils/imsettings-start.c:106
+#, fuzzy, c-format
+msgid "Started %s\n"
+msgstr "%s বন্ধ কৰা হ'ল\n"
+
+#: ../utils/imsettings-start.c:108
+#, fuzzy, c-format
+msgid "Failed to start IM process `%s'\n"
+msgstr "IM প্ৰক্ৰিয়া `%s' বন্ধ কৰাত বিফল\n"
+
+#: ../utils/imsettings-stop.c:43 ../utils/imsettings-reload.c:42
+msgid "Force reloading the configuration, including restarting the process."
+msgstr "বিন্যাস যোৰ কৰি পুনঃ তোলা হৈছে, প্ৰক্ৰিয়া পুনৰাৰম্ভ কৰাৰ লগতে ।"
+
+#: ../utils/imsettings-stop.c:101
+#, c-format
+msgid "Stopped %s\n"
+msgstr "%s বন্ধ কৰা হ'ল\n"
+
+#: ../utils/imsettings-stop.c:103
+#, c-format
+msgid "Failed to stop IM process `%s'\n"
+msgstr "IM প্ৰক্ৰিয়া `%s' বন্ধ কৰাত বিফল\n"
+
+#: ../utils/imsettings-restart.c:43
+#, fuzzy
+msgid "Force restarting the IM process regardless of any errors."
+msgstr "কোনো ভুল হোৱা স্বত্বেও IM প্ৰক্ৰিয়া বলবৎ ভাবে পুনৰাৰম্ভ কৰক ।"
+
+#: ../imsettings/imsettings-info.c:609
+msgid "Language"
+msgstr "ভাষা"
+
+#: ../imsettings/imsettings-info.c:610
+msgid "A language to pull the information in."
+msgstr "তথ্য ল'বলৈ ভাষা ।"
+
+#: ../imsettings/imsettings-info.c:616
+msgid "Filename"
+msgstr "নথিপত্ৰৰ নাম"
+
+#: ../imsettings/imsettings-info.c:617
+msgid "A filename referring to the IM information."
+msgstr "IM তথ্য সূচক নথিপত্ৰৰনাম ।"
+
+#: ../imsettings/imsettings-info.c:623 ../imsettings/imsettings-info.c:624
+msgid "Short Description"
+msgstr "চমু বিৱৰণ"
+
+#: ../imsettings/imsettings-info.c:630
+msgid "XIM"
+msgstr "XIM"
+
+#: ../imsettings/imsettings-info.c:631
+msgid "Whether or not IM is a XIM server."
+msgstr "IM এটা XIM সেৱক হয় নে নহয় ।"
+
+#: ../imsettings/imsettings-info.c:637
+msgid "GTK+ immodule"
+msgstr "GTK+ immodule"
+
+#: ../imsettings/imsettings-info.c:638
+msgid "A module name used for GTK+"
+msgstr "GTK+ ৰ বাবে ব্যৱহৃত অংশ ।"
+
+#: ../imsettings/imsettings-info.c:643
+msgid "Qt immodule"
+msgstr "Qt immodule"
+
+#: ../imsettings/imsettings-info.c:644
+msgid "A module name used for Qt"
+msgstr "Qt ৰ বাবে ব্যৱহৃত অংশ ।"
+
+#: ../imsettings/imsettings-info.c:649
+msgid "XIM name"
+msgstr "XIM নাম"
+
+#: ../imsettings/imsettings-info.c:655
+msgid "Ignore flag"
+msgstr "আওকাণৰ চিহ্ন"
+
+#: ../imsettings/imsettings-info.c:656
+msgid "A flag to not list up."
+msgstr "তালিকাত নেদেখুৱাবলৈ চিহ্ন ।"
+
+#: ../imsettings/imsettings-info.c:661
+msgid "XIM server program name"
+msgstr "XIM সেৱক প্ৰ'গ্ৰেমৰ নাম"
+
+#: ../imsettings/imsettings-info.c:662
+msgid "XIM server program to be run"
+msgstr "চলাব লগা XIM সেৱকৰ প্ৰ'গ্ৰেম"
+
+#: ../imsettings/imsettings-info.c:667
+msgid "XIM server program's options"
+msgstr "XIM সেৱক প্ৰ'গ্ৰেমৰ বিকল্পসমূহ"
+
+#: ../imsettings/imsettings-info.c:668
+msgid "Command line options for XIM server program"
+msgstr "XIM সেৱক প্ৰ'গ্ৰেমৰ আদেশ শাৰীৰ বিকল্পসমূহ"
+
+#: ../imsettings/imsettings-info.c:673
+msgid "Preference program name"
+msgstr "পছন্দৰ প্ৰ'গ্ৰেমৰ নাম"
+
+#: ../imsettings/imsettings-info.c:674
+msgid "Preference program to be run"
+msgstr "চলাব লগা পছন্দৰ প্ৰ'গ্ৰেম"
+
+#: ../imsettings/imsettings-info.c:679
+msgid "Preference program's options"
+msgstr "পছন্দৰ প্ৰ'গ্ৰেমৰ বিকল্প"
+
+#: ../imsettings/imsettings-info.c:680
+msgid "Command line options for preference program"
+msgstr "পছন্দৰ প্ৰ'গ্ৰেমৰ আদেশ শাৰীৰ বিকল্প"
+
+#: ../imsettings/imsettings-info.c:685
+msgid "Auxiliary program name"
+msgstr "Auxiliaৰy প্ৰ'গ্ৰেমৰ নাম"
+
+#: ../imsettings/imsettings-info.c:686
+msgid "Auxiliary program to be run"
+msgstr "চলাব লগা Auxiliaৰy প্ৰ'গ্ৰেম"
+
+#: ../imsettings/imsettings-info.c:691
+msgid "Auxiliary program's options"
+msgstr "Auxiliaৰy প্ৰ'গ্ৰেমৰ বিকল্প"
+
+#: ../imsettings/imsettings-info.c:692
+msgid "Command line options for auxiliary program"
+msgstr "auxiliaৰy প্ৰ'গ্ৰেমৰ বাবে আদেশ শাৰীৰ বিকল্প"
+
+#: ../imsettings/imsettings-info.c:697 ../imsettings/imsettings-info.c:698
+msgid "Long Description"
+msgstr "দীঘল বিৱৰণ"
+
+#: ../imsettings/imsettings-info.c:703
+msgid "Icon"
+msgstr ""
+
+#: ../imsettings/imsettings-info.c:704
+msgid "Icon filename to be used on GUI"
+msgstr ""
+
+#: ../imsettings/imsettings-info.c:709
+msgid "System Default"
+msgstr "ব্যৱস্থাপ্ৰণালীৰ অবিকল্পিত"
+
+#: ../imsettings/imsettings-info.c:710
+msgid "Whether or not IM is a system default."
+msgstr "IM ব্যৱস্থাপ্ৰণালীৰ অবিকল্পিত হয় নে নহয় ।"
+
+#: ../imsettings/imsettings-info.c:715
+msgid "User Default"
+msgstr "ব্যৱহাৰকৰোঁতাৰ অবিকল্পিত"
+
+#: ../imsettings/imsettings-info.c:716
+msgid "Whether or not IM is an user default."
+msgstr "IM ব্যৱহাৰকৰোঁতাৰ অবিকল্পিত হয় নে নহয় ।"
+
+#: ../imsettings/imsettings-request.c:169
+msgid "DBus Interface"
+msgstr "DBus সংযোগমাধ্যম"
+
+#: ../imsettings/imsettings-request.c:170
+msgid "Interface name to connect to DBus"
+msgstr "DBus লৈ সংযোগ কৰা সংযোগমাধ্যমৰ নাম"
+
+#: ../imsettings/imsettings-request.c:175
+#: ../imsettings/imsettings-observer.c:849
+msgid "DBus connection"
+msgstr "DBus সংযোগ"
+
+#: ../imsettings/imsettings-request.c:176
+#: ../imsettings/imsettings-observer.c:850
+msgid "An object to be a DBus connection"
+msgstr "এটা DBus সংযোগ হ'ব লগা এটা বস্তু"
+
+#: ../imsettings/imsettings-request.c:181
+msgid "Locale"
+msgstr "লোকেল"
+
+#: ../imsettings/imsettings-request.c:182
+msgid "Locale to get the imsettings information"
+msgstr "imsettings তথ্য পোৱাৰ লোকেল"
+
+#: ../imsettings/imsettings-request.c:240
+#: ../imsettings/imsettings-request.c:277
+#: ../imsettings/imsettings-request.c:299
+#: ../imsettings/imsettings-request.c:329
+#: ../imsettings/imsettings-request.c:383
+#: ../imsettings/imsettings-request.c:435
+#, c-format
+msgid ""
+"Failed to invoke a method `%s':\n"
+"  %s"
+msgstr ""
+"এটা প্ৰক্ৰিয়া মাতিবলৈ বিফল `%s':\n"
+"  %s"
+
+#: ../imsettings/imsettings-request.c:483
+#: ../imsettings/imsettings-request.c:531
+#: ../imsettings/imsettings-request.c:589
+#: ../imsettings/imsettings-request.c:636
+#, c-format
+msgid ""
+"Failed to invoke a method `%s' on %s:\n"
+"  %s"
+msgstr ""
+"এটা প্ৰক্ৰিয়া `%s' ক %s ত মাতিবলৈ বিফল:\n"
+"  %s"
+
+#: ../imsettings/imsettings-observer.c:395
+#, c-format
+msgid "Invalid IM module type: %d"
+msgstr "অবৈধ IM অংশৰ ধৰণ: %d"
+
+#: ../imsettings/imsettings-observer.c:837
+msgid "IM module name"
+msgstr "IM অংশৰ নাম"
+
+#: ../imsettings/imsettings-observer.c:838
+msgid "A target IM module name that to observe signals"
+msgstr "চিগ্নেল চাবলৈ এটা লক্ষ্য IM অংশ"
+
+#: ../imsettings/imsettings-observer.c:843
+msgid "Replace"
+msgstr "প্ৰতিস্থাপন"
+
+#~ msgid "Timed out to initialize %s services."
+#~ msgstr "%s সেৱা আৰম্ভ কৰোঁতে সময় শেষ হ'ল ।"
+
+#~ msgid "User Specific"
+#~ msgstr "ব্যৱহাৰকৰোঁতাৰ দ্বাৰা নিৰ্দ্দিষ্ট"
+
+#~ msgid "xinputrc was modified by the user"
+#~ msgstr "ব্যৱহাৰকৰোঁতাৰ দ্বাৰা xinputrc সলনি কৰা হৈছিল"
+
+#~ msgid "Updating Input Method list"
+#~ msgstr "নিবেশ পদ্ধতিৰ তালিকা উন্নত কৰা হৈছে"
+
+#~ msgid "Failed to start Input Method"
+#~ msgstr "নিবেশ পদ্ধতি আৰম্ভ কৰাত বিফল"
+
+#~ msgid "Starting Input Method - %s"
+#~ msgstr "নিবেশ পদ্ধতি আৰম্ভ কৰা হৈছে - %s"
+
+#~ msgid "Stopping Input Method - %s"
+#~ msgstr "নিবেশ পদ্ধতি বন্ধ কৰা হৈছে - %s"
+
+#~ msgid "Parent Window"
+#~ msgstr "পেৰেন্ট সংযোগক্ষেত্ৰ"
+
+#~ msgid "GtkWindow that points to the parent window"
+#~ msgstr "পেৰেন্ট সংযোগক্ষেত্ৰলৈ আঙুলিয়াই দিয়া GtkWindow"
+
+#~ msgid "Work in progress..."
+#~ msgstr "কাম চলি আছে..."
+
+#~ msgid "Use %s"
+#~ msgstr "%s ব্যৱহাৰ কৰক"
+
+#~ msgid " (legacy)"
+#~ msgstr " (লিগেচি)"
+
+#~ msgid " (recommended)"
+#~ msgstr " (উপদেশিত)"
+
+#~ msgid "<b>Input Method</b>"
+#~ msgstr "<b>নিবেশ পদ্ধতি</b>"
+
+#~ msgid "_Enable input method feature"
+#~ msgstr "নিবেশ পদ্ধতিৰ গুণ সক্ৰিয় কৰে (_E)"
+
+#~ msgid ""
+#~ "<small><i>Note: this change will not take effect until you next log in, "
+#~ "except GTK+ applications.</i></small>"
+#~ msgstr ""
+#~ "<small><i>মন কৰিব:এই সলনি আপুনি অহা বাৰলৈ প্ৰৱেশ নকৰালৈকে প্ৰযোজ্য নহয়, GTK+ "
+#~ "অনুপ্ৰয়োগৰ বাহিৰে ।</i></small>"
+
+#~ msgid "Input Method _Preferences..."
+#~ msgstr "নিবেশ পদ্ধতিৰ পছন্দ (_P)..."
+
+#~ msgid ""
+#~ "<span weight=\"bold\" size=\"larger\">No input method is available</span>"
+#~ msgstr ""
+#~ "<span weight=\"bold\" size=\"laৰgeৰ\">কোনো নিবেশ পদ্ধতি পোৱা নাযায়</span>"
+
+#~ msgid "Please install any input methods before running if you like."
+#~ msgstr "চলোৱাৰ আগতে পছন্দৰ মতে যি কোনো নিবেশ পদ্ধতি সংস্থাপন কৰক ।"
+
+#~ msgid "IM Chooser - Input Method configuration tool"
+#~ msgstr "IM নিৰ্ব্বাচক - নিবেশ পদ্ধতি বিন্যাস সৰঞ্জাম"
+
+#~ msgid "_Log Out"
+#~ msgstr "প্ৰস্থান (_L)"
+
+#~ msgid ""
+#~ "Choose the input method to be used or disable the input method usage on "
+#~ "the desktop"
+#~ msgstr ""
+#~ "নিবেশ পদ্ধতি বিন্যাস সৰঞ্জাম ব্যৱহাৰ কৰা নিবেশ পদ্ধতি নিৰ্ব্বাচন কৰিব'লৈ বা "
+#~ "ডেষ্কট'পত নিবেশ পদ্ধতিৰ ব্যৱহাৰ অসমৰ্থ কৰক ।"
