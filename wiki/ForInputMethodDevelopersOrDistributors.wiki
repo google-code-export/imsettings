@@ -18,6 +18,9 @@ The following parameters can be described as the shell environment variables lik
  * *GTK_IM_MODULE*=_string_
    GTK+ immodule name that want to use.
 
+ * *ICON*=_string_
+   An icon file to use in GUI say.
+
  * *IMSETTINGS_IGNORE_ME*=_boolean_
    A parameter to hide Input Method from the inventory. you however can still take an action against such Input Method via IMSettings.
 
