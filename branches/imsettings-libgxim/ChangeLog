@@ -1,3 +1,27 @@
+2008-07-30  Akira TAGOH  <akira@tagoh.org>
+
+	* configure.ac: Update the dependencies for XIM backend.
+
+	* backends/xim/main.c: clean up.
+
+	* backends/xim/proxy.[ch]: new. an server/proxy implementation
+	inherited from GXimServerTemplate and GXimServerConnection.
+
+	* backends/xim/client.[ch]: new. an client implementation inherited
+	from GXimClientTemplate and GXimClientConnection.
+
+	* Initial commit for libgxim work.
+	
+	* backends/xim/loopback.[ch]: Remove. it's not used anymore.
+	
+	* backends/xim/connection.[ch]: likewise.
+	
+	* backends/xim/protocol.[ch]: likewise.
+	
+	* backends/xim/server.[ch]: likewise.
+
+	* backends/xim/utils.c: clean up.
+
 2008-07-08  Akira TAGOH  <tagoh@redhat.com>
 
 	* utils/imsettings-stop.c (main): Fix a typo.

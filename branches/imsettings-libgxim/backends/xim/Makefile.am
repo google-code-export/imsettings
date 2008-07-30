@@ -24,10 +24,8 @@ EXTRA_DIST =						\
 xim_public_headers =					\
 	$(NULL)
 xim_private_headers =					\
-	connection.h					\
-	loopback.h					\
-	protocol.h					\
-	server.h					\
+	client.h					\
+	proxy.h						\
 	utils.h						\
 	$(NULL)
 xim_built_public_headers =				\
@@ -38,11 +36,9 @@ xim_built_private_headers =				\
 xim_built_sources =					\
 	$(NULL)
 xim_sources =						\
-	connection.c					\
-	loopback.c					\
+	client.c					\
+	proxy.c						\
 	main.c						\
-	protocol.c					\
-	server.c					\
 	utils.c						\
 	$(xim_built_sources)				\
 	$(NULL)
