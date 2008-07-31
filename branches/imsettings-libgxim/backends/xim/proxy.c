@@ -51,12 +51,12 @@ enum {
 };
 
 
-static gboolean xim_proxy_client_real_locales_notify_cb  (XimClient         *client,
-							  GdkEventSelection *event,
-							  gpointer           user_data);
-static gboolean xim_proxy_client_real_transport_notify_cb(XimClient         *client,
-							  GdkEventSelection *event,
-							  gpointer           user_data);
+static gboolean xim_proxy_client_real_notify_locales_cb  (GXimClientTemplate  *client,
+							  gchar              **locales,
+							  gpointer             user_data);
+static gboolean xim_proxy_client_real_notify_transport_cb(GXimClientTemplate  *client,
+							  const gchar         *transport,
+							  gpointer             user_data);
 
 
 //static guint signals[LAST_SIGNAL] = { 0 };
@@ -83,11 +83,11 @@ _create_client(XimProxy        *proxy,
 				       "Unable to create a client instance.");
 		return NULL;
 	}
-	g_signal_connect(client, "locales_notify",
-			 G_CALLBACK (xim_proxy_client_real_locales_notify_cb),
+	g_signal_connect(client, "notify_locales",
+			 G_CALLBACK (xim_proxy_client_real_notify_locales_cb),
 			 proxy);
-	g_signal_connect(client, "transport_notify",
-			 G_CALLBACK (xim_proxy_client_real_transport_notify_cb),
+	g_signal_connect(client, "notify_transport",
+			 G_CALLBACK (xim_proxy_client_real_notify_transport_cb),
 			 proxy);
 	g_xim_message_debug(core->message, "client/conn",
 			    "Inserting a client connection %p to the table with %p",
@@ -105,71 +105,41 @@ _create_client(XimProxy        *proxy,
 }
 
 static gboolean
-xim_proxy_client_real_locales_notify_cb(XimClient         *client,
-					GdkEventSelection *event,
-					gpointer           user_data)
+xim_proxy_client_real_notify_locales_cb(GXimClientTemplate  *client,
+					gchar              **locales,
+					gpointer             user_data)
 {
-	XimProxy *proxy = user_data;
+	XimProxy *proxy = XIM_PROXY (user_data);
 	GXimCore *core = G_XIM_CORE (client);
-	GdkDisplay *dpy = g_xim_core_get_display(core);
 	GdkWindow *w;
-	GdkAtom atom_type;
-	gint format, bytes;
 	gchar *prop = NULL;
-	guint32 error_code;
 	gboolean retval = TRUE;
 	GdkNativeWindow client_window = 0, selection_window = 0;
+	GdkEventSelection ev;
 
-	g_xim_error_push();
-	w = g_xim_get_window(dpy, event->requestor);
-	gdk_property_get(w, event->property, event->target,
-			 0, 8192, FALSE,
-			 &atom_type, &format, &bytes,
-			 (guchar **)(uintptr_t)&prop);
-	error_code = g_xim_error_pop();
-	if (error_code != 0) {
-		gchar *s = gdk_atom_name(event->property);
-
-		g_xim_message_critical(core->message,
-				       "Unable to get a property %s",
-				       s);
-		g_free(s);
-		retval = FALSE;
-		goto end;
-	}
-	if (atom_type != event->target ||
-	    format != 8) {
-		gchar *s1 = gdk_atom_name(event->property);
-		gchar *s2 = gdk_atom_name(event->target);
-		gchar *s3 = gdk_atom_name(atom_type);
-
-		g_xim_message_critical(core->message,
-				       "Atom type mismatches for %s property: expected %s, actual %s",
-				       s1, s2, s3);
-		g_free(s3);
-		g_free(s2);
-		g_free(s1);
-		retval = FALSE;
-		goto end;
-	}
-
+	w = g_xim_core_get_selection_window(core);
+	selection_window = GDK_WINDOW_XID (w);
 	client_window = G_XIM_POINTER_TO_NATIVE_WINDOW (g_hash_table_lookup(proxy->selection_table,
-									    G_XIM_NATIVE_WINDOW_TO_POINTER (event->requestor)));
+									    G_XIM_NATIVE_WINDOW_TO_POINTER (selection_window)));
 	if (client_window == 0) {
 		g_xim_message_warning(core->message,
 				      "Received SelectionNotify from unknown sender: %p",
-				      G_XIM_NATIVE_WINDOW_TO_POINTER (event->requestor));
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (selection_window));
 		goto end;
 	}
 
+	ev.requestor = client_window;
+	ev.selection = client->atom_server;
+	ev.target = core->atom_locales;
+	ev.property = core->atom_locales;
+	ev.requestor = client_window;
+	prop = g_strjoinv(",", locales);
 	g_xim_message_debug(core->message, "proxy/event",
 			    "%p <-%p<- SelectionNotify[%s]",
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (client_window),
-			    G_XIM_NATIVE_WINDOW_TO_POINTER (event->requestor),
+			    G_XIM_NATIVE_WINDOW_TO_POINTER (selection_window),
 			    prop);
-	selection_window = event->requestor;
-	event->requestor = client_window;
-	retval = g_xim_srv_tmpl_send_selection_notify(G_XIM_SRV_TMPL (proxy), event, prop, strlen(prop) + 1, NULL);
+	retval = g_xim_srv_tmpl_send_selection_notify(G_XIM_SRV_TMPL (proxy), &ev, prop, strlen(prop) + 1, NULL);
   end:
 	g_xim_message_debug(core->message, "client/conn",
 			    "Removing a client connection from the table for %p",
@@ -184,77 +154,44 @@ xim_proxy_client_real_locales_notify_cb(XimClient         *client,
 }
 
 static gboolean
-xim_proxy_client_real_transport_notify_cb(XimClient         *client,
-					  GdkEventSelection *event,
-					  gpointer           user_data)
+xim_proxy_client_real_notify_transport_cb(GXimClientTemplate *client,
+					  const gchar        *transport,
+					  gpointer            user_data)
 {
 	XimProxy *proxy = user_data;
 	GXimCore *core = G_XIM_CORE (client);
-	GdkDisplay *dpy = g_xim_core_get_display(core);
 	GdkWindow *w;
-	GdkAtom atom_type;
-	gint format, bytes;
-	gchar *prop = NULL;
-	guint32 error_code;
 	gboolean retval = TRUE;
 	GdkNativeWindow client_window = 0, selection_window = 0;
+	GdkEventSelection ev;
 
-	g_xim_error_push();
-	w = g_xim_get_window(dpy, event->requestor);
-	gdk_property_get(w, event->property, event->target,
-			 0, 8192, FALSE,
-			 &atom_type, &format, &bytes,
-			 (guchar **)(uintptr_t)&prop);
-	error_code = g_xim_error_pop();
-	if (error_code != 0) {
-		gchar *s = gdk_atom_name(event->property);
-
-		g_xim_message_critical(core->message,
-				       "Unable to get a property %s",
-				       s);
-		g_free(s);
-		retval = FALSE;
-		goto end;
-	}
-	if (atom_type != event->target ||
-	    format != 8) {
-		gchar *s1 = gdk_atom_name(event->property);
-		gchar *s2 = gdk_atom_name(event->target);
-		gchar *s3 = gdk_atom_name(atom_type);
-
-		g_xim_message_critical(core->message,
-				       "Atom type mismatches for %s property: expected %s, actual %s",
-				       s1, s2, s3);
-		g_free(s3);
-		g_free(s2);
-		g_free(s1);
-		retval = FALSE;
-		goto end;
-	}
-
+	w = g_xim_core_get_selection_window(core);
+	selection_window = GDK_WINDOW_XID (w);
 	client_window = G_XIM_POINTER_TO_NATIVE_WINDOW (g_hash_table_lookup(proxy->selection_table,
-									    G_XIM_NATIVE_WINDOW_TO_POINTER (event->requestor)));
+									    G_XIM_NATIVE_WINDOW_TO_POINTER (selection_window)));
 	if (client_window == 0) {
 		g_xim_message_warning(core->message,
 				      "Received SelectionNotify from unknown sender: %p",
-				      G_XIM_NATIVE_WINDOW_TO_POINTER (event->requestor));
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (selection_window));
 		goto end;
 	}
 
 	g_xim_message_debug(core->message, "proxy/event",
 			    "%p <-%p<- SelectionNotify[%s]",
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (client_window),
-			    G_XIM_NATIVE_WINDOW_TO_POINTER (event->requestor),
-			    prop);
-	selection_window = event->requestor;
-	event->requestor = client_window;
-	retval = g_xim_srv_tmpl_send_selection_notify(G_XIM_SRV_TMPL (proxy), event, prop, strlen(prop) + 1, NULL);
+			    G_XIM_NATIVE_WINDOW_TO_POINTER (selection_window),
+			    transport);
+	ev.requestor = client_window;
+	ev.selection = client->atom_server;
+	ev.target = core->atom_transport;
+	ev.property = core->atom_transport;
+	ev.requestor = client_window;
+	retval = g_xim_srv_tmpl_send_selection_notify(G_XIM_SRV_TMPL (proxy), &ev, transport, strlen(transport) + 1, NULL);
   end:
 	g_hash_table_remove(proxy->client_table,
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
 	g_hash_table_remove(proxy->selection_table,
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (selection_window));
-	g_free(prop);
 
 	return retval;
 }

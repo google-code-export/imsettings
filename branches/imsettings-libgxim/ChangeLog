@@ -1,3 +1,13 @@
+2008-07-31  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/proxy.c (xim_proxy_client_real_notify_locales_cb):
+	update to be comfortable with the signal on the client template class.
+	(xim_proxy_client_real_notify_transport_cb): likewise.
+
+	* backends/xim/client.c (xim_client_real_selection_notify_event):
+	removed. use the template callback instead.
+	(xim_client_class_init): removed own signals.
+
 2008-07-30  Akira TAGOH  <akira@tagoh.org>
 
 	* configure.ac: Update the dependencies for XIM backend.

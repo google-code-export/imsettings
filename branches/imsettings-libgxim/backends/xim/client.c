@@ -36,13 +36,11 @@ enum {
 };
 enum {
 	SIGNAL_0,
-	LOCALES_NOTIFY,
-	TRANSPORT_NOTIFY,
 	LAST_SIGNAL
 };
 
 
-static guint signals[LAST_SIGNAL] = { 0 };
+//static guint signals[LAST_SIGNAL] = { 0 };
 
 
 G_DEFINE_TYPE (XimClient, xim_client, G_TYPE_XIM_CL_TMPL);
@@ -85,62 +83,18 @@ xim_client_real_finalize(GObject *object)
 		G_OBJECT_CLASS (xim_client_parent_class)->finalize(object);
 }
 
-static gboolean
-xim_client_real_selection_notify_event(GXimCore          *core,
-				       GdkEventSelection *event)
-{
-	gboolean retval = FALSE;
-
-	if (event->property == core->atom_locales) {
-		g_signal_emit(core, signals[LOCALES_NOTIFY], 0, event, &retval);
-	} else if (event->property == core->atom_transport) {
-		g_signal_emit(core, signals[TRANSPORT_NOTIFY], 0, event, &retval);
-	} else {
-		gchar *s = gdk_atom_name(event->property);
-
-		g_xim_message_warning(core->message,
-				      "%s: Unknown/unsupported Property received: %s",
-				      __FUNCTION__, s);
-		g_free(s);
-
-		return FALSE;
-	}
-
-	return retval;
-}
-
 static void
 xim_client_class_init(XimClientClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GXimCoreClass *core_class = G_XIM_CORE_CLASS (klass);
-//	GXimClientTemplateClass *cltmpl_class = G_XIM_CL_TMPL_CLASS (klass);
 
 	object_class->set_property = xim_client_real_set_property;
 	object_class->get_property = xim_client_real_get_property;
 	object_class->finalize     = xim_client_real_finalize;
 
-	core_class->selection_notify_event  = xim_client_real_selection_notify_event;
-
 	/* properties */
 
 	/* signals */
-	signals[LOCALES_NOTIFY] = g_signal_new("locales_notify",
-					       G_OBJECT_CLASS_TYPE (klass),
-					       G_SIGNAL_RUN_LAST,
-					       G_STRUCT_OFFSET (XimClientClass, locales_notify),
-					       NULL, NULL,
-					       gxim_marshal_BOOLEAN__BOXED,
-					       G_TYPE_BOOLEAN, 1,
-					       GDK_TYPE_EVENT);
-	signals[TRANSPORT_NOTIFY] = g_signal_new("transport_notify",
-						 G_OBJECT_CLASS_TYPE (klass),
-						 G_SIGNAL_RUN_LAST,
-						 G_STRUCT_OFFSET (XimClientClass, transport_notify),
-						 NULL, NULL,
-						 gxim_marshal_BOOLEAN__BOXED,
-						 G_TYPE_BOOLEAN, 1,
-						 GDK_TYPE_EVENT);
 }
 
 static void
