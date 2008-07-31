@@ -3,6 +3,13 @@
 	* backends/xim/proxy.c (xim_proxy_client_real_notify_locales_cb):
 	update to be comfortable with the signal on the client template class.
 	(xim_proxy_client_real_notify_transport_cb): likewise.
+	(_get_client_connection): new.
+	(xim_proxy_client_real_notify_locales_cb): Prepend @locales= to
+	the joined strings.
+	(xim_proxy_client_protocol_real_xim_connect_reply): new.
+	(_get_server_connection): new.
+	(xim_proxy_protocol_real_xim_connect): new.
+	(xim_proxy_protocol_real_xim_open): new.
 
 	* backends/xim/client.c (xim_client_real_selection_notify_event):
 	removed. use the template callback instead.
