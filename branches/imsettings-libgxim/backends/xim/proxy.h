@@ -59,12 +59,14 @@ struct _XimProxyClass {
 };
 
 struct _XimProxy {
-	GXimServerTemplate  parent_instance;
+	GXimServerTemplate       parent_instance;
 
-	GHashTable         *client_table;
-	GHashTable         *selection_table;
-	GHashTable         *comm_table;
-	gchar              *connect_to;
+	GHashTable              *client_table;
+	GHashTable              *selection_table;
+	GHashTable              *comm_table;
+	GHashTable              *sconn_table;
+	gchar                   *connect_to;
+	GXimLazySignalConnector *client_proto_signals;
 };
 
 struct _XimProxyConnectionClass {

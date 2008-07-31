@@ -43,6 +43,7 @@
 enum {
 	PROP_0,
 	PROP_CONNECT_TO,
+	PROP_CLIENT_PROTO_SIGNALS,
 	LAST_PROP
 };
 enum {
@@ -104,6 +105,41 @@ _create_client(XimProxy        *proxy,
 	return client;
 }
 
+static GXimClientConnection *
+_get_client_connection(XimProxy     *proxy,
+		       GXimProtocol *proto)
+{
+	GXimTransport *trans = G_XIM_TRANSPORT (proto);
+	GdkNativeWindow client_window;
+	XimClient *client;
+
+	client_window = g_xim_transport_get_client_window(trans);
+	client = g_hash_table_lookup(proxy->client_table,
+				     G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+	if (client == NULL) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "No client connection to deliver XIM_CONNECT: %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+	return G_XIM_CLIENT_CONNECTION (G_XIM_CL_TMPL (client)->connection);
+}
+
+static GXimServerConnection *
+_get_server_connection(XimProxy     *proxy,
+		       GXimProtocol *proto)
+{
+	GXimTransport *trans;
+	GdkNativeWindow nw, comm_window;
+
+	trans = G_XIM_TRANSPORT (proto);
+	nw = g_xim_transport_get_native_channel(trans);
+	comm_window = G_XIM_POINTER_TO_NATIVE_WINDOW (g_hash_table_lookup(proxy->comm_table,
+									  G_XIM_NATIVE_WINDOW_TO_POINTER (nw)));
+	return g_hash_table_lookup(proxy->sconn_table,
+				   G_XIM_NATIVE_WINDOW_TO_POINTER (comm_window));
+}
+
 static gboolean
 xim_proxy_client_real_notify_locales_cb(GXimClientTemplate  *client,
 					gchar              **locales,
@@ -112,7 +148,7 @@ xim_proxy_client_real_notify_locales_cb(GXimClientTemplate  *client,
 	XimProxy *proxy = XIM_PROXY (user_data);
 	GXimCore *core = G_XIM_CORE (client);
 	GdkWindow *w;
-	gchar *prop = NULL;
+	gchar *prop = NULL, *s = NULL;
 	gboolean retval = TRUE;
 	GdkNativeWindow client_window = 0, selection_window = 0;
 	GdkEventSelection ev;
@@ -133,7 +169,10 @@ xim_proxy_client_real_notify_locales_cb(GXimClientTemplate  *client,
 	ev.target = core->atom_locales;
 	ev.property = core->atom_locales;
 	ev.requestor = client_window;
-	prop = g_strjoinv(",", locales);
+	if (locales)
+		s = g_strjoinv(",", locales);
+	prop = g_strdup_printf("@locale=%s", s);
+	g_free(s);
 	g_xim_message_debug(core->message, "proxy/event",
 			    "%p <-%p<- SelectionNotify[%s]",
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (client_window),
@@ -267,6 +306,28 @@ xim_proxy_client_real_xconnect_cb(GXimClientTemplate *client,
 	return TRUE;
 }
 
+static gboolean
+xim_proxy_client_protocol_real_xim_connect_reply(GXimProtocol *proto,
+						 guint16       major_version,
+						 guint16       minor_version,
+						 gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_connect_reply(conn, major_version, minor_version);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_open_reply(GXimProtocol *proto,
+					      const GSList *imattrs,
+					      const GSList *icattrs)
+{
+	return FALSE;
+}
+
 static void
 xim_proxy_real_set_property(GObject      *object,
 			     guint         prop_id,
@@ -274,10 +335,27 @@ xim_proxy_real_set_property(GObject      *object,
 			     GParamSpec   *pspec)
 {
 	XimProxy *proxy = XIM_PROXY (object);
+	GXimLazySignalConnector *sigs;
+	gsize len, i;
 
 	switch (prop_id) {
 	    case PROP_CONNECT_TO:
 		    proxy->connect_to = g_strdup(g_value_get_string(value));
+		    break;
+	    case PROP_CLIENT_PROTO_SIGNALS:
+		    if (proxy->client_proto_signals != NULL) {
+			    g_xim_message_warning(G_XIM_CORE (object)->message,
+						  "Unable to update the signal list.");
+			    break;
+		    }
+		    sigs = g_value_get_pointer(value);
+		    for (len = 0; sigs[len].signal_name != NULL; len++);
+		    proxy->client_proto_signals = g_new0(GXimLazySignalConnector, len + 1);
+		    for (i = 0; sigs[i].signal_name != NULL; i++) {
+			    proxy->client_proto_signals[i].signal_name = g_strdup(sigs[i].signal_name);
+			    proxy->client_proto_signals[i].function = sigs[i].function;
+			    proxy->client_proto_signals[i].data = sigs[i].data;
+		    }
 		    break;
 	    default:
 		    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -297,6 +375,9 @@ xim_proxy_real_get_property(GObject    *object,
 	    case PROP_CONNECT_TO:
 		    g_value_set_string(value, proxy->connect_to);
 		    break;
+	    case PROP_CLIENT_PROTO_SIGNALS:
+		    g_value_set_pointer(value, proxy->client_proto_signals);
+		    break;
 	    default:
 		    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 		    break;
@@ -307,11 +388,17 @@ static void
 xim_proxy_real_finalize(GObject *object)
 {
 	XimProxy *proxy = XIM_PROXY (object);
+	gint i;
 
 	g_hash_table_destroy(proxy->client_table);
 	g_hash_table_destroy(proxy->selection_table);
 	g_hash_table_destroy(proxy->comm_table);
+	g_hash_table_destroy(proxy->sconn_table);
 	g_free(proxy->connect_to);
+	for (i = 0; proxy->client_proto_signals[i].signal_name != NULL; i++) {
+		g_free(proxy->client_proto_signals[i].signal_name);
+	}
+	g_free(proxy->client_proto_signals);
 
 	if (G_OBJECT_CLASS (xim_proxy_parent_class)->finalize)
 		G_OBJECT_CLASS (xim_proxy_parent_class)->finalize(object);
@@ -409,8 +496,9 @@ _weak_notify_conn_cb(gpointer  data,
 {
 	GXimServerTemplate *server = data;
 	GXimCore *core = G_XIM_CORE (server);
+	GXimClientTemplate *client;
 	GdkDisplay *dpy = g_xim_core_get_display(core);
-	GdkNativeWindow nw;
+	GdkNativeWindow nw, ccw;
 	GdkWindow *w;
 
 	nw = g_xim_transport_get_native_channel(G_XIM_TRANSPORT (object));
@@ -435,6 +523,11 @@ _weak_notify_conn_cb(gpointer  data,
 		g_xim_message_debug(core->message, "client/conn",
 				    "Removing a client connection from the table for %p",
 				    G_XIM_NATIVE_WINDOW_TO_POINTER (nw));
+		client = g_hash_table_lookup(XIM_PROXY (server)->client_table,
+					     G_XIM_NATIVE_WINDOW_TO_POINTER (nw));
+		ccw = g_xim_transport_get_native_channel(G_XIM_TRANSPORT (client->connection));
+		g_hash_table_remove(XIM_PROXY (server)->sconn_table,
+				    G_XIM_NATIVE_WINDOW_TO_POINTER (ccw));
 		g_hash_table_remove(XIM_PROXY (server)->client_table,
 				    G_XIM_NATIVE_WINDOW_TO_POINTER (nw));
 	}
@@ -502,6 +595,7 @@ xim_proxy_real_xconnect(GXimServerTemplate *server,
 		if (client == NULL) {
 			return NULL;
 		}
+		g_object_set(G_OBJECT (client), "proto_signals", proxy->client_proto_signals, NULL);
 		g_signal_connect(client, "xconnect",
 				 G_CALLBACK (xim_proxy_client_real_xconnect_cb),
 				 server);
@@ -513,6 +607,9 @@ xim_proxy_real_xconnect(GXimServerTemplate *server,
 	g_hash_table_insert(proxy->comm_table,
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (comm_window),
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (w));
+	g_hash_table_insert(proxy->sconn_table,
+			    G_XIM_NATIVE_WINDOW_TO_POINTER (w),
+			    conn);
 	g_xim_message_debug(core->message, "proxy/event",
 			    "%p ->%p-> XIM_XCONNECT",
 			    G_XIM_NATIVE_WINDOW_TO_POINTER (w),
@@ -520,6 +617,52 @@ xim_proxy_real_xconnect(GXimServerTemplate *server,
 	G_XIM_CL_TMPL (client)->is_connection_initialized = GXC_NEGOTIATING;
 
 	return conn;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_connect(GXimProtocol *proto,
+				    guint16       major_version,
+				    guint16       minor_version,
+				    const GSList *list,
+				    gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_connect(conn,
+					     major_version,
+					     minor_version,
+					     (GSList *)list,
+					     TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_CONNECT for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_open(GXimProtocol  *proto,
+				 const GXimStr *locale,
+				 gpointer       data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_open_im(conn,
+					     g_xim_str_get_string (locale),
+					     TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_OPEN for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 static void
@@ -547,6 +690,11 @@ xim_proxy_class_init(XimProxyClass *klass)
 							    _("A XIM server name would connects to"),
 							    NULL,
 							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	g_object_class_install_property(object_class, PROP_CLIENT_PROTO_SIGNALS,
+					g_param_spec_pointer("client_proto_signals",
+							     _("Signals for Protocol class"),
+							     _("A structure of signals for Protocol class"),
+							     G_PARAM_READWRITE));
 
 	/* signals */
 }
@@ -555,6 +703,13 @@ static void
 xim_proxy_init(XimProxy *proxy)
 {
 	GXimLazySignalConnector sigs[] = {
+		{"xim_connect", G_CALLBACK (xim_proxy_protocol_real_xim_connect), proxy},
+		{"xim_open", G_CALLBACK (xim_proxy_protocol_real_xim_open), proxy},
+		{NULL, NULL, NULL}
+	};
+	GXimLazySignalConnector csigs[] = {
+		{"xim_connect_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_connect_reply), proxy},
+		{"xim_open_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_open_reply), proxy},
 		{NULL, NULL, NULL}
 	};
 
@@ -562,7 +717,9 @@ xim_proxy_init(XimProxy *proxy)
 						    NULL, g_object_unref);
 	proxy->selection_table = g_hash_table_new(g_direct_hash, g_direct_equal);
 	proxy->comm_table = g_hash_table_new(g_direct_hash, g_direct_equal);
+	proxy->sconn_table = g_hash_table_new(g_direct_hash, g_direct_equal);
 	g_object_set(proxy, "proto_signals", sigs, NULL);
+	g_object_set(proxy, "client_proto_signals", csigs, NULL);
 }
 
 static void
