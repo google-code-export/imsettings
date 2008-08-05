@@ -33,9 +33,13 @@
 #endif
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkx.h>
-#include <libgxim/gximsrvconn.h>
+#include <libgxim/gximattr.h>
 #include <libgxim/gximerror.h>
 #include <libgxim/gximmarshal.h>
+#include <libgxim/gximmessage.h>
+#include <libgxim/gximmisc.h>
+#include <libgxim/gximprotocol.h>
+#include <libgxim/gximtransport.h>
 #include "client.h"
 #include "proxy.h"
 
@@ -322,10 +326,137 @@ xim_proxy_client_protocol_real_xim_connect_reply(GXimProtocol *proto,
 
 static gboolean
 xim_proxy_client_protocol_real_xim_open_reply(GXimProtocol *proto,
-					      const GSList *imattrs,
-					      const GSList *icattrs)
+					      guint16       imid,
+					      GXimIMAttr   *imattr,
+					      GXimICAttr   *icattr,
+					      gpointer      data)
 {
-	return FALSE;
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+	GXimConnection *c;
+	GdkNativeWindow client_window;
+	GXimClientTemplate *client;
+	GXimAttr *attr;
+	GXimRawAttr *raw;
+	GSList *l, *imlist = NULL, *iclist = NULL, *list;
+	gboolean retval;
+
+	conn = _get_server_connection(proxy, proto);
+	c = G_XIM_CONNECTION (conn);
+	c->imid = imid;
+	c->imattr = g_object_ref(imattr);
+	c->default_icattr = g_object_ref(icattr);
+	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (conn));
+	client = g_hash_table_lookup(proxy->client_table,
+				     G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+	c = G_XIM_CONNECTION (client->connection);
+	c->imid = imid;
+	c->imattr = g_object_ref(imattr);
+	c->default_icattr = g_object_ref(icattr);
+
+	attr = G_XIM_ATTR (imattr);
+	list = g_xim_attr_get_supported_attributes(attr);
+	for (l = list; l != NULL; l = g_slist_next(l)) {
+		if (l->data && g_xim_attr_attribute_is_enabled(attr, l->data)) {
+			guint id;
+			GType gtype;
+			GXimValueType vtype;
+			GString *s;
+
+			id = g_xim_attr_get_attribute_id(attr, l->data);
+			gtype = g_xim_attr_get_gtype_by_name(attr, l->data);
+			vtype = g_xim_gtype_to_value_type(gtype);
+			if (vtype == G_XIM_TYPE_INVALID) {
+				g_xim_message_bug(G_XIM_CORE (proxy)->message,
+						  "Unable to compose a XIMATTR for %s",
+						  (gchar *)l->data);
+				continue;
+			}
+			s = g_string_new(l->data);
+			raw = g_xim_raw_attr_new_with_value(id, s, vtype);
+			imlist = g_slist_append(imlist, raw);
+		}
+		g_free(l->data);
+	}
+	g_slist_free(list);
+
+	attr = G_XIM_ATTR (icattr);
+	list = g_xim_attr_get_supported_attributes(attr);
+	for (l = list; l != NULL; l = g_slist_next(l)) {
+		if (l->data && g_xim_attr_attribute_is_enabled(attr, l->data)) {
+			guint id;
+			GType gtype;
+			GXimValueType vtype;
+			GString *s;
+
+			id = g_xim_attr_get_attribute_id(attr, l->data);
+			gtype = g_xim_attr_get_gtype_by_name(attr, l->data);
+			vtype = g_xim_gtype_to_value_type(gtype);
+			if (vtype == G_XIM_TYPE_INVALID) {
+				g_xim_message_bug(G_XIM_CORE (proxy)->message,
+						  "Unable to compose a XICATTR for %s",
+						  (gchar *)l->data);
+				continue;
+			}
+			s = g_string_new(l->data);
+			raw = g_xim_raw_attr_new_with_value(id, s, vtype);
+			iclist = g_slist_append(iclist, raw);
+		}
+		g_free(l->data);
+	}
+	g_slist_free(list);
+
+	retval = g_xim_server_connection_open_reply(conn, imid, imlist, iclist);
+
+	g_slist_foreach(imlist, (GFunc)g_xim_raw_attr_free, NULL);
+	g_slist_foreach(iclist, (GFunc)g_xim_raw_attr_free, NULL);
+	g_slist_free(imlist);
+	g_slist_free(iclist);
+
+	return retval;
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_query_extension_reply(GXimProtocol *proto,
+							 guint16       imid,
+							 const GSList *extensions,
+							 gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_query_extension_reply(conn, imid, extensions);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_encoding_negotiation_reply(GXimProtocol *proto,
+							      guint16       imid,
+							      guint16       category,
+							      gint16        index,
+							      gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_encoding_negotiation_reply(conn, imid, category, index);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_get_im_values_reply(GXimProtocol *proto,
+						       guint16       imid,
+						       const GSList *attributes,
+						       gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_get_im_values_reply(conn, imid, attributes);
 }
 
 static void
@@ -654,10 +785,71 @@ xim_proxy_protocol_real_xim_open(GXimProtocol  *proto,
 	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
 
 	if (!g_xim_client_connection_open_im(conn,
-					     g_xim_str_get_string (locale),
+					     locale,
 					     TRUE)) {
 		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
 				      "Unable to deliver XIM_OPEN for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_query_extension(GXimProtocol *proto,
+					    guint16       imid,
+					    const GSList *extensions,
+					    gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_query_extension(conn, imid, extensions, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_QUERY_EXTENSION for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_encoding_negotiation(GXimProtocol *proto,
+						 guint16       imid,
+						 const GSList *encodings,
+						 const GSList *details,
+						 gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_encoding_negotiation(conn, imid, encodings, details, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_ENCODING_NEGOTIATION for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_get_im_values(GXimProtocol *proto,
+					  guint16       imid,
+					  const GSList *attr_id,
+					  gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_get_im_values(conn, imid, attr_id, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_GET_IM_VALUES for %p",
 				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
 		return FALSE;
 	}
@@ -705,11 +897,17 @@ xim_proxy_init(XimProxy *proxy)
 	GXimLazySignalConnector sigs[] = {
 		{"xim_connect", G_CALLBACK (xim_proxy_protocol_real_xim_connect), proxy},
 		{"xim_open", G_CALLBACK (xim_proxy_protocol_real_xim_open), proxy},
+		{"xim_query_extension", G_CALLBACK (xim_proxy_protocol_real_xim_query_extension), proxy},
+		{"xim_encoding_negotiation", G_CALLBACK (xim_proxy_protocol_real_xim_encoding_negotiation), proxy},
+		{"xim_get_im_values", G_CALLBACK (xim_proxy_protocol_real_xim_get_im_values), proxy},
 		{NULL, NULL, NULL}
 	};
 	GXimLazySignalConnector csigs[] = {
 		{"xim_connect_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_connect_reply), proxy},
 		{"xim_open_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_open_reply), proxy},
+		{"xim_query_extension_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_query_extension_reply), proxy},
+		{"xim_encoding_negotiation_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_encoding_negotiation_reply), proxy},
+		{"xim_get_im_values_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_get_im_values_reply), proxy},
 		{NULL, NULL, NULL}
 	};
 

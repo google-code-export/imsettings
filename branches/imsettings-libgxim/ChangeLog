@@ -1,3 +1,15 @@
+2008-08-05  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/main.c (main): Add a debug option.
+
+	* backends/xim/proxy.c (xim_proxy_client_protocol_real_xim_query_extension_reply):
+	new.
+	(xim_proxy_client_protocol_real_xim_encoding_negotiation_reply): new.
+	(xim_proxy_client_protocol_real_xim_get_im_values_reply): new.
+	(xim_proxy_protocol_real_xim_query_extension): new.
+	(xim_proxy_protocol_real_xim_encoding_negotiation): new.
+	(xim_proxy_protocol_real_xim_get_im_values): new.
+
 2008-07-31  Akira TAGOH  <akira@tagoh.org>
 
 	* backends/xim/proxy.c (xim_proxy_client_real_notify_locales_cb):

@@ -27,6 +27,7 @@
 
 #include <gdk/gdk.h>
 #include <libgxim/gximmarshal.h>
+#include <libgxim/gximmisc.h>
 #include "client.h"
 
 enum {

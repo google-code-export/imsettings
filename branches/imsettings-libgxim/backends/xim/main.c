@@ -29,6 +29,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#include <libgxim/gximmessage.h>
+#include <libgxim/gximmisc.h>
 #include "imsettings/imsettings.h"
 #include "imsettings/imsettings-request.h"
 #include "client.h"
@@ -137,13 +139,14 @@ main(int    argc,
      char **argv)
 {
 	Proxy *proxy;
-	gchar *arg_display_name = NULL, *dpy_name;
+	gchar *arg_display_name = NULL, *arg_xim = NULL, *dpy_name;
 	gboolean arg_replace = FALSE, arg_verbose = FALSE;
 	GOptionContext *ctx = g_option_context_new(NULL);
 	GOptionEntry entries[] = {
 		{"display", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &arg_display_name, N_("X display to use"), N_("DISPLAY")},
 		{"replace", 0, G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_NONE, &arg_replace, N_("Replace the running XIM server with new instance."), NULL},
 		{"verbose", 0, G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_NONE, &arg_verbose, N_("Output the debugging logs"), NULL},
+		{"xim", 0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &arg_xim, N_("XIM server connects to, for debugging purpose only"), N_("XIM")},
 		{NULL, 0, 0, 0, NULL, NULL, NULL}
 	};
 	GError *error = NULL;
@@ -202,7 +205,10 @@ main(int    argc,
 		exit(1);
 	}
 	info = imsettings_request_get_info_object(req, module, &error);
-	xim = imsettings_info_get_xim(info);
+	if (arg_xim == NULL)
+		xim = imsettings_info_get_xim(info);
+	else
+		xim = arg_xim;
 	g_free(module);
 
 	proxy = g_new0(Proxy, 1);
