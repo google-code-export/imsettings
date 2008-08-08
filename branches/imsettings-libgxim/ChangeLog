@@ -1,3 +1,29 @@
+2008-08-08  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/proxy.c (xim_proxy_client_protocol_real_xim_create_ic_reply): 
+	new.
+	(xim_proxy_client_protocol_real_xim_set_event_mask): new.
+	(xim_proxy_client_protocol_real_xim_get_ic_values_reply): new.
+	(xim_proxy_client_protocol_real_xim_destroy_ic_reply): new.
+	(xim_proxy_client_protocol_real_xim_close_reply): new.
+	(xim_proxy_client_protocol_real_xim_disconnect_reply): new.
+	(xim_proxy_client_protocol_real_xim_preedit_start): new.
+	(xim_proxy_client_protocol_real_xim_preedit_caret): new.
+	(xim_proxy_client_protocol_real_xim_preedit_done): new.
+	(xim_proxy_client_protocol_real_xim_forward_event): new.
+	(xim_proxy_client_protocol_real_xim_sync_reply): new.
+	(xim_proxy_protocol_real_xim_create_ic): new.
+	(xim_proxy_protocol_real_xim_get_ic_values): new.
+	(xim_proxy_protocol_real_xim_destroy_ic): new.
+	(xim_proxy_protocol_real_xim_close): new.
+	(xim_proxy_protocol_real_xim_disconnect): new.
+	(xim_proxy_protocol_real_xim_set_ic_focus): new.
+	(xim_proxy_protocol_real_xim_unset_ic_focus): new.
+	(xim_proxy_protocol_real_xim_preedit_start_reply): new.
+	(xim_proxy_protocol_real_xim_preedit_caret_reply): new.
+	(xim_proxy_protocol_real_xim_forward_event): new.
+	(xim_proxy_protocol_real_xim_sync_reply): new.
+
 2008-08-05  Akira TAGOH  <akira@tagoh.org>
 
 	* backends/xim/main.c (main): Add a debug option.

@@ -459,6 +459,163 @@ xim_proxy_client_protocol_real_xim_get_im_values_reply(GXimProtocol *proto,
 	return g_xim_server_connection_get_im_values_reply(conn, imid, attributes);
 }
 
+static gboolean
+xim_proxy_client_protocol_real_xim_create_ic_reply(GXimProtocol *proto,
+						   guint16       imid,
+						   guint16       icid,
+						   gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_create_ic_reply(conn, imid, icid);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_set_event_mask(GXimProtocol *proto,
+						  guint16       imid,
+						  guint16       icid,
+						  guint32       forward_event,
+						  guint32       sync_event,
+						  gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_set_event_mask(conn, imid, icid, forward_event, sync_event);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_get_ic_values_reply(GXimProtocol *proto,
+						       guint16       imid,
+						       guint16       icid,
+						       const GSList *attributes,
+						       gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_get_ic_values_reply(conn, imid, icid, attributes);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_destroy_ic_reply(GXimProtocol *proto,
+						    guint16       imid,
+						    guint16       icid,
+						    gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_destroy_ic_reply(conn, imid, icid);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_close_reply(GXimProtocol *proto,
+					       guint16       imid,
+					       gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_close_reply(conn, imid);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_disconnect_reply(GXimProtocol *proto,
+						    gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_disconnect_reply(conn);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_preedit_start(GXimProtocol *proto,
+						 guint16       imid,
+						 guint16       icid,
+						 gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_preedit_start(conn, imid, icid);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_preedit_caret(GXimProtocol     *proto,
+						 guint16           imid,
+						 guint16           icid,
+						 GXimPreeditCaret *caret,
+						 gpointer          data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_preedit_caret(conn, imid, icid, caret);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_preedit_done(GXimProtocol *proto,
+						guint16       imid,
+						guint16       icid,
+						gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_preedit_done(conn, imid, icid);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_forward_event(GXimProtocol *proto,
+						 guint16       imid,
+						 guint16       icid,
+						 guint16       flag,
+						 GdkEvent     *event,
+						 gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_forward_event(conn, imid, icid, flag, event);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_sync_reply(GXimProtocol *proto,
+					      guint16       imid,
+					      guint16       icid,
+					      gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_sync_reply(conn, imid, icid);
+}
+
 static void
 xim_proxy_real_set_property(GObject      *object,
 			     guint         prop_id,
@@ -857,6 +1014,234 @@ xim_proxy_protocol_real_xim_get_im_values(GXimProtocol *proto,
 	return TRUE;
 }
 
+static gboolean
+xim_proxy_protocol_real_xim_create_ic(GXimProtocol *proto,
+				      guint16       imid,
+				      const GSList *attributes,
+				      gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_create_ic(conn, imid, attributes, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_CREATE_IC for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_get_ic_values(GXimProtocol *proto,
+					  guint16       imid,
+					  guint16       icid,
+					  const GSList *attr_id,
+					  gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_get_ic_values(conn, imid, icid, attr_id, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_GET_IC_VALUES for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_destroy_ic(GXimProtocol *proto,
+				       guint16       imid,
+				       guint16       icid,
+				       gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_destroy_ic(conn, imid, icid, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_DESTROY_IC for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_close(GXimProtocol *proto,
+				  guint16       imid,
+				  gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_close_im(conn, imid, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_CLOSE for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_disconnect(GXimProtocol *proto,
+				       gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	/* We don't want to unref a client connection by the request from
+	 * the XIM server. it should be done by triggering destroying
+	 * the server connection.
+	 */
+	g_object_ref(conn);
+
+	if (!g_xim_client_connection_disconnect(conn, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_DISCONNECT for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_set_ic_focus(GXimProtocol *proto,
+					 guint16       imid,
+					 guint16       icid,
+					 gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_set_ic_focus(conn, imid, icid)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_SET_IC_FOCUS for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_unset_ic_focus(GXimProtocol *proto,
+					   guint16       imid,
+					   guint16       icid,
+					   gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_unset_ic_focus(conn, imid, icid)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_UNSET_IC_FOCUS for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_preedit_start_reply(GXimProtocol *proto,
+						guint16       imid,
+						guint16       icid,
+						gint32        return_value,
+						gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_preedit_start_reply(conn, imid, icid, return_value)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_PREEDIT_START_REPLY for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_preedit_caret_reply(GXimProtocol *proto,
+						guint16       imid,
+						guint16       icid,
+						guint32       position,
+						gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_preedit_caret_reply(conn, imid, icid, position)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_PREEDIT_CARET_REPLY for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_forward_event(GXimProtocol *proto,
+					  guint16       imid,
+					  guint16       icid,
+					  guint16       flag,
+					  GdkEvent     *event,
+					  gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_forward_event(conn, imid, icid, flag, event)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_FORWARD_EVENT for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_sync_reply(GXimProtocol *proto,
+				       guint16       imid,
+				       guint16       icid,
+				       gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_sync_reply(conn, imid, icid)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_SYNC_REPLY for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 static void
 xim_proxy_class_init(XimProxyClass *klass)
 {
@@ -895,19 +1280,41 @@ static void
 xim_proxy_init(XimProxy *proxy)
 {
 	GXimLazySignalConnector sigs[] = {
-		{"xim_connect", G_CALLBACK (xim_proxy_protocol_real_xim_connect), proxy},
-		{"xim_open", G_CALLBACK (xim_proxy_protocol_real_xim_open), proxy},
-		{"xim_query_extension", G_CALLBACK (xim_proxy_protocol_real_xim_query_extension), proxy},
-		{"xim_encoding_negotiation", G_CALLBACK (xim_proxy_protocol_real_xim_encoding_negotiation), proxy},
-		{"xim_get_im_values", G_CALLBACK (xim_proxy_protocol_real_xim_get_im_values), proxy},
+		{"XIM_CONNECT", G_CALLBACK (xim_proxy_protocol_real_xim_connect), proxy},
+		{"XIM_OPEN", G_CALLBACK (xim_proxy_protocol_real_xim_open), proxy},
+		{"XIM_QUERY_EXTENSION", G_CALLBACK (xim_proxy_protocol_real_xim_query_extension), proxy},
+		{"XIM_ENCODING_NEGOTIATION", G_CALLBACK (xim_proxy_protocol_real_xim_encoding_negotiation), proxy},
+		{"XIM_GET_IM_VALUES", G_CALLBACK (xim_proxy_protocol_real_xim_get_im_values), proxy},
+		{"XIM_CREATE_IC", G_CALLBACK (xim_proxy_protocol_real_xim_create_ic), proxy},
+		{"XIM_GET_IC_VALUES", G_CALLBACK (xim_proxy_protocol_real_xim_get_ic_values), proxy},
+		{"XIM_DESTROY_IC", G_CALLBACK (xim_proxy_protocol_real_xim_destroy_ic), proxy},
+		{"XIM_CLOSE", G_CALLBACK (xim_proxy_protocol_real_xim_close), proxy},
+		{"XIM_DISCONNECT", G_CALLBACK (xim_proxy_protocol_real_xim_disconnect), proxy},
+		{"XIM_SET_IC_FOCUS", G_CALLBACK (xim_proxy_protocol_real_xim_set_ic_focus), proxy},
+		{"XIM_UNSET_IC_FOCUS", G_CALLBACK (xim_proxy_protocol_real_xim_unset_ic_focus), proxy},
+		{"XIM_PREEDIT_START_REPLY", G_CALLBACK (xim_proxy_protocol_real_xim_preedit_start_reply), proxy},
+		{"XIM_PREEDIT_CARET_REPLY", G_CALLBACK (xim_proxy_protocol_real_xim_preedit_caret_reply), proxy},
+		{"XIM_FORWARD_EVENT", G_CALLBACK (xim_proxy_protocol_real_xim_forward_event), proxy},
+		{"XIM_SYNC_REPLY", G_CALLBACK (xim_proxy_protocol_real_xim_sync_reply), proxy},
 		{NULL, NULL, NULL}
 	};
 	GXimLazySignalConnector csigs[] = {
-		{"xim_connect_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_connect_reply), proxy},
-		{"xim_open_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_open_reply), proxy},
-		{"xim_query_extension_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_query_extension_reply), proxy},
-		{"xim_encoding_negotiation_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_encoding_negotiation_reply), proxy},
-		{"xim_get_im_values_reply", G_CALLBACK (xim_proxy_client_protocol_real_xim_get_im_values_reply), proxy},
+		{"XIM_CONNECT_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_connect_reply), proxy},
+		{"XIM_OPEN_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_open_reply), proxy},
+		{"XIM_QUERY_EXTENSION_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_query_extension_reply), proxy},
+		{"XIM_ENCODING_NEGOTIATION_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_encoding_negotiation_reply), proxy},
+		{"XIM_GET_IM_VALUES_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_get_im_values_reply), proxy},
+		{"XIM_CREATE_IC_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_create_ic_reply), proxy},
+		{"XIM_SET_EVENT_MASK", G_CALLBACK (xim_proxy_client_protocol_real_xim_set_event_mask), proxy},
+		{"XIM_GET_IC_VALUES_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_get_ic_values_reply), proxy},
+		{"XIM_DESTROY_IC_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_destroy_ic_reply), proxy},
+		{"XIM_CLOSE_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_close_reply), proxy},
+		{"XIM_DISCONNECT_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_disconnect_reply), proxy},
+		{"XIM_PREEDIT_START", G_CALLBACK (xim_proxy_client_protocol_real_xim_preedit_start), proxy},
+		{"XIM_PREEDIT_CARET", G_CALLBACK (xim_proxy_client_protocol_real_xim_preedit_caret), proxy},
+		{"XIM_PREEDIT_DONE", G_CALLBACK (xim_proxy_client_protocol_real_xim_preedit_done), proxy},
+		{"XIM_FORWARD_EVENT", G_CALLBACK (xim_proxy_client_protocol_real_xim_forward_event), proxy},
+		{"XIM_SYNC_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_sync_reply), proxy},
 		{NULL, NULL, NULL}
 	};
 
