@@ -1,3 +1,20 @@
+2008-08-14  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/proxy.c (xim_proxy_client_protocol_real_xim_preedit_draw):
+	new.
+	(xim_proxy_client_protocol_real_xim_commit): new.
+	(xim_proxy_client_protocol_real_xim_status_start): new.
+	(xim_proxy_client_protocol_real_xim_status_done): new.
+	(xim_proxy_client_protocol_real_xim_register_triggerkeys): new.
+	(xim_proxy_client_protocol_real_xim_trigger_notify_reply): new.
+	(xim_proxy_client_protocol_real_xim_status_draw): new.
+	(xim_proxy_client_protocol_real_xim_set_ic_values_reply): new.
+	(xim_proxy_protocol_real_xim_trigger_notify): new.
+	(xim_proxy_protocol_real_xim_set_ic_values): new.
+
+	* backends/xim/client.c (xim_client_real_setup_connection):
+	empty function to shut up a warning.
+
 2008-08-08  Akira TAGOH  <akira@tagoh.org>
 
 	* backends/xim/proxy.c (xim_proxy_client_protocol_real_xim_create_ic_reply): 

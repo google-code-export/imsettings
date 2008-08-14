@@ -85,13 +85,22 @@ xim_client_real_finalize(GObject *object)
 }
 
 static void
+xim_client_real_setup_connection(GXimCore       *core,
+				 GXimConnection *conn)
+{
+}
+
+static void
 xim_client_class_init(XimClientClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	GXimCoreClass *core_class = G_XIM_CORE_CLASS (klass);
 
 	object_class->set_property = xim_client_real_set_property;
 	object_class->get_property = xim_client_real_get_property;
 	object_class->finalize     = xim_client_real_finalize;
+
+	core_class->setup_connection = xim_client_real_setup_connection;
 
 	/* properties */
 
