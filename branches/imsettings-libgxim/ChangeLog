@@ -1,3 +1,14 @@
+2008-08-15  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/main.c (imsettings_xim_message_filter): remove the dbus
+	message filter properly.
+	(imsettings_xim_message_filter): Update current XIM server name.
+
+	* backends/xim/proxy.c (xim_proxy_client_real_xconnect_cb): 
+	remove the unnecessary event wathcer.
+	(xim_proxy_real_dispose): destroy the connection if available.
+	(_weak_notify_conn_cb): remove the item from the hash surely.
+
 2008-08-14  Akira TAGOH  <akira@tagoh.org>
 
 	* backends/xim/proxy.c (xim_proxy_client_protocol_real_xim_preedit_draw):

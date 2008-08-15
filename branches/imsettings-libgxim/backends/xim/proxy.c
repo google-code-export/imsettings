@@ -249,9 +249,7 @@ xim_proxy_client_real_xconnect_cb(GXimClientTemplate *client,
 	GXimConnection *cconn, *sconn;
 	GXimTransport *ctrans, *strans;
 	GdkNativeWindow nw, comm_window;
-	GdkWindow *w;
 	GdkDisplay *dpy = g_xim_core_get_display(core);
-	GdkEventMask mask;
 	GdkEvent *ev;
 
 	nw = GDK_WINDOW_XID (event->window);
@@ -282,10 +280,6 @@ xim_proxy_client_real_xconnect_cb(GXimClientTemplate *client,
 					     g_xim_transport_get_atom(strans));
 	g_xim_core_add_client_message_filter(G_XIM_CORE (client),
 					     g_xim_transport_get_atom(ctrans));
-	w = g_xim_get_window(dpy, event->data.l[0]);
-	mask = gdk_window_get_events(w);
-	gdk_window_set_events(w, mask | GDK_STRUCTURE_MASK);
-	g_xim_core_watch_event(core, w);
 
 	ev = gdk_event_new(GDK_CLIENT_EVENT);
 	ev->client.window = g_object_ref(event->window);
@@ -791,15 +785,34 @@ xim_proxy_real_get_property(GObject    *object,
 }
 
 static void
+xim_proxy_real_dispose(GObject *object)
+{
+	XimProxy *proxy = XIM_PROXY (object);
+	GHashTableIter iter;
+	gpointer key, val;
+
+	g_hash_table_iter_init(&iter, proxy->sconn_table);
+	while (g_hash_table_iter_next(&iter, &key, &val)) {
+		g_xim_srv_tmpl_remove_connection(G_XIM_SRV_TMPL (proxy),
+						 G_XIM_POINTER_TO_NATIVE_WINDOW (key));
+		/* hash might be changed */
+		g_hash_table_iter_init(&iter, proxy->sconn_table);
+	}
+
+	if (G_OBJECT_CLASS (xim_proxy_parent_class)->dispose)
+		(* G_OBJECT_CLASS (xim_proxy_parent_class)->dispose) (object);
+}
+
+static void
 xim_proxy_real_finalize(GObject *object)
 {
 	XimProxy *proxy = XIM_PROXY (object);
 	gint i;
 
+	g_hash_table_destroy(proxy->sconn_table);
 	g_hash_table_destroy(proxy->client_table);
 	g_hash_table_destroy(proxy->selection_table);
 	g_hash_table_destroy(proxy->comm_table);
-	g_hash_table_destroy(proxy->sconn_table);
 	g_free(proxy->connect_to);
 	for (i = 0; proxy->client_proto_signals[i].signal_name != NULL; i++) {
 		g_free(proxy->client_proto_signals[i].signal_name);
@@ -807,7 +820,7 @@ xim_proxy_real_finalize(GObject *object)
 	g_free(proxy->client_proto_signals);
 
 	if (G_OBJECT_CLASS (xim_proxy_parent_class)->finalize)
-		G_OBJECT_CLASS (xim_proxy_parent_class)->finalize(object);
+		(* G_OBJECT_CLASS (xim_proxy_parent_class)->finalize) (object);
 }
 
 static void
@@ -902,9 +915,8 @@ _weak_notify_conn_cb(gpointer  data,
 {
 	GXimServerTemplate *server = data;
 	GXimCore *core = G_XIM_CORE (server);
-	GXimClientTemplate *client;
 	GdkDisplay *dpy = g_xim_core_get_display(core);
-	GdkNativeWindow nw, ccw;
+	GdkNativeWindow nw, cnw;
 	GdkWindow *w;
 
 	nw = g_xim_transport_get_native_channel(G_XIM_TRANSPORT (object));
@@ -916,6 +928,9 @@ _weak_notify_conn_cb(gpointer  data,
 		g_xim_core_unwatch_event(core, w);
 		g_hash_table_remove(server->conn_table,
 				    G_XIM_NATIVE_WINDOW_TO_POINTER (nw));
+		cnw = g_xim_transport_get_client_window(G_XIM_TRANSPORT (object));
+		g_hash_table_remove(XIM_PROXY (server)->sconn_table,
+				    G_XIM_NATIVE_WINDOW_TO_POINTER (cnw));
 	}
 	nw = g_xim_transport_get_client_window(G_XIM_TRANSPORT (object));
 	if (nw) {
@@ -929,16 +944,13 @@ _weak_notify_conn_cb(gpointer  data,
 		g_xim_message_debug(core->message, "client/conn",
 				    "Removing a client connection from the table for %p",
 				    G_XIM_NATIVE_WINDOW_TO_POINTER (nw));
-		client = g_hash_table_lookup(XIM_PROXY (server)->client_table,
-					     G_XIM_NATIVE_WINDOW_TO_POINTER (nw));
-		ccw = g_xim_transport_get_native_channel(G_XIM_TRANSPORT (client->connection));
-		g_hash_table_remove(XIM_PROXY (server)->sconn_table,
-				    G_XIM_NATIVE_WINDOW_TO_POINTER (ccw));
 		g_hash_table_remove(XIM_PROXY (server)->client_table,
 				    G_XIM_NATIVE_WINDOW_TO_POINTER (nw));
 	}
 #ifdef GNOME_ENABLE_DEBUG
-	g_print("live server connection: %d\n", g_hash_table_size(server->conn_table));
+	g_print("live server connection: %d [%d]\n",
+		g_hash_table_size(server->conn_table),
+		g_hash_table_size(XIM_PROXY (server)->sconn_table));
 	g_print("live client connection: %d\n", g_hash_table_size(XIM_PROXY (server)->client_table));
 #endif
 }
@@ -1418,6 +1430,7 @@ xim_proxy_class_init(XimProxyClass *klass)
 
 	object_class->set_property = xim_proxy_real_set_property;
 	object_class->get_property = xim_proxy_real_get_property;
+	object_class->dispose      = xim_proxy_real_dispose;
 	object_class->finalize     = xim_proxy_real_finalize;
 
 	core_class->setup_connection        = xim_proxy_real_setup_connection;
