@@ -1,5 +1,11 @@
 2008-08-15  Akira TAGOH  <akira@tagoh.org>
 
+	* backends/xim/proxy.c (xim_proxy_client_protocol_real_xim_reset_ic_reply):
+	new.
+	(xim_proxy_client_protocol_real_xim_error): new.
+	(xim_proxy_protocol_real_xim_reset_ic): new.
+	(xim_proxy_protocol_real_xim_error): new.
+
 	* backends/xim/main.c (imsettings_xim_message_filter): remove the dbus
 	message filter properly.
 	(imsettings_xim_message_filter): Update current XIM server name.

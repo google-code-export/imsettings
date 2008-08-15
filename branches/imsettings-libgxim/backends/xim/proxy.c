@@ -728,6 +728,39 @@ xim_proxy_client_protocol_real_xim_set_ic_values_reply(GXimProtocol *proto,
 	return g_xim_server_connection_set_ic_values_reply(conn, imid, icid);
 }
 
+static gboolean
+xim_proxy_client_protocol_real_xim_reset_ic_reply(GXimProtocol  *proto,
+						  guint16        imid,
+						  guint16        icid,
+						  const GString *preedit_string,
+						  gpointer       data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_server_connection_reset_ic_reply(conn, imid, icid, preedit_string);
+}
+
+static gboolean
+xim_proxy_client_protocol_real_xim_error(GXimProtocol  *proto,
+					 guint16        imid,
+					 guint16        icid,
+					 GXimErrorMask  flag,
+					 GXimErrorCode  error_code,
+					 guint16        detail,
+					 const gchar   *error_message,
+					 gpointer       data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimServerConnection *conn;
+
+	conn = _get_server_connection(proxy, proto);
+
+	return g_xim_connection_error(G_XIM_CONNECTION (conn), imid, icid, flag, error_code, detail, error_message);
+}
+
 static void
 xim_proxy_real_set_property(GObject      *object,
 			     guint         prop_id,
@@ -1421,6 +1454,50 @@ xim_proxy_protocol_real_xim_set_ic_values(GXimProtocol *proto,
 	return TRUE;
 }
 
+static gboolean
+xim_proxy_protocol_real_xim_reset_ic(GXimProtocol *proto,
+				     guint16       imid,
+				     guint16       icid,
+				     gpointer      data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_client_connection_reset_ic(conn, imid, icid, TRUE)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_RESET_IC for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+xim_proxy_protocol_real_xim_error(GXimProtocol  *proto,
+				  guint16        imid,
+				  guint16        icid,
+				  GXimErrorMask  flag,
+				  GXimErrorCode  error_code,
+				  guint16        detail,
+				  const gchar   *error_message,
+				  gpointer       data)
+{
+	XimProxy *proxy = XIM_PROXY (data);
+	GXimClientConnection *conn = _get_client_connection(proxy, proto);
+	GdkNativeWindow	client_window = g_xim_transport_get_client_window(G_XIM_TRANSPORT (proto));
+
+	if (!g_xim_connection_error(G_XIM_CONNECTION (conn), imid, icid, flag, error_code, detail, error_message)) {
+		g_xim_message_warning(G_XIM_PROTOCOL_GET_IFACE (proto)->message,
+				      "Unable to deliver XIM_ERROR for %p",
+				      G_XIM_NATIVE_WINDOW_TO_POINTER (client_window));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 static void
 xim_proxy_class_init(XimProxyClass *klass)
 {
@@ -1478,6 +1555,8 @@ xim_proxy_init(XimProxy *proxy)
 		{"XIM_SYNC_REPLY", G_CALLBACK (xim_proxy_protocol_real_xim_sync_reply), proxy},
 		{"XIM_TRIGGER_NOTIFY", G_CALLBACK (xim_proxy_protocol_real_xim_trigger_notify), proxy},
 		{"XIM_SET_IC_VALUES", G_CALLBACK (xim_proxy_protocol_real_xim_set_ic_values), proxy},
+		{"XIM_RESET_IC", G_CALLBACK (xim_proxy_protocol_real_xim_reset_ic), proxy},
+		{"XIM_ERROR", G_CALLBACK (xim_proxy_protocol_real_xim_error), proxy},
 		{NULL, NULL, NULL}
 	};
 	GXimLazySignalConnector csigs[] = {
@@ -1505,6 +1584,8 @@ xim_proxy_init(XimProxy *proxy)
 		{"XIM_TRIGGER_NOTIFY_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_trigger_notify_reply), proxy},
 		{"XIM_STATUS_DRAW", G_CALLBACK (xim_proxy_client_protocol_real_xim_status_draw), proxy},
 		{"XIM_SET_IC_VALUES_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_set_ic_values_reply), proxy},
+		{"XIM_RESET_IC_REPLY", G_CALLBACK (xim_proxy_client_protocol_real_xim_reset_ic_reply), proxy},
+		{"XIM_ERROR", G_CALLBACK (xim_proxy_client_protocol_real_xim_error), proxy},
 		{NULL, NULL, NULL}
 	};
 
