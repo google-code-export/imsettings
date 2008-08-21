@@ -1,3 +1,37 @@
+2008-08-21  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/main.c (imsettings_xim_message_filter): 
+	just change the connect_to instead of recreating the proxy instance.
+
+	* backends/xim/proxy.c (INC_PENDING): new macro.
+	(DEC_PENDING): new macro.
+	(_find_free_imid): new.
+	(_link_imid): new.
+	(_get_server_imid): new.
+	(_get_client_imid): new.
+	(_remove_imid): new.
+	(_reconnect): new.
+	(_create_client): use the default server if the connection is
+	to "none".
+	(_get_client_connection): reconnect to the XIM server if there are
+	no valid client instance.
+	(xim_proxy_client_real_xconnect_cb): do not forward the event to
+	the clients if reconnecting.
+	(xim_proxy_client_protocol_real_xim_connect_reply): likewise.
+	(xim_proxy_client_protocol_real_xim_open_reply): likewise.
+	(xim_proxy_client_protocol_real_xim_sync): new.
+	(xim_proxy_real_constructor): new.
+	(xim_proxy_real_set_property): disconnect the connection to the XIM
+	server if the connection is changed.
+	(xim_proxy_real_dispose): wait for all pending tasks is done before
+	disposing.
+	(xim_proxy_protocol_real_xim_sync): new.
+	(xim_proxy_connection_real_finalize): new.
+	(xim_proxy_is_pending): new.
+	(xim_proxy_disconnect_all): new.
+
+	* backends/xim/loopback.[ch]: new.
+
 2008-08-15  Akira TAGOH  <akira@tagoh.org>
 
 	* backends/xim/proxy.c (xim_proxy_client_protocol_real_xim_reset_ic_reply):

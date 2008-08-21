@@ -25,6 +25,7 @@ xim_public_headers =					\
 	$(NULL)
 xim_private_headers =					\
 	client.h					\
+	loopback.h					\
 	proxy.h						\
 	utils.h						\
 	$(NULL)
@@ -37,6 +38,7 @@ xim_built_sources =					\
 	$(NULL)
 xim_sources =						\
 	client.c					\
+	loopback.c					\
 	proxy.c						\
 	main.c						\
 	utils.c						\

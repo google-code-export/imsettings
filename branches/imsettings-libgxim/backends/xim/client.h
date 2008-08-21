@@ -38,7 +38,12 @@ G_BEGIN_DECLS
 #define XIM_IS_CLIENT_CLASS(_c_)	(G_TYPE_CHECK_CLASS_TYPE ((_c_), XIM_TYPE_CLIENT))
 #define XIM_CLIENT_GET_CLASS(_o_)	(G_TYPE_INSTANCE_GET_CLASS ((_o_), XIM_TYPE_CLIENT, XimClientClass))
 
-#define XIM_TYPE_CLIENT_CONNECTION	(xim_client_connection_get_type())
+#define XIM_TYPE_CLIENT_CONNECTION		(xim_client_connection_get_type())
+#define XIM_CLIENT_CONNECTION(_o_)		(G_TYPE_CHECK_INSTANCE_CAST ((_o_), XIM_TYPE_CLIENT_CONNECTION, XimClientConnection))
+#define XIM_CLIENT_CONNECTION_CLASS(_c_)	(G_TYPE_CHECK_CLASS_CAST ((_c_), XIM_TYPE_CLIENT_CONNECTION, XimClientConnectionClass))
+#define XIM_IS_CLIENT_CONNECTION(_o_)		(G_TYPE_CHECK_INSTANCE_TYPE ((_o_), XIM_TYPE_CLIENT_CONNECTION))
+#define XIM_IS_CLIENT_CONNECTION_CLASS(_c_)	(G_TYPE_CHECK_CLASS_TYPE ((_c_), XIM_TYPE_CLIENT_CONNECTION))
+#define XIM_CLIENT_CONNECTION_GET_CLASS(_o_)	(G_TYPE_INSTANCE_GET_CLASS ((_o_), XIM_TYPE_CLIENT_CONNECTION, XimClientConnectionClass))
 
 
 typedef struct _XimClientClass			XimClientClass;
@@ -58,6 +63,7 @@ struct _XimClientClass {
 
 struct _XimClient {
 	GXimClientTemplate  parent_instance;
+	gboolean            is_reconnecting;
 };
 
 struct _XimClientConnectionClass {
@@ -66,6 +72,8 @@ struct _XimClientConnectionClass {
 
 struct _XimClientConnection {
 	GXimClientConnection  parent_instance;
+	gboolean              is_reconnecting;
+	guint                 reconnection_state;
 };
 
 

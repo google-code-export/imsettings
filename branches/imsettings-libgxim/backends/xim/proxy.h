@@ -29,6 +29,7 @@
 #include <gdk/gdk.h>
 #include <libgxim/gximsrvconn.h>
 #include <libgxim/gximsrvtmpl.h>
+#include <libgxim/gximserver.h>
 
 G_BEGIN_DECLS
 
@@ -39,7 +40,12 @@ G_BEGIN_DECLS
 #define XIM_IS_PROXY_CLASS(_c_)		(G_TYPE_CHECK_CLASS_TYPE ((_c_), XIM_TYPE_PROXY))
 #define XIM_PROXY_GET_CLASS(_o_)	(G_TYPE_INSTANCE_GET_CLASS ((_o_), XIM_TYPE_PROXY, XimProxyClass))
 
-#define XIM_TYPE_PROXY_CONNECTION	(xim_proxy_connection_get_type())
+#define XIM_TYPE_PROXY_CONNECTION		(xim_proxy_connection_get_type())
+#define XIM_PROXY_CONNECTION(_o_)		(G_TYPE_CHECK_INSTANCE_CAST ((_o_), XIM_TYPE_PROXY_CONNECTION, XimProxyConnection))
+#define XIM_PROXY_CONNECTION_CLASS(_c_)		(G_TYPE_CHECK_CLASS_CAST ((_c_), XIM_TYPE_PROXY_CONNECTION, XimProxyConnectionClass))
+#define XIM_IS_PROXY_CONNECTION(_o_)		(G_TYPE_CHECK_INSTANCE_TYPE ((_o_), XIM_TYPE_PROXY_CONNECTION))
+#define XIM_IS_PROXY_CONNECTION_CLASS(_c_)	(G_TYPE_CHECK_CLASS_TYPE ((_c_), XIM_TYPE_PROXY_CONNECTION))
+#define XIM_PROXY_CONNECTION_GET_CLASS(_o_)	(G_TYPE_INSTANCE_GET_CLASS ((_o_), XIM_TYPE_PROXY_CONNECTION, XimProxyConnectionClass))
 
 
 typedef struct _XimProxyClass		XimProxyClass;
@@ -67,6 +73,11 @@ struct _XimProxy {
 	GHashTable              *sconn_table;
 	gchar                   *connect_to;
 	GXimLazySignalConnector *client_proto_signals;
+	GXimServerTemplate      *default_server;
+	gulong                   pending_tasks;
+	guint16                 *simid_table;
+	guint16                 *cimid_table;
+	guint16                  latest_imid;
 };
 
 struct _XimProxyConnectionClass {
@@ -75,16 +86,19 @@ struct _XimProxyConnectionClass {
 
 struct _XimProxyConnection {
 	GXimServerConnection  parent_instance;
+	GXimStr              *locale;
 };
 
 
 GType     xim_proxy_get_type      (void) G_GNUC_CONST;
-XimProxy *xim_proxy_new           (GdkDisplay  *dpy,
-                                   const gchar *server_name,
-				   const gchar *connect_to);
-gboolean  xim_proxy_take_ownership(XimProxy    *proxy,
-                                   gboolean     force,
+XimProxy *xim_proxy_new           (GdkDisplay   *dpy,
+                                   const gchar  *server_name,
+				   const gchar  *connect_to);
+gboolean  xim_proxy_take_ownership(XimProxy     *proxy,
+                                   gboolean      force,
                                    GError      **error);
+gboolean  xim_proxy_is_pending    (XimProxy     *proxy);
+void      xim_proxy_disconnect_all(XimProxy     *proxy);
 
 GType xim_proxy_connection_get_type(void) G_GNUC_CONST;
 

@@ -105,7 +105,6 @@ imsettings_xim_message_filter(DBusConnection *connection,
 
 	if (dbus_message_is_signal(message, IMSETTINGS_XIM_INTERFACE_DBUS, "ChangeTo")) {
 		gchar *module;
-		GdkDisplay *dpy = g_xim_core_get_display(G_XIM_CORE (server));
 		Proxy *proxy;
 
 		proxy = g_object_get_qdata(G_OBJECT (server), quark_proxy);
@@ -116,17 +115,13 @@ imsettings_xim_message_filter(DBusConnection *connection,
 			/* No changes */
 			return DBUS_HANDLER_RESULT_HANDLED;
 		}
-		dbus_connection_remove_filter(connection, imsettings_xim_message_filter, proxy->server);
 		g_xim_message_debug(G_XIM_CORE (server)->message, "dbus/event",
 				    "Changing XIM server: `%s'->`%s'\n",
 				    (proxy->server_name && proxy->server_name[0] == 0 ? "none" : proxy->server_name),
 				    (module && module[0] == 0 ? "none" : module));
-		g_object_unref(G_OBJECT (proxy->server));
 		g_free(proxy->server_name);
 		proxy->server_name = g_strdup(module);
-		proxy->server = _create_proxy(dpy, proxy, TRUE);
-		g_object_set_qdata(G_OBJECT (proxy->server), quark_proxy, proxy);
-		dbus_connection_add_filter(connection, imsettings_xim_message_filter, proxy->server, NULL);
+		g_object_set(proxy->server, "connect_to", module, NULL);
 
 		return DBUS_HANDLER_RESULT_HANDLED;
 	}

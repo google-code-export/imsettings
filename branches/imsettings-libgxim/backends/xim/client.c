@@ -81,7 +81,7 @@ static void
 xim_client_real_finalize(GObject *object)
 {
 	if (G_OBJECT_CLASS (xim_client_parent_class)->finalize)
-		G_OBJECT_CLASS (xim_client_parent_class)->finalize(object);
+		(* G_OBJECT_CLASS (xim_client_parent_class)->finalize) (object);
 }
 
 static void
