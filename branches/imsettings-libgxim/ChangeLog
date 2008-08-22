@@ -1,3 +1,19 @@
+2008-08-22  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/proxy.c (_reconnect): send XIM_ENCODING_NEGOTIATION
+	to reconnect.
+	(xim_proxy_client_protocol_real_xim_open_reply): relink the attribute
+	id between the server and clients.
+	(xim_proxy_client_protocol_real_xim_encoding_negotiation_reply): 
+	relink the encoding between the server and clients.
+	(xim_proxy_client_protocol_real_xim_get_im_values_reply): relink
+	the attribute id between the server and clients.
+	(xim_proxy_client_protocol_real_xim_get_ic_values_reply): likewise.
+	(xim_proxy_protocol_real_xim_get_im_values): likewise.
+	(xim_proxy_protocol_real_xim_create_ic): likewise.
+	(xim_proxy_protocol_real_xim_set_ic_values): likewise.
+	(xim_proxy_protocol_real_xim_get_ic_values): likewise.
+
 2008-08-21  Akira TAGOH  <akira@tagoh.org>
 
 	* backends/xim/main.c (imsettings_xim_message_filter): 

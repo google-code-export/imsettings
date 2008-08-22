@@ -71,6 +71,10 @@ struct _XimProxy {
 	GHashTable              *selection_table;
 	GHashTable              *comm_table;
 	GHashTable              *sconn_table;
+	GHashTable              *simattr_table;
+	GHashTable              *cimattr_table;
+	GHashTable              *sicattr_table;
+	GHashTable              *cicattr_table;
 	gchar                   *connect_to;
 	GXimLazySignalConnector *client_proto_signals;
 	GXimServerTemplate      *default_server;
