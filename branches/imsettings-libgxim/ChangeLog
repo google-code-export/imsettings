@@ -1,5 +1,18 @@
 2008-08-26  Akira TAGOH  <akira@tagoh.org>
 
+	* backends/xim/proxy.c (_create_client): fallback to the default IM
+	if failed.
+	(xim_proxy_client_protocol_real_xim_auth_ng): new.
+	(xim_proxy_client_protocol_real_xim_trigger_notify_reply):
+	fix a deadlock on finalize.
+	(xim_proxy_client_protocol_real_xim_set_im_values_reply): new.
+	(xim_proxy_client_protocol_real_xim_get_im_values_reply): Update
+	the default IM values.
+	(xim_proxy_protocol_real_xim_auth_ng): new.
+	(xim_proxy_protocol_real_xim_set_im_values): new.
+	(xim_proxy_protocol_real_xim_forward_event): send back to the client
+	application if failed.
+
 	* backends/xim/loopback.c (xim_loopback_set_default_im_values): 
 	set default IM values.
 	(xim_loopback_real_xim_open): initialize the default IM values.
