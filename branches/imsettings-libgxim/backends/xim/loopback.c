@@ -147,6 +147,58 @@ xim_loopback_find_imid(XimLoopback *loopback)
 	return loopback->latest_imid;
 }
 
+static void
+xim_loopback_set_default_im_values(XimLoopback *loopback,
+				   GXimIMAttr  *attr)
+{
+	GSList *attributes, *l;
+
+	attributes = g_xim_attr_get_supported_attributes(G_XIM_ATTR (attr));
+
+	for (l = attributes; l != NULL; l = g_slist_next(l)) {
+		if (l->data != NULL) {
+			if (strcmp(l->data, XNQueryInputStyle) == 0) {
+				GXimStyles *styles = g_xim_styles_new();
+				GXimStyle default_im_styles[] = {
+					G_XIM_PreeditNothing | G_XIM_StatusNothing,
+					G_XIM_PreeditPosition | G_XIM_StatusNothing,
+					G_XIM_PreeditPosition | G_XIM_StatusArea,
+					G_XIM_PreeditCallbacks | G_XIM_StatusNothing,
+					G_XIM_PreeditCallbacks | G_XIM_StatusCallbacks,
+					0
+				}, i;
+				GError *error = NULL;
+
+				for (i = 0; default_im_styles[i] != 0; i++) {
+					g_xim_styles_append(styles,
+							    default_im_styles[i],
+							    &error);
+					if (error) {
+						g_xim_message_gerror(G_XIM_CORE (loopback)->message, error);
+						g_clear_error(&error);
+					}
+				}
+				g_object_set(attr, l->data, styles, NULL);
+				g_xim_styles_free(styles);
+			} else {
+				g_xim_message_bug(G_XIM_CORE (loopback)->message,
+						  "Unsupported IM attribute: %s",
+						  (gchar *)l->data);
+			}
+		}
+	}
+	g_slist_foreach(attributes,
+			(GFunc)g_free,
+			NULL);
+	g_slist_free(attributes);
+}
+
+static void
+xim_loopback_set_default_ic_values(XimLoopback *loopback,
+				   GXimICAttr  *attr)
+{
+}
+
 /* protocol callbacks */
 static gboolean
 xim_loopback_real_xim_open(GXimProtocol  *proto,
@@ -194,6 +246,9 @@ xim_loopback_real_xim_open(GXimProtocol  *proto,
 		conn->imid = imid;
 		conn->imattr = imattr;
 		conn->default_icattr = icattr;
+
+		xim_loopback_set_default_im_values(loopback, imattr);
+		xim_loopback_set_default_ic_values(loopback, icattr);
 
 		attr = G_XIM_ATTR (imattr);
 		list = g_xim_attr_get_supported_attributes(attr);
@@ -369,6 +424,10 @@ xim_loopback_real_xim_get_im_values(GXimProtocol  *proto,
 		}
 		value = g_xim_attr_get_value_by_id(G_XIM_ATTR (attr),
 						   GPOINTER_TO_INT (l->data));
+		g_xim_message_debug(G_XIM_CORE (loopback)->message, "loopback/proto/attr",
+				    "IM Attribute %d: %p",
+				    GPOINTER_TO_INT (l->data),
+				    value);
 		a = g_xim_attribute_new_with_value(GPOINTER_TO_INT (l->data), vtype, value);
 		G_XIM_CHECK_ALLOC (a, FALSE);
 

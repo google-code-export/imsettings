@@ -1,3 +1,9 @@
+2008-08-26  Akira TAGOH  <akira@tagoh.org>
+
+	* backends/xim/loopback.c (xim_loopback_set_default_im_values): 
+	set default IM values.
+	(xim_loopback_real_xim_open): initialize the default IM values.
+
 2008-08-22  Akira TAGOH  <akira@tagoh.org>
 
 	* backends/xim/proxy.c (_reconnect): send XIM_ENCODING_NEGOTIATION
