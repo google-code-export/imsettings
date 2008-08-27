@@ -1,6 +1,9 @@
 NULL =
 AUTOMAKE_OPTIONS = dist-bzip2
 SUBDIRS = imsettings backends utils src data po tests
+if ENABLE_APPLET
+SUBDIRS += applet
+endif
 
 ACLOCAL_AMFLAGS =			\
 	-Im4macros			\
@@ -12,7 +15,7 @@ CONFIGURE_DEPENDENCIES =		\
 
 EXTRA_DIST =				\
 	$(pkgconfig_DATA)		\
-	imsettings-uninstalled.pc.in	\
+	$(noinst_DATA)			\
 	intltool-extract.in		\
 	intltool-merge.in		\
 	intltool-update.in		\
@@ -21,7 +24,7 @@ EXTRA_DIST =				\
 
 DISTCLEANFILES =			\
 	$(pkgconfig_DATA)		\
-	imsettings-uninstalled.pc	\
+	$(noinst_DATA)			\
 	$(NULL)
 
 #
@@ -30,3 +33,5 @@ DISTCLEANFILES =			\
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = imsettings.pc
 $(pkgconfig_DATA): $(top_builddir)/config.status
+noinst_DATA = imsettings-uninstalled.pc
+$(noinst_DATA): $(top_builddir)/config.status

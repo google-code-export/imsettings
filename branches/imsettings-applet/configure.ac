@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([imsettings], 0.101.3, [http://code.google.com/p/imsettings/issues/entry])
+AC_INIT([imsettings], 0.101.4, [http://code.google.com/p/imsettings/issues/entry])
 
 . ./requires
 
@@ -97,6 +97,15 @@ PKG_CHECK_MODULES(XFCE, gconf-2.0
 PKG_CHECK_MODULES(XIM, x11,
 	[use_xim="yes"],
 	[use_xim="no"])
+PKG_CHECK_MODULES(APPLET, gtk+-2.0
+			  libnotify
+			  gconf-2.0,
+	[use_applet="yes"],
+	[use_applet="no"])
+dnl disable applet support so far.
+if [ "x$enable_debug" != "xyes" ]; then
+	use_applet="no"
+fi
 
 AC_SUBST(IMSETTINGS_CFLAGS)
 AC_SUBST(IMSETTINGS_LIBS)
@@ -112,6 +121,8 @@ AC_SUBST(XFCE_CFLAGS)
 AC_SUBST(XFCE_LIBS)
 AC_SUBST(XIM_CFLAGS)
 AC_SUBST(XIM_LIBS)
+AC_SUBST(APPLET_CFLAGS)
+AC_SUBST(APPLET_LIBS)
 AC_SUBST(CHECK_CFLAGS)
 AC_SUBST(CHECK_LIBS)
 
@@ -120,6 +131,7 @@ AM_CONDITIONAL(ENABLE_GCONF, test x$use_gconf != xno)
 AM_CONDITIONAL(ENABLE_QT, test x$use_qt != xno)
 AM_CONDITIONAL(ENABLE_XFCE, test x$use_xfce != xno)
 AM_CONDITIONAL(ENABLE_XIM, test x$use_xim != xno)
+AM_CONDITIONAL(ENABLE_APPLET, test x$use_applet != xno)
 
 dnl ======================================================================
 dnl check another libraries
@@ -239,6 +251,7 @@ AC_CONFIG_FILES([
 	Makefile
 	imsettings.pc
 	imsettings-uninstalled.pc
+	applet/Makefile
 	backends/Makefile
 	backends/gconf/Makefile
 	backends/qt/Makefile
@@ -284,6 +297,11 @@ echo " XIM support:            $use_xim"
 if test "x$use_xim" = "xyes"; then
    echo "   CFLAGS:               $XIM_CFLAGS"
    echo "   LDFLAGS:              $XIM_LIBS"
+fi
+echo " Applet support:         $use_applet"
+if test "x$use_applet" = "xyes"; then
+   echo "   CFLAGS:               $APPLET_CFLAGS"
+   echo "   LDFLAGS:              $APPLET_LIBS"
 fi
 echo " XINPUT_PATH:            $XINPUT_PATH"
 echo " XINPUTRC_PATH:          $XINPUTRC_PATH"
