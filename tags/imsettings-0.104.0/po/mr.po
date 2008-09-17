@@ -1,0 +1,705 @@
+# translation of im-chooser.trunk.mr.po to marathi
+# Marathi translations for im-chooser package.
+# Copyright (C) 2006 Red Hat, Inc. All rights reserved.
+# This file is distributed under the same license as the im-chooser package.
+#
+# Automatically generated, 2006.
+# Rahul Bhalerao <b.rahul.pm@gmail.com>, 2006.
+# Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: im-chooser.trunk.mr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-17 23:05+0900\n"
+"PO-Revision-Date: 2008-04-14 12:25+0530\n"
+"Last-Translator: Sandeep Shedmake <sandeep.shedmake@gmail.com>\n"
+"Language-Team: marathi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../applet/imsettings-applet.desktop.in.in.h:1
+msgid "IMSettings Applet"
+msgstr ""
+
+#: ../applet/main.c:139 ../applet/main.c:172 ../applet/main.c:210
+msgid "No detailed information"
+msgstr ""
+
+#: ../applet/main.c:142
+msgid "Mismatch the version of im-settings-daemon"
+msgstr ""
+
+#: ../applet/main.c:169 ../applet/main.c:247
+#, fuzzy, c-format
+msgid "Unable to start %s"
+msgstr "IM पध्दती `%s' थांबविण्यास अपयशी\n"
+
+#: ../applet/main.c:182
+msgid ""
+" and the default Input Method has been changed. if you need to change that "
+"to anything else, please use im-chooser."
+msgstr ""
+
+#: ../applet/main.c:187
+#, c-format
+msgid "Connected to %s.%s"
+msgstr ""
+
+#: ../applet/main.c:192 ../applet/main.c:227 ../applet/main.c:930
+msgid "Information"
+msgstr ""
+
+#: ../applet/main.c:207 ../applet/main.c:273
+#, c-format
+msgid "Unable to stop %s"
+msgstr ""
+
+#: ../applet/main.c:224
+#, fuzzy
+msgid "Disconnected from Input Method"
+msgstr "इनपुट पध्दती सुरू करण्यास अपयशी"
+
+#: ../applet/main.c:251 ../applet/main.c:277
+msgid "maybe DBus related issue."
+msgstr ""
+
+#: ../applet/main.c:332 ../applet/main.c:419
+msgid "Unable to store a value to GConf"
+msgstr ""
+
+#: ../applet/main.c:371
+msgid "Unable to get a value from GConf"
+msgstr ""
+
+#: ../applet/main.c:504
+#, c-format
+msgid "The acceleration key %s may be invalid. disabled it temporarily."
+msgstr ""
+
+#: ../applet/main.c:506
+msgid "Unable to set up the acceleration key"
+msgstr ""
+
+#: ../applet/main.c:646
+msgid "Unable to store the acceleration key into GConf"
+msgstr ""
+
+#: ../applet/main.c:667
+msgid "Please press the acceleration key..."
+msgstr ""
+
+#: ../applet/main.c:711
+msgid "IMSettings Applet Preferences"
+msgstr ""
+
+#: ../applet/main.c:723
+msgid "_Show the status icon"
+msgstr ""
+
+#: ../applet/main.c:732
+msgid "_Run XSETTINGS manager as needed"
+msgstr ""
+
+#: ../applet/main.c:744
+msgid "<b>Trigger key:</b>"
+msgstr ""
+
+#: ../applet/main.c:756
+msgid "_Grab key"
+msgstr ""
+
+#: ../applet/main.c:770
+msgid ""
+"Please click Grab key button and press the key combinations you want to "
+"assign for the acceleration key. Press Backspace key to disable this feature."
+msgstr ""
+
+#: ../applet/main.c:845
+#, fuzzy
+msgid "Disconnect"
+msgstr "DBus जुळवणी"
+
+#: ../applet/main.c:904
+#, fuzzy
+msgid "Click to connect to Input Method"
+msgstr "इनपुट पध्दती सुरू करण्यास अपयशी"
+
+#: ../applet/main.c:908
+#, fuzzy
+msgid "Click to disconnect from Input Method"
+msgstr "इनपुट पध्दती सुरू करण्यास अपयशी"
+
+#: ../applet/main.c:931
+msgid ""
+"The default Input Method isn't yet configured. To get this working, you need "
+"to set up that on im-chooser or select one from the menu which appears by "
+"the right click first."
+msgstr ""
+
+#: ../applet/main.c:1005
+#, c-format
+msgid "Press %s or "
+msgstr ""
+
+#: ../applet/main.c:1008
+#, c-format
+msgid ""
+"%sLeft-click on the icon to connect to/disconnect from Input Method.\n"
+"Right-click to show up the Input Method menu."
+msgstr ""
+
+#: ../applet/main.c:1010
+msgid "Tips"
+msgstr ""
+
+#: ../applet/main.c:1016
+msgid "Do not show this again"
+msgstr ""
+
+#: ../applet/main.c:1060
+msgid "Unable to take an ownership for XIM server"
+msgstr ""
+
+#: ../applet/radiomenuitem.c:314
+msgid "Image widget"
+msgstr ""
+
+#: ../applet/radiomenuitem.c:315
+msgid "Child widget to appear next to the menu text"
+msgstr ""
+
+#: ../backends/gconf/main.c:184 ../imsettings/imsettings-observer.c:845
+#: ../src/factory.c:815 ../src/factory_info.c:1311
+msgid "Replace the running settings daemon with new instance."
+msgstr "नविन कार्यपध्दतीशी कार्यरत संजोजना डीमन बदलवा."
+
+#: ../backends/gconf/main.c:206 ../backends/xim/main.c:179
+#: ../src/factory.c:842 ../src/factory_info.c:1336
+#: ../utils/imsettings-reload.c:63 ../utils/imsettings-restart.c:66
+#: ../utils/imsettings-start.c:69 ../utils/imsettings-stop.c:65
+msgid "Unknown error in parsing the command lines."
+msgstr "आदेश ओळ वाचतेवेळी अपरिचीत त्रुटी आढळली."
+
+#: ../backends/xfce/imsettings_plugin.c:88
+#, fuzzy
+msgid "Button Label|Input Method"
+msgstr "इनपुट पद्धती"
+
+#: ../backends/xim/main.c:142 ../src/factory.c:816
+msgid "X display to use"
+msgstr "वापरावयाचे X प्रदर्शन"
+
+#: ../backends/xim/main.c:142 ../src/factory.c:816
+msgid "DISPLAY"
+msgstr "DISPLAY"
+
+#: ../backends/xim/main.c:143
+#, fuzzy
+msgid "Replace the running XIM server with new instance."
+msgstr "नविन कार्यपध्दतीशी कार्यरत संजोजना डीमन बदलवा."
+
+#: ../backends/xim/main.c:144
+msgid "Output the debugging logs"
+msgstr ""
+
+#: ../backends/xim/main.c:145
+msgid "XIM server connects to, for debugging purpose only"
+msgstr ""
+
+#: ../backends/xim/main.c:145 ../imsettings/imsettings-info.c:660
+msgid "XIM"
+msgstr "XIM"
+
+#: ../backends/xim/proxy.c:2659
+#, fuzzy
+msgid "A XIM server name"
+msgstr "XIM सर्वर नाव"
+
+#: ../backends/xim/proxy.c:2660
+#, fuzzy
+msgid "A XIM server name would connects to"
+msgstr "चालविण्याजोगी XIM सर्वर कार्यक्रम"
+
+#: ../backends/xim/proxy.c:2665
+msgid "Signals for Protocol class"
+msgstr ""
+
+#: ../backends/xim/proxy.c:2666
+msgid "A structure of signals for Protocol class"
+msgstr ""
+
+#: ../imsettings/imsettings-info.c:632 ../imsettings/imsettings-info.c:633
+msgid "Home directory"
+msgstr ""
+
+#: ../imsettings/imsettings-info.c:639
+msgid "Language"
+msgstr "भाषा"
+
+#: ../imsettings/imsettings-info.c:640
+msgid "A language to pull the information in."
+msgstr "माहिती प्राप्त करण्यासाठी भाषा."
+
+#: ../imsettings/imsettings-info.c:646
+msgid "Filename"
+msgstr "फाइलनाव"
+
+#: ../imsettings/imsettings-info.c:647
+msgid "A filename referring to the IM information."
+msgstr "IM माहिती करीता संदर्भ दर्शविणारे फाइलनाव."
+
+#: ../imsettings/imsettings-info.c:653 ../imsettings/imsettings-info.c:654
+msgid "Short Description"
+msgstr "लहान वर्णन"
+
+#: ../imsettings/imsettings-info.c:661
+msgid "Whether or not IM is a XIM server."
+msgstr "IM XIM सर्वर आहे की नाही."
+
+#: ../imsettings/imsettings-info.c:667
+msgid "GTK+ immodule"
+msgstr "GTK+ im विभाग"
+
+#: ../imsettings/imsettings-info.c:668
+msgid "A module name used for GTK+"
+msgstr "GTK+ करीता वापरण्याजोगी विभान नाव"
+
+#: ../imsettings/imsettings-info.c:673
+msgid "Qt immodule"
+msgstr "Qt im विभाग"
+
+#: ../imsettings/imsettings-info.c:674
+msgid "A module name used for Qt"
+msgstr "Qt करीता वापरण्याजोगी विभाग नाव"
+
+#: ../imsettings/imsettings-info.c:679
+msgid "XIM name"
+msgstr "XIM नाव"
+
+#: ../imsettings/imsettings-info.c:680
+msgid "XIM server name"
+msgstr "XIM सर्वर नाव"
+
+#: ../imsettings/imsettings-info.c:685
+msgid "Ignore flag"
+msgstr "बाब दुर्लक्ष करा"
+
+#: ../imsettings/imsettings-info.c:686
+msgid "A flag to not list up."
+msgstr "यादी मध्ये न दर्शविण्याजोगी बाब."
+
+#: ../imsettings/imsettings-info.c:691
+msgid "XIM server program name"
+msgstr "XIM सर्वर कार्यक्रमाचे नाव"
+
+#: ../imsettings/imsettings-info.c:692
+msgid "XIM server program to be run"
+msgstr "चालविण्याजोगी XIM सर्वर कार्यक्रम"
+
+#: ../imsettings/imsettings-info.c:697
+msgid "XIM server program's options"
+msgstr "XIM सर्वर कार्यक्रमाचे पर्याय"
+
+#: ../imsettings/imsettings-info.c:698
+msgid "Command line options for XIM server program"
+msgstr "XIM सर्वर कार्यक्रम करीता आदेश ओळवरील पर्याय"
+
+#: ../imsettings/imsettings-info.c:703
+msgid "Preference program name"
+msgstr "प्राधान्यक्रम कार्यक्रमाचे नाव"
+
+#: ../imsettings/imsettings-info.c:704
+msgid "Preference program to be run"
+msgstr "चालविण्याजोगी प्राधान्यक्रम कार्यक्रम"
+
+#: ../imsettings/imsettings-info.c:709
+msgid "Preference program's options"
+msgstr "प्राधान्यक्रम कार्यक्रमाचे पर्याय"
+
+#: ../imsettings/imsettings-info.c:710
+msgid "Command line options for preference program"
+msgstr "प्राधान्यक्रम कार्यक्रम करीता आदेश ओळवरील पर्याय"
+
+#: ../imsettings/imsettings-info.c:715
+msgid "Auxiliary program name"
+msgstr "अगाऊ कार्यक्रमाचे नाव"
+
+#: ../imsettings/imsettings-info.c:716
+msgid "Auxiliary program to be run"
+msgstr "अगाऊ कार्यक्रम चालवा"
+
+#: ../imsettings/imsettings-info.c:721
+msgid "Auxiliary program's options"
+msgstr "अघाऊ कार्यक्रमाचे पर्याय"
+
+#: ../imsettings/imsettings-info.c:722
+msgid "Command line options for auxiliary program"
+msgstr "अगाऊ कार्यक्रम करीताचे आदेश ओळवरील पर्याय"
+
+#: ../imsettings/imsettings-info.c:727 ../imsettings/imsettings-info.c:728
+msgid "Long Description"
+msgstr "लांब वर्णन"
+
+#: ../imsettings/imsettings-info.c:733
+msgid "Icon"
+msgstr ""
+
+#: ../imsettings/imsettings-info.c:734
+msgid "Icon filename to be used on GUI"
+msgstr ""
+
+#: ../imsettings/imsettings-info.c:739
+msgid "System Default"
+msgstr " साधारण पध्दती"
+
+#: ../imsettings/imsettings-info.c:740
+msgid "Whether or not IM is a system default."
+msgstr "IM प्रणाली मुलभूत आहे की नाही."
+
+#: ../imsettings/imsettings-info.c:745
+msgid "User Default"
+msgstr "वापरकर्ता मुलभूत"
+
+#: ../imsettings/imsettings-info.c:746
+msgid "Whether or not IM is an user default."
+msgstr "IM वापरकर्ता मुलभूत आहे की नाही."
+
+#: ../imsettings/imsettings-observer.c:396
+#, c-format
+msgid "Invalid IM module type: %d"
+msgstr "अवैध IM विभाग प्रकार: %d"
+
+#: ../imsettings/imsettings-observer.c:838
+msgid "IM module name"
+msgstr "IM विभाग नाव"
+
+#: ../imsettings/imsettings-observer.c:839
+msgid "A target IM module name that to observe signals"
+msgstr "संकेतांक पहाण्याकरीता लक्ष्य IM विभाग नाव"
+
+#: ../imsettings/imsettings-observer.c:844
+msgid "Replace"
+msgstr "बदलवा"
+
+#: ../imsettings/imsettings-observer.c:850
+#: ../imsettings/imsettings-request.c:175
+msgid "DBus connection"
+msgstr "DBus जुळवणी"
+
+#: ../imsettings/imsettings-observer.c:851
+#: ../imsettings/imsettings-request.c:176
+msgid "An object to be a DBus connection"
+msgstr "DBus जुळवणी करतीचे घटक"
+
+#: ../imsettings/imsettings-request.c:169
+msgid "DBus Interface"
+msgstr "DBus संवाद"
+
+#: ../imsettings/imsettings-request.c:170
+msgid "Interface name to connect to DBus"
+msgstr "DBus शी जुळवणी करण्याकरीताचे संवाद"
+
+#: ../imsettings/imsettings-request.c:181
+msgid "Locale"
+msgstr "लोकेल"
+
+#: ../imsettings/imsettings-request.c:182
+msgid "Locale to get the imsettings information"
+msgstr "imsettings माहिती प्राप्त करायचे ते लोकेल"
+
+#: ../imsettings/imsettings-request.c:240
+#: ../imsettings/imsettings-request.c:277
+#: ../imsettings/imsettings-request.c:299
+#: ../imsettings/imsettings-request.c:329
+#: ../imsettings/imsettings-request.c:383
+#: ../imsettings/imsettings-request.c:435
+#, c-format
+msgid ""
+"Failed to invoke a method `%s':\n"
+"  %s"
+msgstr ""
+"पध्दती `%s' प्रारंभ करण्यास अपयशी:\n"
+"  %s"
+
+#: ../imsettings/imsettings-request.c:483
+#: ../imsettings/imsettings-request.c:531
+#: ../imsettings/imsettings-request.c:591
+#: ../imsettings/imsettings-request.c:638
+#, c-format
+msgid ""
+"Failed to invoke a method `%s' on %s:\n"
+"  %s"
+msgstr ""
+"%s वरील पध्दती `%s' प्रारंभ करण्यास अपयशी:\n"
+"  %s"
+
+#: ../src/factory.c:138
+#, c-format
+msgid "Failed to remove a pidfile: %s"
+msgstr "pidfile काढूण टाकण्यास अपयशी: %s"
+
+#: ../src/factory.c:180
+#, c-format
+msgid "Failed to open a pidfile: %s"
+msgstr "pidfile उघडण्यास अपयशी: %s"
+
+#: ../src/factory.c:268
+#, c-format
+msgid "%s: No such file or directory"
+msgstr ""
+
+#: ../src/factory.c:278
+#, c-format
+msgid "Couldn't determine the pid for %s process."
+msgstr "%s पध्दती करीता pid शोधू शकले नाही."
+
+#: ../src/factory.c:308
+#, c-format
+msgid "Couldn't send a signal to the %s process successfully."
+msgstr "%s पध्दती करीता संकेत यशस्वीरित्या पाठवू शकले नाही."
+
+#: ../src/factory.c:332 ../src/factory.c:644
+#, c-format
+msgid "Failed to get a place of home directory."
+msgstr "मुख्य संचयीकाचे स्थान प्राप्त करण्यास अपयशी."
+
+#: ../src/factory.c:349
+#, c-format
+msgid "Failed to revert the backup file: %s"
+msgstr "प्रतिकृती फाइल कडे जाऊ शकण्यास अपयशी: %s"
+
+#: ../src/factory.c:361
+#, c-format
+msgid "Failed to create a backup file: %s"
+msgstr "प्रतिकृती फाइल बनविण्यास अपयशी: %s"
+
+#: ../src/factory.c:370
+#, c-format
+msgid "Failed to remove a .xinputrc file: %s"
+msgstr ".xinputrc फाइल काढूण टाकण्यास अपयशी: %s"
+
+#: ../src/factory.c:381
+#, c-format
+msgid "Failed to make a symlink: %s"
+msgstr "symlink बनविण्यास अपयशी: %s"
+
+#: ../src/factory.c:501 ../src/factory.c:705
+#, fuzzy, c-format
+msgid ""
+"No such input method on your system: %s\n"
+"  Details: %s"
+msgstr "तुमच्या प्रणालीवर इनपुट पध्दती आढळली नाही: %s"
+
+#: ../src/factory.c:524
+#, c-format
+msgid "No XIM server is available in %s"
+msgstr "XIM सर्वर %s मध्ये उपलब्ध नाही"
+
+#: ../src/factory.c:771
+msgid "X display name"
+msgstr "X प्रदर्शकाचे नाव"
+
+#: ../src/factory.c:772
+msgid "X display name to use"
+msgstr "वापरण्याजोगी X प्रदर्शकाचे नाव"
+
+#. FIXME
+#: ../src/factory.c:819
+msgid "X screen to use"
+msgstr "वापरावयाची X स्क्रीन"
+
+#: ../src/factory.c:819
+msgid "SCREEN"
+msgstr "SCREEN"
+
+#: ../src/factory.c:850
+#, c-format
+msgid "Failed to open a X display."
+msgstr "X प्रदर्शक उघडण्यास अपयशी."
+
+#: ../src/factory_info.c:236
+#, c-format
+msgid "Reloading...\n"
+msgstr "पुन्हदाखन करीत आहे...\n"
+
+#: ../src/factory_info.c:285
+#, c-format
+msgid "Duplicate entry `%s' from %s. SHORT_DESC has to be unique."
+msgstr "%s पासून समानार्थी नोंदणी `%s'. SHORT_DESC एकमेव असायला हवे."
+
+#: ../src/factory_info.c:947 ../src/factory_info.c:982
+#, c-format
+msgid "No input methods available on your system."
+msgstr "तुमच्या प्रणालीवर इंपुट पध्दती आढळले नाही."
+
+#: ../src/factory_info.c:1055
+#, c-format
+msgid "No such input method on your system: %s"
+msgstr "तुमच्या प्रणालीवर इनपुट पध्दती आढळली नाही: %s"
+
+#: ../src/factory_info.c:1227
+msgid "xinputrc directory"
+msgstr ""
+
+#: ../src/factory_info.c:1228
+msgid "A directory where puts the system wide xinputrc on."
+msgstr ""
+
+#: ../src/factory_info.c:1233
+msgid "xinput directory"
+msgstr ""
+
+#: ../src/factory_info.c:1234
+msgid "A directory where puts the IM configurations on."
+msgstr ""
+
+#: ../src/factory_info.c:1239 ../src/factory_info.c:1240
+msgid "home directory"
+msgstr ""
+
+#: ../src/factory_info.c:1312
+msgid ""
+"A directory where puts the system-wide xinputrc puts on (debugging only)"
+msgstr ""
+
+#: ../src/factory_info.c:1312 ../src/factory_info.c:1313
+#: ../src/factory_info.c:1314
+msgid "DIR"
+msgstr ""
+
+#: ../src/factory_info.c:1313
+msgid "A directory where puts the IM configurations puts on (debugging only)"
+msgstr ""
+
+#: ../src/factory_info.c:1314
+msgid "A home directory (debugging only)"
+msgstr ""
+
+#: ../utils/imsettings-reload.c:42
+msgid "Force reloading the configuration, including restarting the process."
+msgstr ""
+"संयोजना जबरनरित्या पुन्ह दाखलन करण्यास प्रयत्न करा, कार्यपध्दती पुन्हा सुरू करणे समाविष्टीत."
+
+#: ../utils/imsettings-restart.c:41 ../utils/imsettings-start.c:43
+#: ../utils/imsettings-stop.c:41
+#, fuzzy
+msgid "<Input Method>"
+msgstr "इनपुट पद्धती"
+
+#: ../utils/imsettings-restart.c:43
+#, fuzzy
+msgid "Force restarting the IM process regardless of any errors."
+msgstr "कुठलिही त्रुटी आढळल्यावरही IM कार्यपध्दती जबरनरित्या पुन्हसुरू करा."
+
+#: ../utils/imsettings-restart.c:44 ../utils/imsettings-start.c:45
+#: ../utils/imsettings-stop.c:44
+msgid "Do not update .xinputrc."
+msgstr ".xinputrc अद्ययावत करू नका."
+
+#: ../utils/imsettings-start.c:106
+#, fuzzy, c-format
+msgid "Started %s\n"
+msgstr "%s थांबविले\n"
+
+#: ../utils/imsettings-start.c:108
+#, fuzzy, c-format
+msgid "Failed to start IM process `%s'\n"
+msgstr "IM पध्दती `%s' थांबविण्यास अपयशी\n"
+
+#: ../utils/imsettings-stop.c:43
+#, fuzzy
+msgid "Force stopping the IM process regardless of any errors."
+msgstr "कुठलिही त्रुटी आढळल्यावरही IM कार्यपध्दती जबरनरित्या पुन्हसुरू करा."
+
+#: ../utils/imsettings-stop.c:101
+#, c-format
+msgid "Stopped %s\n"
+msgstr "%s थांबविले\n"
+
+#: ../utils/imsettings-stop.c:103
+#, c-format
+msgid "Failed to stop IM process `%s'\n"
+msgstr "IM पध्दती `%s' थांबविण्यास अपयशी\n"
+
+#, fuzzy
+#~ msgid "X display"
+#~ msgstr "X प्रदर्शकाचे नाव"
+
+#, fuzzy
+#~ msgid "Verbose flag"
+#~ msgstr "बाब दुर्लक्ष करा"
+
+#~ msgid "Timed out to initialize %s services."
+#~ msgstr "%s सेवा प्रारंभ करण्यास कालबाह्य झाले."
+
+#~ msgid "User Specific"
+#~ msgstr "वापरकर्ता क्रेंद्रीत"
+
+#~ msgid "xinputrc was modified by the user"
+#~ msgstr "xinputrc वापरकर्ता द्वारे संपादीत केले गेले"
+
+#~ msgid "Updating Input Method list"
+#~ msgstr "इनपुट पद्धती यादी अद्ययावत करीत आहे"
+
+#~ msgid "Starting Input Method - %s"
+#~ msgstr "इनपुट पद्धती सुरू करीत आहे - %s"
+
+#~ msgid "Stopping Input Method - %s"
+#~ msgstr "इनपुट पद्धती थांबवित आहे - %s"
+
+#~ msgid "Parent Window"
+#~ msgstr "मुख्य चौकट"
+
+#~ msgid "GtkWindow that points to the parent window"
+#~ msgstr "GtkWindow जे मुख्य चौकटकडे निर्देशीत आहे"
+
+#~ msgid "Work in progress..."
+#~ msgstr "कार्य चालू आहे..."
+
+#~ msgid "Use %s"
+#~ msgstr "%s वापरा"
+
+#~ msgid " (legacy)"
+#~ msgstr " (सर्वसाधारण)"
+
+#~ msgid " (recommended)"
+#~ msgstr " (सूचविलेले)"
+
+#~ msgid "<b>Input Method</b>"
+#~ msgstr "<b>इनपुट पद्धती</b>"
+
+#~ msgid "_Enable input method feature"
+#~ msgstr "इंपुट पध्दती गुणधर्म कार्यान्वीत करा (_E)"
+
+#~ msgid ""
+#~ "<small><i>Note: this change will not take effect until you next log in, "
+#~ "except GTK+ applications.</i></small>"
+#~ msgstr ""
+#~ "<small><i>टीप: तुम्ही पुन्हा दाखलन करेपर्यंत हा बदल परिणामकारक होणार नाही, GTK+ "
+#~ "अनुप्रयोगला वगळता.</i></small>"
+
+#~ msgid "Input Method _Preferences..."
+#~ msgstr "इंपुट पद्धती प्राधान्यता (_P)..."
+
+#~ msgid ""
+#~ "<span weight=\"bold\" size=\"larger\">No input method is available</span>"
+#~ msgstr "<span weight=\"bold\" size=\"larger\">इंपुट पध्दती उपलब्ध नाही</span>"
+
+#~ msgid "Please install any input methods before running if you like."
+#~ msgstr "कृपया कुठलेही इंपुट पध्दती कार्यान्वीत करण्यापूर्वी त्यास प्रतिष्ठापीत करा."
+
+#~ msgid "IM Chooser - Input Method configuration tool"
+#~ msgstr "IM निवडकर्ता - इनपुट पद्धती व्यूहरचना उपकरण"
+
+#~ msgid "_Log Out"
+#~ msgstr "लॉग आउट (_L)"
+
+#~ msgid ""
+#~ "Choose the input method to be used or disable the input method usage on "
+#~ "the desktop"
+#~ msgstr ""
+#~ "वापरावयाची इनपुट पद्धती निवडण्याचे किंवा डेस्कटॉपवरील इनपुट पद्धतीचा वापर अकार्यक्षम "
+#~ "करा"
