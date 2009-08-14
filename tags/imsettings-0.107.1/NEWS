@@ -1,0 +1,157 @@
+0.107.0 -> 0.107.1
+=====================
+* Bug Fixes:
+  * Fix more memory leaks.
+
+0.106.2 -> 0.107.0
+=====================
+* Bug Fixes:
+  * Fix memory leaks
+  * rhbz#497946: Pop up an error with libnotify.
+  * rhbz#514852: Fix the is_system_default duplication.
+* Features:
+  * rhbz#510666: Support immodule only configuration file.
+  * improve the process management without a pid file.
+  * log the output from IM to $HOME/.imsettings.log
+
+0.106.1 -> 0.106.2
+=====================
+* Bug Fixes:
+  * rhbz#483840: Dead key not working.
+  * rhbz#484142: Get rid of NoSymbol warnings.
+  * rhbz#488976: Get stuck on key events.
+  * rhbz#488877: Have a workaround to avoid a freeze issue on applications
+    not supporting reconnecting IC.
+  * rhbz#488899: Segfault with reconnecting
+  * rhbz#490587: .xinputrc isn't created with disabling IM
+  * rhbz#493406: IM is running for all locales
+
+0.106.0 -> 0.106.1
+=====================
+* Bug Fixes:
+  * Fix not running of imsettings-xfce-helper.
+  * rhbz#488675: Workaround to not filtered out the key events with accelerator
+    keys on some X apps.
+  * rhbz#489119: Stop debugging messages.
+  * rhbz#485595: Fix a double-free.
+* Features:
+  * More integrate destkop.
+
+0.105.1 -> 0.106.0
+=====================
+* Bug Fixes:
+  * Do not discard the XIM_REGISTER_TRIGGERKEYS event even when imid is 0.
+  * Issue#22: imsettings-applet freezes with opening preference dialog.
+  * rhbz#484142: imsettings-applet warnings on Emacs startup in Gnome.
+* Improvements:
+  * set xim to QT_IM_MODULE explicitly for none.
+  * imsettings-{start,stop,restart} to work without IM name explicitly.
+  * Integrate im-info-daemon to im-settings-daemon.
+  * rhbz#471833: Allow .conf name and lowercase for imsettings-*.
+* Regressions:
+  * Get rid of incomplete XSETTINGS support.
+* Features:
+  * rhbz#478669: Add Xfconf support.
+
+0.105.0 -> 0.105.1
+=====================
+* Bug Fixes:
+  * XIM backend:
+    * Fix a freeze issue when reset the number of the forward event still waiting for with the focus change.
+  * Allow none to start IM.
+
+0.104.1 -> 0.105.0
+=====================
+* Bug Fixes:
+  * XIM backend:
+    * Fix a memory leak.
+    * rhbz#452849: Workaround for race condition issue.
+    * Fix a freeze issue on Desktops not supporting XSETTINGS.
+* Translation updated:
+  * Polish
+
+0.104.0 -> 0.104.1
+=====================
+* Bug Fixes:
+  * rhbz#462899: When disconnecting, inputing on xterm -> imsettings-applets Segmentation fault
+  * Ship imsettings-applet.schemas.
+  * Fix a timeout issue on DBus when no info object is available.
+  * Fix the unnecessary notification about acceleration key.
+
+0.103.0 -> 0.104.0
+=====================
+* Bug Fixes:
+  * rhbz#457901: accent deadkeys not working under XIM
+  * rhbz#460695: malformed desktop file
+  * rhbz#460703: multiple status icons for Input Method displayed
+  * Issue#16: XKB support in imsettings-xim?
+* Enhancements:
+  * Set a default icon for IM.
+  * XSETTINGS manager support in applet
+  * Acceleration key support in applet
+
+0.102.0 -> 0.103.0
+=====================
+* Bug Fixes:
+  * Issue#6: freeze X applications when switching IM
+  * Issue#14: default imsettings-info to current IM system
+  * rhbz#457635: gtk will not pick up right im module in kde desktop session
+  * rhbz#459443: xsettings manager detection is broken
+* Enhancement
+  * new imsettings-xim with libgxim deps.
+* Features
+  * applet launched.
+
+0.101.3 -> 0.102.0
+=====================
+* Bug Fixes
+  * Issue#4: No changes of the recommendation after changing by alternatives.
+  * rhbz#455363: No recommendation appears after updating the conf file.
+  * Fix a typo in imsettings-stop.
+* Enhancement
+  * simple XSETTINGS manager for the desktop that doesn't have own XSETTINGS manager.
+
+0.101.2 -> 0.101.3
+=====================
+* Bug Fixes
+  * Fix appearing warning message that unable to get the selection owner in imsettings-xim.
+  * rhbz#451753: workaround for application freezes.
+  * Fix a issue IM is always running if no .xinputrc.
+  * Issue#11: im-info-daemon picks up the conf file without .conf.
+  * rhbz#453358: uninstalled input method is listed.
+
+0.101.1 -> 0.101.2
+=====================
+* Bug Fixes
+  * Fix accessing the invalid memory in imsettings-xim.
+  * rhbz#451739: Fix a typo in the help message.
+  * just exit if the session bug can't be got.
+
+0.101.0 -> 0.101.1
+=====================
+* Bug Fixes
+  * Issue#9: IM goes away till im-info-daemon restarted.
+  * Issue#10: The sort order isn't correct.
+
+0.100.0 -> 0.101.0
+=====================
+* Soname is bumped again due to API clean up and new APIs.
+* Bug Fixes
+  * Issue#7: Invalid dump for short description.
+  * warning messages on monitoring files
+  * RHBZ#450574: Fix a typo in imsettings-restart.
+* Features
+  * Add a version check API
+* Improvements
+  * faster responses from imsettings services
+
+0.99.6 -> 0.100.0
+====================
+* Soname is bumped from 0 to 1 due to some APIs has been removed/changed.
+* Bug Fixes
+  * Issue#5: Segfault if .xinputrc or xinputrc points to the invalid config.
+  * RHBZ#444152: Use GFileMonitor instead of FAM API directly.
+* Features
+  * Provide an information of icon file for IM.
+* Improvements
+  * export GError to deal with more complex error handling in applications.
