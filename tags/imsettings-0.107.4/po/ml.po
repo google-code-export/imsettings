@@ -1,0 +1,778 @@
+# translation of imsettings.trunk.ml.po to
+# translation of im-chooser.trunk.ml.po to
+# translation of ml.po to
+# Malayalam translations for im-chooser package.
+# Copyright (C) 2006 Red Hat, Inc. All rights reserved.
+# This file is distributed under the same license as the im-chooser package.
+# Automatically generated, 2006.
+# Ani Peter <apeter@redhat.com>, 2006, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: imsettings.trunk.ml\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-28 21:22+0900\n"
+"PO-Revision-Date: 2009-09-10 16:03+0530\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
+
+#: ../applet/imsettings-applet.desktop.in.in.h:1
+msgid "IMSettings Applet"
+msgstr "IMSettings ആപ്ലെറ്റ്"
+
+#: ../applet/imsettings-applet.schemas.in.h:1
+msgid "A shortcut key to connect to/disconnect from Input Method"
+msgstr "ഇന്‍പുട്ട് മെഥേഡിലേക്ക് കണക്ട് ചെയ്യുവാനോ വിഛേദിക്കുവാനോ ഉള്ളൊരു എളുപ്പവഴി"
+
+#: ../applet/imsettings-applet.schemas.in.h:2
+msgid "Enable this when accelerator keys etc doesn't work"
+msgstr "ആക്സിലറേറ്റര്‍ കീകള്‍ പ്രവര്‍ത്തിക്കാത്തപ്പോള്‍ ഇതു് സജ്ജമാക്കുക"
+
+#: ../applet/imsettings-applet.schemas.in.h:3
+msgid ""
+"If \"true\", all messages will be delivered through libnotify, otherwise "
+"only error and warning messages."
+msgstr ""
+"\"true\" എങ്കില്‍, എല്ലാ സന്ദേശങ്ങളും libnotify വഴി ലഭ്യമാകുന്നു, അല്ലെങ്കില്‍ പിശക്, "
+"മുന്നറിയിപ്പു് സന്ദേശങ്ങള്‍ മാത്രമേ ലഭ്യമാകൂ."
+
+#: ../applet/imsettings-applet.schemas.in.h:4
+msgid "If true, the icon will be displayed at the systray."
+msgstr "true എങ്കില്‍, systray-ല്‍ ചിഹ്നം കാണുവാന്‍ സാധിക്കുന്നു."
+
+#: ../applet/imsettings-applet.schemas.in.h:5
+msgid "Show the status icon"
+msgstr "അവസ്ഥയുടെ ചിഹ്നം കാണിക്കുക"
+
+#: ../applet/imsettings-applet.schemas.in.h:6
+msgid ""
+"The keybinding which connect to Input Method or disconnect from Input "
+"Method. The format looks like \"&lt;Control&gt;a\" or \"&lt;Shift&gt;&lt;"
+"Alt&gt;F1\". The parser is fairly liberal and allows lower or upper case, "
+"and also abbreviations such as \"&lt;Ctl&gt;\" and \"&lt;Ctrl&gt;\". If you "
+"set the option to the special string \"disabled\", then there will be no "
+"keybinding for this."
+msgstr ""
+"ഇന്‍പുട്ട് മെഥേഡിലേക്ക് കണക്ട് ചെയ്യുന്നതിനോ വിഛേദിക്കുന്നതിനോ ഉള്ള കീബൈന്‍ഡിങ്. \"&lt;"
+"Control&gt;a\" അല്ലെങ്കില്‍ \"&lt;Shift&gt;&lt;Alt&gt;F1\" ആണു് മാതൃക. The parser "
+"is fairly liberal and allows lower or upper case, and also abbrev ലോവര്‍, അപ്പര്‍ "
+"കേസുകള്‍, \"&lt;Ctl&gt;\" , \"&lt;Ctrl&gt;\" പോലുള്ള അബ്രീവ്യേഷനുകള്‍ എന്നിവ പാഴ്സര്‍ "
+"അനുവദിക്കുന്നു. നിങ്ങളിതു് \"disabled\" ആയി സജ്ജമാക്കിയാല്‍, ഇതിനു് കീബൈന്‍ഡിങ് ലഭ്യമാകുന്നതല്ല."
+
+#: ../applet/imsettings-applet.schemas.in.h:7 ../applet/main.c:714
+msgid ""
+"When this option is enabled, all of key events will be sent to Input Method "
+"synchronously. This might affects a performance."
+msgstr ""
+"ഈ ഉപാധി സജ്ജമാക്കുമ്പോള്‍, സിന്‍ക്രൊണസായി എല്ലാ കീ ഈവന്റുകളും ഇന്‍പുട്ട് മെഥേഡിലേക്ക് "
+"സിന്‍ക്രൊണസായി അയയ്ക്കുന്നു. ഇതു് പ്രവര്‍ത്തനത്തെ ഒരു പക്ഷേ ബാധിക്കാം."
+
+#: ../applet/imsettings-applet.schemas.in.h:8
+msgid "Whether to notify informations with libnotify"
+msgstr "libnotify-ല്‍ അറിയിപ്പുകള്‍ കാണിക്കണമോ എന്നു്"
+
+#: ../applet/main.c:148 ../applet/main.c:181 ../applet/main.c:221
+msgid "No detailed information"
+msgstr "വിശദമായ വിവരം ലഭ്യമല്ല"
+
+#: ../applet/main.c:151
+msgid "Version-mismatch of im-settings-daemon"
+msgstr "im-settings-daemon പതിപ്പുകള്‍ ചേരുന്നില്ല"
+
+#: ../applet/main.c:178 ../applet/main.c:258
+#, c-format
+msgid "Unable to start %s"
+msgstr "%s ആരംഭിക്കുവാന്‍ സാധ്യമായില്ല"
+
+#: ../applet/main.c:192
+msgid ""
+" and the default Input Method has been changed. if you need to change that "
+"to anything else, please use im-chooser."
+msgstr ""
+"കൂടാതെ സഹജമായ ഇന്‍പുട്ട് മെഥേഡ് മാറിയിരിക്കുന്നു. നിങ്ങള്‍ക്കു് ഇതു് മാറ്റണമെങ്കില്‍ ദയവായി im-"
+"chooser ഉപയോഗിക്കുക."
+
+#: ../applet/main.c:198
+#, c-format
+msgid "Connected to %s.%s"
+msgstr "%s.%s-ലേക്ക് കണക്ട് ചെയ്തിരിക്കുന്നു"
+
+#: ../applet/main.c:203 ../applet/main.c:238 ../applet/main.c:911
+msgid "Information"
+msgstr "വിവരം"
+
+#: ../applet/main.c:218 ../applet/main.c:284
+#, c-format
+msgid "Unable to stop %s"
+msgstr "%s നിര്‍ത്തുവാന്‍ സാധ്യമല്ല"
+
+#: ../applet/main.c:235
+msgid "Disconnected from Input Method"
+msgstr "ഇന്‍പുട്ട് മെഥേഡില്‍ നിന്നും വിഛേദിച്ചിരിക്കുന്നു"
+
+#: ../applet/main.c:262 ../applet/main.c:288
+msgid "maybe DBus related issue."
+msgstr "ഒരു പക്ഷേ DBus സംബന്ധിച്ചുള്ള പ്രശ്നം."
+
+#: ../applet/main.c:343 ../applet/main.c:369
+msgid "Unable to store a value to GConf"
+msgstr "GConf-ല്‍ മൂല്ല്യം സൂക്ഷിക്കുവാന്‍ സാധ്യമല്ല"
+
+#: ../applet/main.c:472
+#, c-format
+msgid "The acceleration key %s may be invalid. disabled it temporarily."
+msgstr "ആക്സിലറേഷന്‍ കീ %s തെറ്റാണു്. താല്‍ക്കാലികമായ പ്രവര്‍ത്തന രഹിതമാക്കിയിരിക്കുന്നു."
+
+#: ../applet/main.c:474
+msgid "Unable to set up the acceleration key"
+msgstr "ആക്സിലറേഷന്‍ കീ സജ്ജമാക്കുവാന്‍ സാധ്യമല്ല"
+
+#: ../applet/main.c:615
+msgid "Unable to store the acceleration key into GConf"
+msgstr "GConf-ല്‍ ആക്സിലറേഷന്‍ കീ സൂക്ഷിക്കുവാന്‍ സാധ്യമല്ല"
+
+#: ../applet/main.c:636
+msgid "Please press the acceleration key..."
+msgstr "ദയവായി ആക്സിലറേഷന്‍ കീ അമര്‍ത്തുക..."
+
+#: ../applet/main.c:683
+msgid "IMSettings Applet Preferences"
+msgstr "IMSettings ആപ്ലെറ്റ് മുന്‍ഗണനകള്‍"
+
+#: ../applet/main.c:695
+msgid "_Show the status icon"
+msgstr "അവസ്ഥയ്ക്കുള്ള ചിഹ്നം _കാണിക്കുക"
+
+#: ../applet/main.c:704
+msgid "_Enable this when accelerator keys etc doesn't work"
+msgstr "ആക്സിലറേറ്റര്‍ കീകള്‍ പ്രവര്‍ത്തിക്കാത്തപ്പോള്‍ ഇതു് _സജ്ജമാക്കുക"
+
+#: ../applet/main.c:723
+msgid "<b>Trigger key:</b>"
+msgstr "<b>ട്രിഗ്ഗര്‍ കീ:</b>"
+
+#: ../applet/main.c:735
+msgid "_Grab key"
+msgstr "കീ _സജ്ജമാക്കുക"
+
+#: ../applet/main.c:749
+msgid ""
+"Please click Grab key button and press the key combinations you want to "
+"assign for the acceleration key. Press Backspace key to disable this feature."
+msgstr ""
+"ദയവായി കീ സജ്ജമാക്കുക എന്ന ബട്ടണ്‍ അമര്‍ത്തി ആക്സിലറേഷന്‍ കീകള്‍ക്കുള്ള കീ കൂട്ടം അമര്‍ത്തുക. ഇതു് "
+"പ്രവര്‍ത്തന രഹിതമാക്കുന്നതിനായി Backspace കീ അമര്‍ത്തുക."
+
+#: ../applet/main.c:826
+msgid "Disconnect"
+msgstr "വിഛേദിക്കുക"
+
+#: ../applet/main.c:885
+msgid "Click to connect to Input Method"
+msgstr "ഇന്‍പുട്ട് മെഥേഡിലേക്ക് കണക്ട് ചെയ്യുന്നതിനായി ക്ലിക്ക് ചെയ്യുക"
+
+#: ../applet/main.c:889
+msgid "Click to disconnect from Input Method"
+msgstr "ഇന്‍പുട്ട് മെഥേഡില്‍ നിന്നും വിഛേദിക്കുന്നതിനായി ക്ലിക്ക് ചെയ്യുക"
+
+#: ../applet/main.c:912
+msgid ""
+"The default Input Method isn't yet configured. To get this working, you need "
+"to set up that on im-chooser or select one from the menu which appears by "
+"the right click first."
+msgstr ""
+"സഹജമായ ഇന്‍പുട്ട് മെഥേഡ് ക്രമീകരിച്ചിട്ടില്ല. ഇതിനായി, നിങ്ങള്‍ im-chooser സജ്ജീകരിക്കണം "
+"അല്ലെങ്കില്‍ റൈറ്റ് ക്ലിക്ക് ചെയ്തു് ആദ്യം മെനുവില്‍ ലഭ്യമാകുന്നതു് തെരഞ്ഞെടുക്കുക."
+
+#. This is substituted as part of some strings below, eg: "Please press [blah] or Left-click on the icon to connect to/disconnect from Input Method.\nRight-click to show up the Input Method menu.\n"
+#. or like "Please Left-click on the icon to connect to/disconnect from Input Method.\nRight-click to show up the Input Method menu.\n".
+#.
+#: ../applet/main.c:986
+msgid "Left-click on the icon to connect to/disconnect from Input Method."
+msgstr ""
+"ഇന്‍പുട്ട് മെഥേഡില്‍ നിന്നും കണക്ട് ചെയ്യുന്നതിനോ വിഛേദിക്കുന്നതിനോ ചിഹ്നത്തില്‍ ലെഫ്റ്റ് ക്ലിക്ക് "
+"ചെയ്യുക."
+
+#. This is substituted as part of some strings below, eg: "Please press [blah] or Left-click on the icon to connect to/disconnect from Input Method.\nRight-click to show up the Input Method menu.\n"
+#. or like "Please Left-click on the icon to connect to/disconnect from Input Method.\nRight-click to show up the Input Method menu.\n".
+#.
+#: ../applet/main.c:990
+msgid ""
+"\n"
+"Right-click to show up the Input Method menu."
+msgstr ""
+"\n"
+"ഇന്‍പുട്ട് മെഥേഡ് മെനുവിനായി റൈറ്റ്-ക്ലിക്ക് ചെയ്യുക."
+
+#. One substition with above strings "Please [Left-click on the icon to connect to/disconnect from Input Method.][\nRight-click to show up the Input Method menu.\n]"
+#.
+#: ../applet/main.c:994
+#, c-format
+msgid "Please %s%s"
+msgstr "ദയവായി %s%s"
+
+#. Another substition with above strings: "Please press [blah] or [Left-click on the icon to connect to/disconnect from Input Method.][\nRight-click to show up the Input Method menu.\n]"
+#.
+#: ../applet/main.c:998
+#, c-format
+msgid "Please press %s or %s%s"
+msgstr "ദയവായി %s അല്ലെങ്കില്‍ %s%s അമര്‍ത്തുക"
+
+#: ../applet/main.c:1002
+msgid "Tips"
+msgstr "സൂചനകള്‍"
+
+#: ../applet/main.c:1008
+msgid "Do not show notifications again"
+msgstr "അറിയിപ്പുകള്‍ ഇനി കാണിക്കരുതു്"
+
+#: ../applet/main.c:1054
+msgid "Unable to take an ownership for XIM server"
+msgstr "XIM സര്‍വറിന്റെ അവകാശം ലഭ്യമാക്കുവാന്‍ സാധ്യമല്ല"
+
+#: ../applet/radiomenuitem.c:314
+msgid "Image widget"
+msgstr "ഇമേജ് വിഡ്ജറ്റ്"
+
+#: ../applet/radiomenuitem.c:315
+msgid "Child widget to appear next to the menu text"
+msgstr "മെനു ടെക്സ്റ്റിനടുത്തു് കാണുവാനുള്ള ചൈള്‍ഡ് വിഡ്ജറ്റ്"
+
+#: ../backends/gconf/main.c:184 ../imsettings/imsettings-observer.c:699
+#: ../src/factory.c:1446
+msgid "Replace the running settings daemon with new instance."
+msgstr "പ്രവര്‍ത്തനത്തിലുള്ള ക്രമികരണങ്ങളുടെ ഡെണിനെ പുതിയ ഇന്‍സ്റ്റന്‍സ് ഉപയോഗിച്ച് മാറ്റുക."
+
+#: ../backends/gconf/main.c:206 ../backends/xim/main.c:179
+#: ../src/factory.c:1472 ../utils/imsettings-reload.c:63
+#: ../utils/imsettings-restart.c:70 ../utils/imsettings-start.c:71
+#: ../utils/imsettings-stop.c:69
+msgid "Unknown error in parsing the command lines."
+msgstr "കമാന്‍ഡ് ലൈനുകള്‍ പാഴ്സ് ചെയ്യുന്നതില്‍ അപരിചിതമായ പിശക്."
+
+#: ../backends/xfce_mcs/imsettings_plugin.c:88
+msgid "Button Label|Input Method"
+msgstr "ഇന്‍പുട്ട് മെഥേഡ്"
+
+#: ../backends/xfce_xfconf/imsettings-xfce-helper.desktop.in.h:1
+msgid "Helper application for imsettings"
+msgstr "imsettings-നുള്ള സഹായ പ്രയോഗം"
+
+#: ../backends/xfce_xfconf/imsettings-xfce-helper.desktop.in.h:2
+msgid ""
+"Helper application that delivers GTK+ immodule name between GConf and Xfconf"
+msgstr ""
+"Helper application that delivers GTK+ immodule name between GConf and Xfconf"
+
+#: ../backends/xim/loopback.c:223
+msgid "Synchronous"
+msgstr "സിന്‍ക്രൊണസ്"
+
+#: ../backends/xim/loopback.c:224
+msgid "Request to send a key event synchronously"
+msgstr "ഒരു കീ ഇവന്റ് സിന്‍ക്രൊണസായി അയയ്ക്കുന്നതിനു് ആവശ്യപ്പെടുക"
+
+#: ../backends/xim/main.c:142
+msgid "X display to use"
+msgstr "ഉപയോഗിക്കുന്നതിനുള്ള എക്സ് ഡിസ്പ്ലെ"
+
+#: ../backends/xim/main.c:142
+msgid "DISPLAY"
+msgstr "DISPLAY"
+
+#: ../backends/xim/main.c:143
+msgid "Replace the running XIM server with new instance."
+msgstr "പ്രവര്‍ത്തനത്തിലുള്ള XIM സര്‍വര്‍ പുതിയ ഇന്‍സ്റ്റന്‍സ് ഉപയോഗിച്ച് മാറ്റുക."
+
+#: ../backends/xim/main.c:144
+msgid "Output the debugging logs"
+msgstr "ഡീബഗ്ഗിങ് ലോഗുകള്‍ ഔട്ട്പുട്ട് നല്‍കുന്നു"
+
+#: ../backends/xim/main.c:145
+msgid "XIM server connects to, for debugging purpose only"
+msgstr "XIM സര്‍വര്‍ കണക്ട് ചെയ്യുന്നതു്, ഡീബഗ്ഗിനു് മാത്രം"
+
+#: ../backends/xim/main.c:145 ../imsettings/imsettings-info.c:685
+msgid "XIM"
+msgstr "XIM"
+
+#: ../backends/xim/proxy.c:2968 ../imsettings/imsettings-info.c:705
+msgid "XIM server name"
+msgstr "XIM സര്‍വര്‍ നാമം"
+
+#: ../backends/xim/proxy.c:2969
+msgid "The name of XIM server for the connection"
+msgstr "കണക്ഷനുള്ള XIM സര്‍വറിന്റെ പേരു്"
+
+#: ../backends/xim/proxy.c:2974
+msgid "Signals for Protocol class"
+msgstr "പ്രോട്ടോക്കോള്‍ ക്ലാസ്സിനുള്ള സിഗ്നലുകള്‍"
+
+#: ../backends/xim/proxy.c:2975
+msgid "A structure of signals for Protocol class"
+msgstr "പ്രോട്ടോക്കോള്‍ ക്ലാസ്സിനുള്ള സിഗ്നലുകളുടെ സ്ട്രക്ചര്‍"
+
+#: ../imsettings/imsettings-info.c:657 ../imsettings/imsettings-info.c:658
+msgid "Home directory"
+msgstr "ഹോം ഡയറക്ടറി"
+
+#: ../imsettings/imsettings-info.c:664
+msgid "Language"
+msgstr "ഭാഷ"
+
+#: ../imsettings/imsettings-info.c:665
+msgid "A language to pull the information in."
+msgstr "വിവരങ്ങള്‍ ലഭ്യമാക്കുന്നതിനുള്ള ഒരു ഭാഷ."
+
+#: ../imsettings/imsettings-info.c:671
+msgid "Filename"
+msgstr "ഫയല്‍നാമം"
+
+#: ../imsettings/imsettings-info.c:672
+msgid "A filename referring to the IM information."
+msgstr "ഐഎം വിവരങ്ങള്‍ സൂചിപ്പിക്കുന്ന ഒരു ഫയല്‍നാമം."
+
+#: ../imsettings/imsettings-info.c:678 ../imsettings/imsettings-info.c:679
+msgid "Short Description"
+msgstr "ചെറിയ വിവരണം"
+
+#: ../imsettings/imsettings-info.c:686
+msgid "Whether or not IM is a XIM server."
+msgstr "ഐഎം ഒരു XIM സര്‍വര്‍ ആണോ എന്ന്."
+
+#: ../imsettings/imsettings-info.c:692
+msgid "GTK+ immodule"
+msgstr "GTK+ immodule"
+
+#: ../imsettings/imsettings-info.c:693
+msgid "A module name used for GTK+"
+msgstr "GTK+-ന് ഉപയോഗിക്കുന്ന ഘടകനാമം"
+
+#: ../imsettings/imsettings-info.c:698
+msgid "Qt immodule"
+msgstr "Qt immodule"
+
+#: ../imsettings/imsettings-info.c:699
+msgid "A module name used for Qt"
+msgstr "Qt-യ്ക്ക് ഉപയോഗിക്കുന്ന ഘടകനാമം"
+
+#: ../imsettings/imsettings-info.c:704
+msgid "XIM name"
+msgstr "XIM നാമം"
+
+#: ../imsettings/imsettings-info.c:710
+msgid "Ignore flag"
+msgstr "ഫ്ലാഗ് വേണ്ടെന്ന് വയ്ക്കുക"
+
+#: ../imsettings/imsettings-info.c:711
+msgid "A flag to not list up."
+msgstr "ലിസ്റ്റ് ചെയ്ത് കാണിക്കാതിരിക്കുന്നതിനുള്ള ഫ്ലാഗ്."
+
+#: ../imsettings/imsettings-info.c:716
+msgid "XIM server program name"
+msgstr "XIM സര്‍വര്‍ പ്രോഗ്രാമിന്റെ പേര്"
+
+#: ../imsettings/imsettings-info.c:717
+msgid "XIM server program to be run"
+msgstr "പ്രവര്‍ത്തിക്കുന്നതിനുള്ള XIM സര്‍വര്‍ പ്രോഗ്രാം"
+
+#: ../imsettings/imsettings-info.c:722
+msgid "XIM server program's options"
+msgstr "XIM സര്‍വര്‍ പ്രോഗ്രാമിന്റെ ഉപാധികള്‍"
+
+#: ../imsettings/imsettings-info.c:723
+msgid "Command line options for XIM server program"
+msgstr "XIM സര്‍വര്‍ പ്രോഗ്രാമിനുള്ള കമാന്‍ഡ് ലൈന്‍ ഉപാധികള്‍"
+
+#: ../imsettings/imsettings-info.c:728
+msgid "Preference program name"
+msgstr "മുന്‍ഗണനയുള്ള പ്രോഗ്രാമിന്റെ നാമം"
+
+#: ../imsettings/imsettings-info.c:729
+msgid "Preference program to be run"
+msgstr "പ്രവര്‍ത്തിക്കുന്നതിന് മുന്‍ഗണനയുള്ള പ്രോഗ്രാം"
+
+#: ../imsettings/imsettings-info.c:734
+msgid "Preference program's options"
+msgstr "മുന്‍ഗണനയുള്ള പ്രോഗ്രാമിന്റെ ഉപാധികള്‍"
+
+#: ../imsettings/imsettings-info.c:735
+msgid "Command line options for preference program"
+msgstr "മുന്‍ഗണനയുള്ള പ്രോഗ്രാമിനുള്ള കമാന്‍ഡ് ലൈന്‍ ഉപാധികള്‍"
+
+#: ../imsettings/imsettings-info.c:740
+msgid "Auxiliary program name"
+msgstr "ഓക്സിലിയറി പ്രോഗ്രാമിന്റെ പേര്"
+
+#: ../imsettings/imsettings-info.c:741
+msgid "Auxiliary program to be run"
+msgstr "പ്രവര്‍ത്തിക്കുന്നതിനുള്ള ഓക്സിലിയറി പ്രോഗ്രാം"
+
+#: ../imsettings/imsettings-info.c:746
+msgid "Auxiliary program's options"
+msgstr "ഓക്സിലിയറി പ്രോഗ്രാമിനുള്ള ഉപാധികള്‍"
+
+#: ../imsettings/imsettings-info.c:747
+msgid "Command line options for auxiliary program"
+msgstr "ഓക്സിലിയറി പ്രോഗ്രാമിനുള്ള കമാന്‍ഡ് ലൈന്‍ ഉപാധികള്‍"
+
+#: ../imsettings/imsettings-info.c:752 ../imsettings/imsettings-info.c:753
+msgid "Long Description"
+msgstr "വലിയ വിശദീകരണം"
+
+#: ../imsettings/imsettings-info.c:758
+msgid "Icon"
+msgstr "ചിഹ്നം"
+
+#: ../imsettings/imsettings-info.c:759
+msgid "Icon filename to be used on GUI"
+msgstr "ജിയുഐയില്‍ ഉപയോഗിക്കുന്നതിനുള്ള ചിഹ്നത്തിന്റെ ഫയല്‍നാമം"
+
+#: ../imsettings/imsettings-info.c:770
+msgid "System Default"
+msgstr "സിസ്റ്റം ഡീഫോള്‍ട്ട്"
+
+#: ../imsettings/imsettings-info.c:771
+msgid "Whether or not IM is a system default."
+msgstr "ഐഎം സിസ്റ്റം ഡീഫോള്‍ട്ട് ആണോ എന്ന്."
+
+#: ../imsettings/imsettings-info.c:776
+msgid "User Default"
+msgstr "യൂസര്‍ ഡീഫോള്‍ട്ട്"
+
+#: ../imsettings/imsettings-info.c:777
+msgid "Whether or not IM is an user default."
+msgstr "ഐഎം യൂസര്‍ ഡീഫോള്‍ട്ട് ആണോ എന്ന്."
+
+#: ../imsettings/imsettings-observer.c:692
+msgid "IM module name"
+msgstr "ഐഎം ഘടകനാമം"
+
+#: ../imsettings/imsettings-observer.c:693
+msgid "A target IM module name that to observe signals"
+msgstr "സിഗ്നലുകള്‍ നിരീക്ഷിക്കുന്നതിനുള്ള ഐഎം ഘടകനാമം"
+
+#: ../imsettings/imsettings-observer.c:698
+msgid "Replace"
+msgstr "മാറ്റിസ്ഥാപിക്കുക"
+
+#: ../imsettings/imsettings-observer.c:704
+#: ../imsettings/imsettings-request.c:175
+msgid "DBus connection"
+msgstr "ഡിബസ് കണക്ഷന്‍"
+
+#: ../imsettings/imsettings-observer.c:705
+#: ../imsettings/imsettings-request.c:176
+msgid "An object to be a DBus connection"
+msgstr "ഡിബസ് കണക്ഷനാകുന്നതിനുള്ള ഒരു ഒബ്ജക്ട്"
+
+#: ../imsettings/imsettings-request.c:169
+msgid "DBus Interface"
+msgstr "ഡിബസ് ഇന്റര്‍ഫെയിസ്"
+
+#: ../imsettings/imsettings-request.c:170
+msgid "Interface name to connect to DBus"
+msgstr "ഡിബസിലേക്ക് കണക്ട് ചെയ്യുന്നതിനുള്ള ഇന്റര്‍ഫെയിസ് നാമം"
+
+#: ../imsettings/imsettings-request.c:181
+msgid "Locale"
+msgstr "ലൊക്കെയില്‍"
+
+#: ../imsettings/imsettings-request.c:182
+msgid "Locale to get the imsettings information"
+msgstr "ഐഎം വിവരങ്ങള്‍ ലഭ്യമാകുന്നതിനുള്ള ലൊക്കെയില്‍"
+
+#: ../imsettings/imsettings-request.c:243
+#: ../imsettings/imsettings-request.c:270
+#: ../imsettings/imsettings-request.c:330
+#: ../imsettings/imsettings-request.c:624
+#, c-format
+msgid ""
+"Failed to invoke a method `%s' on %s:\n"
+"  %s"
+msgstr ""
+"`%s' എന്ന രീതി %s-ല്‍ ആരംഭിക്കുന്നതില്‍ പരാജയപ്പെട്ടു:\n"
+"  %s"
+
+#: ../imsettings/imsettings-request.c:378
+#: ../imsettings/imsettings-request.c:418
+#: ../imsettings/imsettings-request.c:440
+#: ../imsettings/imsettings-request.c:470
+#: ../imsettings/imsettings-request.c:524
+#: ../imsettings/imsettings-request.c:576
+#, c-format
+msgid ""
+"Failed to invoke a method `%s':\n"
+"  %s"
+msgstr ""
+"`%s' എന്ന രീതി ആരംഭിക്കുന്നതില്‍ പരാജയപ്പെട്ടു:\n"
+"  %s"
+
+#: ../src/factory.c:455
+#, c-format
+msgid ""
+"Giving up to bring the process up because %s Input Method process for %s "
+"rapidly died many times. See .imsettings.log for more details."
+msgstr ""
+"%s ഇന്‍പുട്ട് മെഥേഡ് പ്രക്രിയ, %s-നുള്ളതു്, പല തവണ പ്രവര്‍ത്തിക്കാത്തതിനാല്‍, പ്രക്രിയ തിരികെ "
+"കൊണ്ടുവരാന്‍ ഇനി ശ്രമിക്കുന്നില്ല. കൂടുതല്‍ വിവരങ്ങള്‍ക്കായി .imsettings.log കാണുക."
+
+#: ../src/factory.c:456
+msgid "Main"
+msgstr "പ്രധാനം"
+
+#: ../src/factory.c:456
+msgid "AUX"
+msgstr "AUX"
+
+#: ../src/factory.c:458 ../src/factory.c:475
+msgid "Unable to keep Input Method running"
+msgstr "ഇന്‍പുട്ട് രീതി പ്രവര്‍ത്തിപ്പിക്കുന്നതിനു് സാധ്യമല്ല"
+
+#: ../src/factory.c:666
+#, c-format
+msgid "No such Input Method is running: %s"
+msgstr "അത്തരം ഇന്‍പുട്ട് മെഥേഡ് പ്രവര്‍ത്തനത്തിലില്ല: %s"
+
+#: ../src/factory.c:677
+#, c-format
+msgid "Couldn't send a signal to the %s process successfully."
+msgstr "വിജയകരമായി %s പ്രക്രിയയിലേക്ക് ഒരു സിഗ്നല്‍ അയയ്ക്കുവാന്‍ സാധ്യമായില്ല."
+
+#: ../src/factory.c:710 ../src/factory.c:1200
+#, c-format
+msgid "Failed to get a place of home directory."
+msgstr "ഹോം ഡയറക്ടറിയില്‍ ഒരു സ്ഥലം ലഭിക്കുന്നതില്‍ പരാജയപ്പെട്ടു."
+
+#: ../src/factory.c:727
+#, c-format
+msgid "Failed to revert the backup file: %s"
+msgstr "ബാക്കപ്പ് ഫയല്‍ തിരികെ ലഭ്യമാക്കുന്നതില്‍ പരാജയപ്പെട്ടു: %s"
+
+#: ../src/factory.c:739
+#, c-format
+msgid "Failed to create a backup file: %s"
+msgstr "ഒരു ബാക്കപ്പ് ഫയല്‍ ഉണ്ടാക്കുന്നതില്‍ പരാജയപ്പെട്ടു: %s"
+
+#: ../src/factory.c:748
+#, c-format
+msgid "Failed to remove a .xinputrc file: %s"
+msgstr "ഒരു .xinputrc ഫയല്‍ നീക്കം ചെയ്യുന്നതില്‍ പരാജയപ്പെട്ടു: %s"
+
+#: ../src/factory.c:759
+#, c-format
+msgid "Failed to make a symlink: %s"
+msgstr "ഒരു സിംലിങ്ക് ഉണ്ടാക്കുന്നതില്‍ പരാജയപ്പെട്ടു: %s"
+
+#: ../src/factory.c:911 ../src/factory.c:950
+#, c-format
+msgid "No input methods available on your system."
+msgstr "നിങ്ങളുടെ സിസ്റ്റമില്‍ ഒരു ഇന്‍പുട്ട് രീതിയും ലഭ്യമല്ല."
+
+#: ../src/factory.c:995 ../src/factory.c:1057 ../src/factory.c:1095
+#: ../src/factory.c:1262
+#, c-format
+msgid ""
+"No such input method on your system: %s\n"
+"  Details: %s"
+msgstr ""
+"നിങ്ങളുടെ സിസ്റ്റമില്‍ അത്തരം ഒരു ഇന്‍പുട്ട് രീതിയില്ല: %s\n"
+"  വിശദാംശങ്ങള്‍: %s"
+
+#: ../src/factory.c:1106
+#, c-format
+msgid "No XIM server is available in %s"
+msgstr "%s-ല്‍ ഒരു XIM സര്‍വറും ലഭ്യമല്ല"
+
+#: ../src/factory.c:1333 ../src/monitor.c:237
+msgid "xinputrc directory"
+msgstr "xinputrc ഡയറക്ടറി"
+
+#: ../src/factory.c:1334
+msgid "The name of the directory for the system wide xinputrc file."
+msgstr "സിസ്റ്റത്തിന്റെ xinputrc ഫയലിനുള്ള ഡയറക്ടറിയുടെ പേരു്."
+
+#: ../src/factory.c:1339 ../src/monitor.c:243
+msgid "xinput directory"
+msgstr "xinput ഡയറക്ടറി"
+
+#: ../src/factory.c:1340
+msgid "The name of the directory for IM configurations."
+msgstr "ഐ എം ക്രമീകരണങ്ങള്‍ക്കുള്ള ഡയറക്ടറിയുടെ പേരു്."
+
+#: ../src/factory.c:1345 ../src/factory.c:1346 ../src/monitor.c:249
+#: ../src/monitor.c:250
+msgid "home directory"
+msgstr "ഹോം ഡയറക്ടറി"
+
+#: ../src/factory.c:1351
+msgid "logging"
+msgstr "ലോഗ് ചെയ്യുന്നു"
+
+#: ../src/factory.c:1352
+msgid "A flag if logging facility is enabled or not."
+msgstr "ലോഗ്ഗിങ് സംവിധാനം സജ്ജമാണോ എന്നറിയുന്നതിനുള്ള ഫ്ലാഗ്."
+
+#: ../src/factory.c:1447
+msgid ""
+"Specify the name of the directory of the system-wide xinputrc file (for "
+"debugging only)"
+msgstr "system-wide xinputrc-നുള്ള ഡയറക്ടറിയുടെ പേരു് നല്‍കുക  (ഡീബഗ്ഗിങ് മാത്രം)"
+
+#: ../src/factory.c:1447 ../src/factory.c:1448 ../src/factory.c:1449
+msgid "DIR"
+msgstr "DIR"
+
+#: ../src/factory.c:1448
+msgid ""
+"Specify the name of the directory for IM configurations (for debugging only)"
+msgstr "ഐ എം ക്രമീകരണങ്ങള്‍ക്കുള്ള ഡയറക്ടറിയുടെ പേരു് നല്‍കുക  (ഡീബഗ്ഗിങ് മാത്രം)"
+
+#: ../src/factory.c:1449
+msgid "A home directory (debugging only)"
+msgstr "ഒരു ഹോം ഡയറക്ടറി (ഡീബഗ്ഗിങ് മാത്രം)"
+
+#: ../src/factory.c:1450
+msgid "Do not create a log file."
+msgstr "ഒരു ലോഗ് ഫയല്‍ ഉണ്ടാക്കേണ്ട."
+
+#: ../src/monitor.c:238
+msgid "A place to store xinputrc file"
+msgstr "xinputrc ഫയല്‍ സൂക്ഷിക്കുന്നതിനുള്ള സ്ഥലം"
+
+#: ../src/monitor.c:244
+msgid "A place to store xinput configuration files"
+msgstr "xinputrc ക്രമീകരണ ഫയലുകള്‍ സൂക്ഷിക്കുന്നതിനുള്ള സ്ഥലം"
+
+#: ../src/monitor.c:876
+#, c-format
+msgid "Duplicate entry `%s' from %s. SHORT_DESC has to be unique."
+msgstr "`%s' എന്ന് ആവര്‍ത്തിക്കുന്നു, %s-ല്‍. SHORT_DESC ഒന്നേ പാടുള്ളൂ."
+
+#: ../src/monitor.c:1056
+#, c-format
+msgid "No such input method on your system: %s"
+msgstr "നിങ്ങളുടെ സിസ്റ്റമില്‍ അത്തരം ഒരു ഇന്‍പുട്ട് രീതിയില്ല: %s"
+
+#: ../src/monitor.c:1258
+#, c-format
+msgid "No system default input method."
+msgstr "സിസ്റ്റം സഹജമായ ഇന്‍പുട്ട് മെഥേഡ് ലഭ്യമല്ല."
+
+#: ../utils/imsettings-info.c:55 ../utils/imsettings-restart.c:77
+#: ../utils/imsettings-start.c:78 ../utils/imsettings-stop.c:76
+#, c-format
+msgid "Failed to get a session bus.\n"
+msgstr "ഒരു സെഷന്‍ ബസ് ലഭ്യമാക്കുന്നതില്‍ പരാജയപ്പെട്ടു.\n"
+
+#: ../utils/imsettings-info.c:61 ../utils/imsettings-list.c:58
+#: ../utils/imsettings-restart.c:84 ../utils/imsettings-start.c:85
+#: ../utils/imsettings-stop.c:83
+#, c-format
+msgid ""
+"Currently a different version of imsettings is running.\n"
+"Running \"imsettings-reload -f\" may help but it will restart the Input "
+"Method\n"
+msgstr ""
+"imsettings-ന്റെ മറ്റൊരു പതിപ്പു് ഇപ്പോള്‍ പ്രവര്‍ത്തിക്കുന്നു.\n"
+"\"imsettings-reload -f\" പ്രവര്‍ത്തിപ്പിച്ചു് ഇതു് പരിഹരിക്കാം, പക്ഷേ നിങ്ങള്‍ ഇന്‍പുട്ട് മെഥേഡ് "
+"വീണ്ടും ആരംഭിക്കേണ്ടതുണ്ടു്\n"
+
+#: ../utils/imsettings-info.c:77 ../utils/imsettings-restart.c:98
+#: ../utils/imsettings-stop.c:97
+#, c-format
+msgid ""
+"No Input Method running. please specify Input Method name explicitly if "
+"necessary.\n"
+msgstr ""
+"ഇന്‍പുട്ട് മെഥേഡ് പ്രവര്‍ത്തിക്കുന്നില്ല. ആവശ്യമെങ്കില്‍, ദയവായി ഇന്‍പുട്ട് മെഥേഡിന്റെ പേരു് "
+"വ്യക്തമാക്കുക.\n"
+
+#: ../utils/imsettings-info.c:86
+#, c-format
+msgid "Unable to obtain an Input Method Information."
+msgstr "ഒരു ഇന്‍പുട്ട് മെഥേഡിന്റെ വിവരങ്ങള്‍ ലഭ്യമാകുവാന്‍ സാധ്യമായില്ല."
+
+#: ../utils/imsettings-reload.c:42
+msgid "Force reloading the configuration, including restarting the process."
+msgstr "പ്രക്രിയ വീണ്ടും ആരംഭിക്കുന്നത് ഉള്‍പ്പെടയുള്ള ക്രമികരണങ്ങള്‍ നിര്‍ബന്ധിച്ച് വീണ്ടും ലഭ്യമാക്കുക."
+
+#: ../utils/imsettings-restart.c:42 ../utils/imsettings-start.c:43
+#: ../utils/imsettings-stop.c:42
+msgid "[Input Method name|xinput.conf]"
+msgstr "[Input Method name|xinput.conf]"
+
+#: ../utils/imsettings-restart.c:44
+msgid "Force restarting the IM process regardless of any errors."
+msgstr "പിശകുകളുണ്ടേലും ഐഎം പ്രക്രിയ നിര്‍ബന്ധമായും വീണ്ടും ആരംഭിക്കുക."
+
+#: ../utils/imsettings-restart.c:45 ../utils/imsettings-start.c:45
+#: ../utils/imsettings-stop.c:45
+msgid "Do not update .xinputrc."
+msgstr ".xinputrc പരിഷ്കരിക്കേണ്ടതില്ല."
+
+#: ../utils/imsettings-restart.c:109 ../utils/imsettings-stop.c:109
+#, c-format
+msgid "Failed to stop IM process `%s'\n"
+msgstr "IM പ്രക്രിയ `%s' നിര്‍ത്തുന്നതില്‍ പരാജയം\n"
+
+#: ../utils/imsettings-restart.c:117
+#, c-format
+msgid "Forcibly restarted %s, but maybe not completely\n"
+msgstr "നിര്‍ബന്ധിച്ചു് %s വീണ്ടും ആരംഭിച്ചിരിക്കുന്നു, പക്ഷേ പൂര്‍ണ്ണമായിട്ടില്ല\n"
+
+#: ../utils/imsettings-restart.c:119
+#, c-format
+msgid "Restarted %s\n"
+msgstr "%s വീണ്ടും ആരംഭിച്ചിരിക്കുന്നു\n"
+
+#: ../utils/imsettings-restart.c:122
+#, c-format
+msgid "Failed to restart IM process `%s'\n"
+msgstr "IM പ്രക്രിയ `%s' വീണ്ടും ആരംഭിക്കുന്നതില്‍ പരാജയം\n"
+
+#: ../utils/imsettings-start.c:46
+msgid "Start Input Method if not yet running."
+msgstr "പ്രവര്‍ത്തിക്കുന്നില്ലെങ്കില്‍ ഇന്‍പുട്ട് മെഥേഡ് ആരംഭിക്കുക."
+
+#: ../utils/imsettings-start.c:47
+msgid "Shut up the extra messages."
+msgstr "എക്സ്ട്രാ സന്ദേശങ്ങള്‍ അടച്ചുപൂട്ടുക."
+
+#: ../utils/imsettings-start.c:104
+#, c-format
+msgid "No Input Method available\n"
+msgstr "ഒരു ഇന്‍പുട്ട് മെഥേഡും ലഭ്യമല്ല\n"
+
+#: ../utils/imsettings-start.c:125
+#, c-format
+msgid "Started %s\n"
+msgstr "%s ആരംഭിച്ചിരിക്കുന്നു\n"
+
+#: ../utils/imsettings-start.c:127
+#, c-format
+msgid "Failed to start IM process `%s'\n"
+msgstr "IM പ്രക്രിയ `%s' ആരംഭിക്കുന്നതില്‍ പരാജയം\n"
+
+#: ../utils/imsettings-start.desktop.in.h:1
+msgid "Input Method starter"
+msgstr "ഇന്‍പുട്ട് മെഥേഡ് ആരംഭിക്കുന്നതിനുള്ള സംവിധാനം"
+
+#: ../utils/imsettings-start.desktop.in.h:2
+msgid "imsettings-start"
+msgstr "imsettings-start"
+
+#: ../utils/imsettings-stop.c:44
+msgid "Force stopping the IM process regardless of any errors."
+msgstr "പിശകുകളുണ്ടേലും ഐഎം പ്രക്രിയ നിര്‍ബന്ധമായും നിര്‍ത്തുക."
+
+#: ../utils/imsettings-stop.c:107
+#, c-format
+msgid "Stopped %s\n"
+msgstr "%s നിര്‍ത്തിയിരിക്കുന്നു\n"
