@@ -1,0 +1,197 @@
+2010-05-28  Akira TAGOH  <tagoh@redhat.com>
+
+	* zh_TW.po: Update Traditional Chinese translation from
+	Cheng-Chia Tseng.
+
+2010-05-26  Akira TAGOH  <tagoh@redhat.com>
+
+	* zh_TW.po: Update Traditional Chinese translation from
+	Cheng-Chia Tseng.
+
+2010-05-11  Akira TAGOH  <tagoh@redhat.com>
+
+	* kn.po: Update Kannada translation from Shankar Prasad Venkateshbhat.
+
+2010-04-09  Akira TAGOH  <tagoh@redhat.com>
+
+	* ru.po: Update Russian translation from Yulia Poyarkova.
+
+2010-04-05  Akira TAGOH  <tagoh@redhat.com>
+
+	* ko.po: Update Korean translation from Hyunsok Oh.
+
+2010-02-04  Akira TAGOH  <tagoh@redhat.com>
+
+	* as.po: Update Assamese translation from Amitakhya Phukan.
+
+2009-12-11  Akira TAGOH  <tagoh@redhat.com>
+
+	* zh_CN.po: Update Simplified Chinese translation from Leah Liu.
+
+	* de.po: Update German translation from Hedda Peters.
+
+2009-11-04  Akira TAGOH  <tagoh@redhat.com>
+
+	* pt_BR.po: Update Brazilian Portuguese translation from Igor Pires Soares.
+
+2009-10-16  Akira TAGOH  <tagoh@redhat.com>
+
+	* es.po: Update Spanish translation from Domingo Becker.
+
+2009-10-06  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2009-09-25  Akira TAGOH  <tagoh@redhat.com>
+
+	* or.po: Update Oriya translation from Manoj Giri.
+
+	* zh_TW.po: Update Traditional Chinese translation from
+	  Tom Ka Chun Chiu.
+
+	* zh_CN.po: Update Simplified Chinese translation from
+	  Tom Ka Chun Chiu.
+
+2009-09-24  Akira TAGOH  <tagoh@redhat.com>
+
+	* or.po: Update Oriya translation from Manoj Giri.
+
+	* kn.po: Update Kannada translation from Shankar Prasad Venkateshbhat.
+
+	* hi.po: Update Hindi translation from Rajesh Ranjan.
+
+	* ca.po: Update Catalan translation from Xavi Conde.
+
+2009-09-16  Akira TAGOH  <tagoh@redhat.com>
+
+	* pt.po: Update Portuguese translation from Rui Gouveia.
+
+2009-09-14  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2009-09-10  Akira TAGOH  <tagoh@redhat.com>
+
+	* bn_IN.po: Update Bengali India translation from Runa Bhattacharjee.
+
+	* te.po: Update Telugu translation from Krishna Babu K.
+
+	* pa.po: Update Punjabi translation from Jaswinder Singh.
+
+	* ta.po: Update Tamil translation from I. Felix.
+
+	* ml.po: Update Malayalam translation from Ani Peter.
+
+	* mr.po: Update Marathi translation from Sandeep Shedmake.
+
+	* gu.po: Update Gujarati translation from Sweta Kothari.
+
+	* ja.po: Update Japanese translation from Hyu_gabaru Ryu_ichi.
+
+2009-09-08  Akira TAGOH  <tagoh@redhat.com>
+
+	* ja.po: Update Japanese translation.
+
+	* or.po: Update Oriya translation from Manoj Giri.
+
+	* kn.po: Update Kannada translation from Shankar Prasad Venkateshbhat.
+
+2009-09-07  Akira TAGOH  <tagoh@redhat.com>
+
+	* ko.po: Update Korean translation from Eunju Kim.
+
+	* mr.po: Update Marathi translation from Sandeep Shedmake.
+
+	* hi.po: Update Hindi translation from Rajesh Ranjan.
+
+	* ta.po: Update Tamil translation from I. Felix.
+
+	* gu.po: Update Gujarati translation from Sweta Kothari.
+
+	* ml.po: Update Malayalam translation from Ani Peter.
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2009-08-27  Akira TAGOH  <tagoh@redhat.com>
+
+	* ja.po: Update Japanese translation.
+
+2009-08-18  Akira TAGOH  <tagoh@redhat.com>
+
+	* pt_BR.po: Update Brazilian Portuguese from Vitor Vilas Boas.
+
+2009-04-08  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2009-04-07  Akira TAGOH  <tagoh@redhat.com>
+
+	* ja.po: Update Japanese translation.
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2009-03-09  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2009-02-13  Akira TAGOH  <tagoh@redhat.com>
+
+	* POTFILES.in: Add src/monitor.c and utils/imsettings-info.c
+
+2008-09-29  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2008-09-24  Akira TAGOH  <tagoh@redhat.com>
+
+	* POTFILES.in: Add imsettings-applet.schemas.in
+
+2008-07-08  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2008-06-19  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Update Polish translation from Piotr Drąg.
+
+2008-05-15  Akira TAGOH  <tagoh@redhat.com>
+
+	* POTFILES.in: Add backends/xfce/imsettings_plugin.c
+
+2008-03-11  Akira TAGOH  <tagoh@redhat.com>
+
+	* POTFILES.in: Update.
+
+2008-02-19  Akira TAGOH  <tagoh@redhat.com>
+
+	* POTFILES.in: Update.
+
+2008-02-01  Akira TAGOH  <tagoh@redhat.com>
+
+	* POTFILES.in: Update.
+
+2007-09-25  Akira TAGOH  <tagoh@redhat.com>
+
+	* bg.po: Update Bulgarian translation from Doncho N. Gunchev.
+
+2007-09-20  Akira TAGOH  <tagoh@redhat.com>
+
+	* POTFILES.in: Add src/xinput.c.
+
+2007-09-06  Akira TAGOH  <tagoh@redhat.com>
+
+	* pl.po: Updated Polish translation from Piotr Drąg
+
+2006-07-22  Akira TAGOH  <at@gclab.org>
+
+	* ja.po: updated Japanese translation.
+
+2006-07-10  Akira TAGOH  <at@gclab.org>
+
+	* POTFILES.in: added src/im-chooser.desktop.in.in.
+
+	* ja.po: updated Japanese translation.
+
+2006-06-07  Akira TAGOH  <at@gclab.org>
+
+	* ja.po: added Japanese translation.
