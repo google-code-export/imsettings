@@ -1,0 +1,17 @@
+#summary Information of the source code
+
+The repository has been moved to [http://github.com/tagoh/imsettings/ github].
+
+= How to check out the source code =
+{{{
+% git clone git://github.com/tagoh/imsettings.git
+}}}
+
+= How to build =
+
+Once the source code has checked out from the repository, you just need to run *autogen.sh* with the certain parameters as needed and run *make*. *make install* would helps to install the files into your system:
+{{{
+% ./autogen.sh --prefix=/usr --sysconfdir=/etc
+% make
+% make install
+}}}
