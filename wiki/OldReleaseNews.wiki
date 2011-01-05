@@ -1,0 +1,23 @@
+#summary Release News
+
+= Old News =
+
+ * [*`September 28, 2009`*] imsettings-0.107.4 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.4/NEWS more details])
+ * [*`September  1, 2009`*] imsettings-0.107.3 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.3/NEWS more details])
+ * [*`August 27, 2009`*] imsettings-0.107.2 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.2/NEWS more details])
+ * [*`August 14, 2009`*] imsettings-0.107.1 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.1/NEWS more details])
+ * [*`August 12, 2009`*] imsettings-0.107.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.0/NEWS more details])
+ * [*`April  7, 2009`*] imsettings-0.106.2 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.106.2/NEWS more details])
+ * [*`March 10, 2009`*] imsettings-0.106.1 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.106.1/NEWS more details])
+ * [*`February 23, 2009`*] imsettings-0.106.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.106.0/NEWS more details])
+ * [*`October 23, 2008`*] imsettings-0.105.1 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.105.1/NEWS more details])
+ * [*`October 14, 2008`*] imsettings-0.105.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.105.0/NEWS more details])
+ * [*`September 25, 2008`*] imsettings-0.104.1 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.104.1/NEWS more details])
+ * [*`September 17, 2008`*] imsettings-0.104.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.104.0/NEWS more details])
+ * [*`August 29, 2008`*] imsettings-0.103.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.103.0/NEWS more details])
+ * [*`July 29, 2008`*] imsettings-0.102.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.102.0/NEWS more details])
+ * [*`July  3, 2008`*] imsettings-0.101.3 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.101.3/NEWS more details])
+ * [*`June 17, 2008`*] imsettings-0.101.2 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.101.2/NEWS more details])
+ * [*`June 12, 2008`*] imsettings-0.101.1 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.101.1/NEWS more details])
+ * [*`June 11, 2008`*] imsettings-0.101.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.101.0/NEWS more details])
+ * [*`June 4, 2008`*] imsettings-0.100.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.100.0/NEWS more details])
