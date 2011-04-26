@@ -2,6 +2,8 @@
 
 = Old News =
 
+ * [*`August  2, 2010`*] imsettings-0.108.1 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.108.1/NEWS more details])
+ * [*`March 23, 2010`*] imsettings-0.108.0 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.108.0/NEWS more details])
  * [*`September 28, 2009`*] imsettings-0.107.4 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.4/NEWS more details])
  * [*`September  1, 2009`*] imsettings-0.107.3 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.3/NEWS more details])
  * [*`August 27, 2009`*] imsettings-0.107.2 has been released. ([http://code.google.com/p/imsettings/source/browse/tags/imsettings-0.107.2/NEWS more details])
