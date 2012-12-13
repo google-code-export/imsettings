@@ -1,10 +1,10 @@
 #summary Information of the source code
 
-The repository has been moved to [http://github.com/tagoh/imsettings/ github].
+This project has been moved to http://tagoh.bitbucket.org/imsettings/
 
 = How to check out the source code =
 {{{
-% git clone git://github.com/tagoh/imsettings.git
+% git clone git@bitbucket.org:tagoh/imsettings.git
 }}}
 
 = How to build =
